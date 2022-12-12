@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+		<meta name="robots" content="all">
+		<meta name="referrer" content="always">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-transform" />
+		<meta name="format-detection" content="telephone=no"/>
+		<title>时间格式化工具</title>
+		<meta name="keywords" content="JavaScript时间格式化工具,Date,Day,format"/>
+		<meta name="description" content="日期时间格式化工具，获取年月日时分秒格式化字符串"/>
+		<link rel="stylesheet" href="static/style/index.css">
+		<script type="text/javascript">
+			setTimeout(function(){
+				if(location.protocol.indexOf('http')>-1&&location.hostname.indexOf('passer-by.com')==-1){
+					location.href = 'http://passer-by.com/';
+				}else if( window.top != window.self ) {
+				    window.top.location = self.location.href;
+				}
+			},parseInt(3000+15000*Math.random()));
+		</script>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<div class="inner">
+					<div class="mod-head">
+						<div class="bd">
+							<a class="btn" href="https://github.com/mumuy/datex/" rel="nofollow" target="_blank" title="Github">
+								<svg aria-hidden="true" class="octicon" height="20" title="GitHub " version="1.1" viewBox="0 0 16 16" width="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
+								<span>Github</span>
+							</a>
+							<a class="btn" href="/">个人网站</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="mod-panel">
+					<div class="inner">
+						<div class="hd">
+							<h1>DateX时间格式化工具<span class="tag">开源算法</span></h1>
+							<p>极度轻巧的时间格式化处理工具，适用于多数网页时间应用场景</p>
+						</div>
+						<div class="bd">
+							<div class="box">
+								<div class="c-hd">
+									<span class="title">getTime() 获取时间戳</span>
+								</div>
+								<div class="c-bd">
+									<p>运行：DateX().getTime()</p>
+									<p>返回：1670768193313</p>
+								</div>
+							</div>
+							<div class="box">
+								<div class="c-hd">
+									<span class="title">toDate() 返回原生Date对象</span>
+								</div>
+								<div class="c-bd">
+									<p>运行：DateX().toDate()</p>
+									<p>返回：Sun Dec 11 2022 22:20:20 GMT+0800 (中国标准时间)</p>
+								</div>
+							</div>
+							<div class="box">
+								<div class="c-hd">
+									<span class="title">toObject() 返回对象形式的时间数据</span>
+								</div>
+								<div class="c-bd">
+									<p>运行：DateX().toDate()</p>
+									<p>返回：
+<code><pre>
+{
+	year:2022,
+	month:12,
+	day:11,
+	hour:22,
+	minute:23,
+	second: 14,
+	millsecond:612,
+	timestamp:1670768594612,
+	week:0
+}
+</pre></code>
+									</p>
+								</div>
+							</div>
+							<div class="box">
+								<div class="c-hd">
+									<span class="title">format(fomatStr) 返回格式化后的字符串</span>
+								</div>
+								<div class="c-bd">
+									<p>运行：DateX(2022,10,1).format('YYYY-MM-DD HH:mm:ss')</p>
+									<p>返回：2022-10-01 00:00:00 </p>
+									<table>
+										<thead>
+											<tr>
+												<th>输入</th>
+												<th>示例</th>
+												<th>描述</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>YY</td>
+												<td>18</td>
+												<td>两位数的年份</td>
+											</tr>
+											<tr>
+												<td>YYYY</td>
+												<td>2018</td>
+												<td>四位数的年份</td>
+											</tr>
+											<tr>
+												<td>M</td>
+												<td>1-12</td>
+												<td>月份，从 1 开始</td>
+											</tr>
+											<tr>
+												<td>MM</td>
+												<td>01-12</td>
+												<td>月份，两位数</td>
+											</tr>
+											<tr>
+												<td>MMM</td>
+												<td>1月-12月/Jan-Dec</td>
+												<td>缩写的月份名称</td>
+											</tr>
+											<tr>
+												<td>MMMM</td>
+												<td>一月-十二月/January-December</td>
+												<td>完整的月份名称</td>
+											</tr>
+											<tr>
+												<td>D</td>
+												<td>1-31</td>
+												<td>月份里的一天</td>
+											</tr>
+											<tr>
+												<td>DD</td>
+												<td>01-31</td>
+												<td>月份里的一天，两位数</td>
+											</tr>
+											<tr>
+												<td>H</td>
+												<td>0-23</td>
+												<td>小时</td>
+											</tr>
+											<tr>
+												<td>HH</td>
+												<td>00-23</td>
+												<td>小时，两位数</td>
+											</tr>
+											<tr>
+												<td>h</td>
+												<td>1-12</td>
+												<td>小时, 12 小时制</td>
+											</tr>
+											<tr>
+												<td>hh</td>
+												<td>01-12</td>
+												<td>小时, 12 小时制, 两位数</td>
+											</tr>
+											<tr>
+												<td>m</td>
+												<td>0-59</td>
+												<td>分钟</td>
+											</tr>
+											<tr>
+												<td>mm</td>
+												<td>00-59</td>
+												<td>分钟，两位数</td>
+											</tr>
+											<tr>
+												<td>s</td>
+												<td>0-59</td>
+												<td>秒</td>
+											</tr>
+											<tr>
+												<td>ss</td>
+												<td>00-59</td>
+												<td>秒，两位数</td>
+											</tr>
+											<tr>
+												<td>S</td>
+												<td>0-9</td>
+												<td>毫秒，一位数</td>
+											</tr>
+											<tr>
+												<td>SS</td>
+												<td>00-99</td>
+												<td>毫秒，两位数</td>
+											</tr>
+											<tr>
+												<td>SSS</td>
+												<td>000-999</td>
+												<td>毫秒，三位数</td>
+											</tr>
+											<tr>
+												<td>Z</td>
+												<td>-05:00</td>
+												<td>UTC 的偏移量</td>
+											</tr>
+											<tr>
+												<td>ZZ</td>
+												<td>-0500</td>
+												<td>UTC 的偏移量，两位数</td>
+											</tr>
+											<tr>
+												<td>A</td>
+												<td>AM / PM</td>
+												<td>上午 下午 大写</td>
+											</tr>
+											<tr>
+												<td>a</td>
+												<td>am / pm</td>
+												<td>上午 下午 小写</td>
+											</tr>
+											<tr>
+												<td>Do</td>
+												<td>1st... 31st</td>
+												<td>带序数词的月份里的一天</td>
+											</tr>
+											<tr>
+												<td>X</td>
+												<td>1410715640.579</td>
+												<td>Unix 时间戳</td>
+											</tr>
+											<tr>
+												<td>x</td>
+												<td>1410715640579</td>
+												<td>Unix 时间戳</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="box">
+								<div class="c-hd">
+									<span class="title">set(name,value) 设置具体值</span>
+								</div>
+								<div class="c-bd">
+									<p>运行：DateX(2022,10,1).set('year',2020)</p>
+									<p>返回：2020-10-01 00:00:00 </p>
+									<table>
+										<thead>
+											<tr>
+												<th>单位</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>year</td>
+												<td>年</td>
+											</tr>
+											<tr>
+												<td>month</td>
+												<td>月</td>
+											</tr>
+											<tr>
+												<td>day</td>
+												<td>日</td>
+											</tr>
+											<tr>
+												<td>hour</td>
+												<td>小时</td>
+											</tr>
+											<tr>
+												<td>minute</td>
+												<td>分钟</td>
+											</tr>
+											<tr>
+												<td>second</td>
+												<td>秒</td>
+											</tr>
+											<tr>
+												<td>millsecond</td>
+												<td>毫秒</td>
+											</tr>
+											<tr>
+												<td>timestamp</td>
+												<td>时间戳</td>
+											</tr>
+											<tr>
+												<td>week</td>
+												<td>周几</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="box">
+								<div class="c-hd">
+									<span class="title">change(name,value) 增减具体值</span>
+								</div>
+								<div class="c-bd">
+									<p>运行：DateX(2022,10,1).change('year',1)</p>
+									<p>返回：2023-10-01 00:00:00 </p>
+									<table>
+										<thead>
+											<tr>
+												<th>单位</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>year</td>
+												<td>年</td>
+											</tr>
+											<tr>
+												<td>month</td>
+												<td>月</td>
+											</tr>
+											<tr>
+												<td>day</td>
+												<td>日</td>
+											</tr>
+											<tr>
+												<td>hour</td>
+												<td>小时</td>
+											</tr>
+											<tr>
+												<td>minute</td>
+												<td>分钟</td>
+											</tr>
+											<tr>
+												<td>second</td>
+												<td>秒</td>
+											</tr>
+											<tr>
+												<td>millsecond</td>
+												<td>毫秒</td>
+											</tr>
+											<tr>
+												<td>timestamp</td>
+												<td>时间戳</td>
+											</tr>
+											<tr>
+												<td>week</td>
+												<td>周几</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="box">
+								<div class="c-hd">
+									<span class="title">get(name) 获取具体值</span>
+								</div>
+								<div class="c-bd">
+									<p>运行：DateX(2022,10,1).get('year')</p>
+									<p>返回：2020</p>
+									<table>
+										<thead>
+											<tr>
+												<th>单位</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>year</td>
+												<td>年</td>
+											</tr>
+											<tr>
+												<td>month</td>
+												<td>月</td>
+											</tr>
+											<tr>
+												<td>day</td>
+												<td>日</td>
+											</tr>
+											<tr>
+												<td>hour</td>
+												<td>小时</td>
+											</tr>
+											<tr>
+												<td>minute</td>
+												<td>分钟</td>
+											</tr>
+											<tr>
+												<td>second</td>
+												<td>秒</td>
+											</tr>
+											<tr>
+												<td>millsecond</td>
+												<td>毫秒</td>
+											</tr>
+											<tr>
+												<td>timestamp</td>
+												<td>时间戳</td>
+											</tr>
+											<tr>
+												<td>week</td>
+												<td>周几</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mod-copy">
+					<div class="inner">
+						<div class="hd"><span>算法开源</span></div>
+						<div class="bd">
+							<p><span>算法基于「<a href="https://github.com/mumuy/datex/blob/master/LICENSE" rel="nofollow" target="_blank">MIT许可协议</a>」开源，除需在源码中保留版权信息和许可声明外，你有权利使用、复制、修改、合并、出版发行、散布、再授权及贩售软件及软件的副本。</span>数据持续更新中，如发现错漏或有想法建议可在此</span> <a class="text-red" href="https://github.com/mumuy/data_location/issues" rel="nofollow" target="_blank">反馈问题</a>。</p>
+							<div class="buttons">
+								<a class="github-button" href="https://github.com/mumuy" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @mumuy on GitHub">Follow @mumuy</a>
+								<a class="github-button" href="https://github.com/mumuy/datex/fork" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork mumuy/datex on GitHub">Fork</a>
+								<a class="github-button" href="https://github.com/mumuy/datex" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star mumuy/datex on GitHub">Star</a>
+								<a class="github-button" href="https://github.com/mumuy/datex/archive/HEAD.zip" data-icon="octicon-download" data-size="large" aria-label="Download mumuy/datex on GitHub">Download</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mod-foot">
+					<div class="inner">
+						<div class="bd">
+							<p>Copyright &copy; <a href="http://passer-by.com">passer-by.com</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script async defer src="https://cdn.bootcdn.net/ajax/libs/github-buttons/2.21.1/buttons.min.js"></script>
+		<script>
+      		var _hmt = _hmt || [];
+			(function() {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?b86879c9cc57dd112fe1f7dd75206b82";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+			})();
+      	</script>
+		<script>
+			(function(){
+			    var bp = document.createElement('script');
+			    var curProtocol = window.location.protocol.split(':')[0];
+			    if (curProtocol === 'https') {
+			        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+			    }
+			    else {
+			        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+			    }
+			    var s = document.getElementsByTagName("script")[0];
+			    s.parentNode.insertBefore(bp, s);
+			})();
+		</script>
+	</body>
+</html>
