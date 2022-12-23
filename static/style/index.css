@@ -96,7 +96,7 @@ a:hover{
 }
 .mod-panel .hd{
     padding: 35px 0;
-	line-height: 22px;
+	line-height: 24px;
 }
 .mod-panel .hd h1{
     margin-bottom: 10px;
@@ -118,7 +118,8 @@ a:hover{
     box-shadow: 0 1px 5px 0 rgba(0,0,0,0.03);
 }
 .mod-panel .hd p{
-    line-height: 26px;
+    margin-bottom: 10px;
+    line-height: 30px;
     font-size: 15px;
 }
 .mod-panel .hd b{
@@ -190,63 +191,54 @@ a:hover{
     vertical-align: middle;
     outline: none;
 }
-.mod-panel .bd .btn {
-    height: 34px;
-    min-width: 80px;
+.mod-panel .btn {
+    display: inline-block;
+    height: 36px;
+    min-width: 90px;
     background: #2095f2;
     border: medium none;
-    line-height: 34px;
+    line-height: 36px;
+    text-align: center;
     vertical-align: middle;
     font-size: 15px;
     color: #fff;
     cursor: pointer;
     outline: none;
     border-radius: 4px;
+    text-decoration: none;
 }
-.mod-panel .bd .btn:hover{
+.mod-panel .btn:hover{
 	background: #1b85da;
 }
-.mod-panel .bd .btn-green{
+.mod-panel .btn-green{
 	background: #4bae4f;
 	color: #fff;
 }
-.mod-panel .bd .btn-green:hover{
+.mod-panel .btn-green:hover{
 	background: #47a04b;
 }
 .mod-panel .bd .btn-red{
 	background: #f56954;
 	color: #fff;
 }
-.mod-panel .bd .btn-red:hover{
+.mod-panel .btn-red:hover{
 	background: #f4543c;;
 }
-.mod-panel .bd .btn-orange{
+.mod-panel .btn-orange{
 	background: #ff9000;
 	color: #fff;
 }
-.mod-panel .bd .btn-orange:hover{
+.mod-panel .btn-orange:hover{
 	background: #e18309;
 }
-.mod-panel .bd .btn-small{
+.mod-panel .btn-small{
     min-width: 36px;
     margin-right: -1px;
     cursor: pointer;
 }
-.mod-panel .bd .btn[disabled]{
+.mod-panel .btn[disabled]{
 	background: #f0f0f0;
 	color: #aaa;
-}
-.mod-panel .bd textarea{
-    display: block;
-	width: 100%;
-	height: 120px;
-	padding:5px 10px;
-    background: #fafafa;
-	border: 1px solid #ebebeb;
-	box-sizing: border-box;
-	border-radius: 5px;
-	resize: none;
-	outline: none;
 }
 .mod-panel .bd p{
     line-height: 22px;
