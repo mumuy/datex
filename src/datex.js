@@ -30,20 +30,26 @@
     };
     var language = langMap[navigator.language]||langMap['en-US'];
 
-    class DateX{
-        constructor(){
-            this.#date = new Date(...arguments);
-        }
-
-        #date;
+    function DateX(){
+        return new DateX.prototype.init(...arguments);
+    }
+    DateX.prototype = {
+        _date:null,
+        init:function(){
+            if(arguments.length==3){
+                arguments[1]--;
+            }
+            this._date = new Date(...arguments);
+            return this;
+        },
         getTime(){
-            return this.#date.getTime();
-        }
+            return this._date.getTime();
+        },
         toDate(){
-            return this.#date;
-        }
+            return this._date;
+        },
         toObject(){
-            var _ = this.#date;
+            var _ = this._date;
             return {
                 'year':_.getFullYear(),
                 'month':_.getMonth()+1,
@@ -55,9 +61,9 @@
                 'timestamp':_.getTime(),
                 'week':_.getDay()
             }
-        }
+        },
         set(unit,value){
-            var _ = this.#date
+            var _ = this._date
             var $ = this.toObject();
             switch (unit) {
                 case 'year':
@@ -90,18 +96,18 @@
                     break;
             }
             return this;
-        }
+        },
         get(unit){
             var $ = this.toObject();
             return $[unit];
-        }
+        },
         change(unit,value){
             var $ = this.toObject();
             return this.set(unit,$[unit]+value);
-        }
+        },
         format(formatStr){
             formatStr = formatStr||'YYYY-MM-DD HH:mm:ss.SSS';
-            var _ = this.#date;
+            var _ = this._date;
             var $ = this.toObject();
             var match = _.toTimeString().match(/GMT([\+\-])(\d{2})(\d{2})/);
             var map = {
@@ -136,13 +142,38 @@
             return formatStr.replace(/Y+|M+|D+|H+|h+|m+|s+|S+|Z+|Do|A|a|X|x|Q|W|w/g,function(key){
                 return map[key]||'';
             });
+        },
+        diff(unit,that){
+            if(typeof that=='undefined'){
+                that = DateX();
+            }else if(!(that instanceof DateX)){
+                that = DateX(that);
+            }
+            if(isNaN(that.getTime())){
+                return false;
+            }
+            var timestamp = this.getTime()-that.getTime();
+            var diffMap = {
+                'day':86400000,
+                'hour':3600000,
+                'minute':60000,
+                'second':1000,
+                'millsecond':1,
+                'timestamp':1
+            };
+            var value = 0;
+            if(diffMap[unit]){
+                value = ~~(timestamp/diffMap[unit]);
+            }else if(unit=='month'){
+                var this_month = 12*(this.get('year')-1)+this.get('month');
+                var that_month = 12*(that.get('year')-1)+that.get('month');
+                value = this_month -that_month;
+            }else if(unit=='year'){
+                value = this.get('year') - that.get('year');
+            }
+            return value;
         }
-    }
-
-    return function (){
-        if(arguments.length==3){
-            arguments[1]--;
-        }
-        return new DateX(...arguments);
     };
+    DateX.prototype.init.prototype = DateX.prototype;
+    return DateX;
 }));
