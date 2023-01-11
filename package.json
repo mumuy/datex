@@ -1,0 +1,35 @@
+{
+    "name": "DateX",
+    "version": "1.0.0",
+    "description": "a datetime format library",
+    "author": "HaoLe Zheng",
+    "license": "MIT",
+    "keywords": [
+        "datetime",
+        "format",
+        "时间格式化"
+    ],
+    "main": "dist/datex.min.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mumuy/datex.git"
+    },
+    "bugs": {
+        "url": "https://github.com/mumuy/datex/issues"
+    },
+    "devDependencies": {
+        "gulp": "^4.0.2",
+        "gulp-rename": "^2.0.0",
+        "tape": "^5.3.1",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0"
+    },
+    "scripts": {
+        "test": "node test/index.js",
+        "build": "webpack && gulp mini && npm run test"
+    },
+    "homepage": "https://passer-by.com/datex/",
+    "directories": {
+        "test": "test"
+    }
+}

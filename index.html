@@ -49,11 +49,19 @@
 						<div class="bd">
 							<div class="box">
 								<div class="c-hd">
-									<span class="title">getTime() 获取时间戳</span>
+									<span class="title">getTime() 返回时间戳</span>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX().getTime()</p>
 									<p>返回：1670768193313</p>
+								</div>
+							</div>
+							<div class="box">
+								<div class="c-hd">
+									<span class="title">clone() 返回克隆对象</span>
+								</div>
+								<div class="c-bd">
+									<p>运行：DateX().clone()</p>
 								</div>
 							</div>
 							<div class="box">
@@ -67,7 +75,7 @@
 							</div>
 							<div class="box">
 								<div class="c-hd">
-									<span class="title">toObject() 返回对象形式的时间数据</span>
+									<span class="title">toObject() 返回时间字段对象</span>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX().toDate()</p>
@@ -90,7 +98,7 @@
 							</div>
 							<div class="box">
 								<div class="c-hd">
-									<span class="title">format(fomatStr) 返回格式化后的字符串</span>
+									<span class="title">format(pattern) 返回格式化时间</span>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX(2022,10,1).format('YYYY-MM-DD HH:mm:ss')</p>
@@ -243,10 +251,10 @@
 							</div>
 							<div class="box">
 								<div class="c-hd">
-									<span class="title">set(name,value) 设置具体值</span>
+									<span class="title">set(name,value) 设置某字段值</span>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX(2022,10,1).set('year',2020)</p>
+									<p>运行：DateX(2022,10,1).set('year',2020).format()</p>
 									<p>返回：2020-10-01 00:00:00 </p>
 									<table>
 										<thead>
@@ -298,11 +306,11 @@
 							</div>
 							<div class="box">
 								<div class="c-hd">
-									<span class="title">change(name,value) 增减具体值</span>
+									<span class="title">change(name,value) 增减某字段值</span>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX(2022,10,1).change('year',1)</p>
-									<p>返回：2023-10-01 00:00:00 </p>
+									<p>运行：DateX(2022,10,1).change('year',1).format()</p>
+									<p>返回：2022-10-01 00:00:00 </p>
 									<table>
 										<thead>
 											<tr>
@@ -353,7 +361,117 @@
 							</div>
 							<div class="box">
 								<div class="c-hd">
-									<span class="title">get(name) 获取具体值</span>
+									<span class="title">startOf(name) 获取某字段起始时</span>
+								</div>
+								<div class="c-bd">
+									<p>运行：DateX(2022,10,10).startOf('month').format()</p>
+									<p>返回：2023-10-01 00:00:00 /p>
+									<table>
+										<thead>
+											<tr>
+												<th>单位</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>year</td>
+												<td>年</td>
+											</tr>
+											<tr>
+												<td>month</td>
+												<td>月</td>
+											</tr>
+											<tr>
+												<td>day</td>
+												<td>日</td>
+											</tr>
+											<tr>
+												<td>hour</td>
+												<td>小时</td>
+											</tr>
+											<tr>
+												<td>minute</td>
+												<td>分钟</td>
+											</tr>
+											<tr>
+												<td>second</td>
+												<td>秒</td>
+											</tr>
+											<tr>
+												<td>millsecond</td>
+												<td>毫秒</td>
+											</tr>
+											<tr>
+												<td>timestamp</td>
+												<td>时间戳</td>
+											</tr>
+											<tr>
+												<td>week</td>
+												<td>周几</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="box">
+								<div class="c-hd">
+									<span class="title">endOf(name) 获取某字段末尾时</span>
+								</div>
+								<div class="c-bd">
+									<p>运行：DateX(2022,10,10).endOf('month').format()</p>
+									<p>返回：2022-10-31 23:59:59</p>
+									<table>
+										<thead>
+											<tr>
+												<th>单位</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>year</td>
+												<td>年</td>
+											</tr>
+											<tr>
+												<td>month</td>
+												<td>月</td>
+											</tr>
+											<tr>
+												<td>day</td>
+												<td>日</td>
+											</tr>
+											<tr>
+												<td>hour</td>
+												<td>小时</td>
+											</tr>
+											<tr>
+												<td>minute</td>
+												<td>分钟</td>
+											</tr>
+											<tr>
+												<td>second</td>
+												<td>秒</td>
+											</tr>
+											<tr>
+												<td>millsecond</td>
+												<td>毫秒</td>
+											</tr>
+											<tr>
+												<td>timestamp</td>
+												<td>时间戳</td>
+											</tr>
+											<tr>
+												<td>week</td>
+												<td>周几</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="box">
+								<div class="c-hd">
+									<span class="title">get(name) 返回某字段值</span>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX(2022,10,1).get('year')</p>
@@ -408,7 +526,7 @@
 							</div>
 							<div class="box">
 								<div class="c-hd">
-									<span class="title">diff(name,datestr|DateX) 获取具体值</span>
+									<span class="title">diff(name,dateStr|DateX) 返回某字段差值</span>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX('1949-10-01').diff('month','2022-12-01')</p>

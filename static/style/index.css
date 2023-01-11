@@ -152,12 +152,9 @@ a:hover{
 .mod-panel .bd .c-bd{
     padding:20px;
 }
-.mod-panel .bd .table-inner{
-    padding-top:20px;
-}
 .mod-panel .bd table{
     width: 100%;
-    margin-bottom: 15px;
+    margin: 15px 0;
 }
 .mod-panel .bd caption{
     line-height: 30px;
@@ -253,109 +250,6 @@ a:hover{
     color:#f56954;
 }
 
-.mod-intro{
-    margin-bottom: 65px;
-}
-.mod-intro .hd{
-    margin: 0 5px 5px;
-    line-height: 30px;
-}
-.mod-intro .hd span{
-    font-size: 18px;
-    font-weight: bold;
-    color: #646464;
-}
-.mod-intro .bd ul{
-    overflow: hidden;
-}
-.mod-intro .bd li{
-    float: left;
-    width: 33.33%;
-}
-.mod-intro .bd .item{
-    padding: 15px 12px;
-    margin: 0 5px 10px;
-    background: rgb(246, 248, 250);
-    border-radius: 5px;
-}
-.mod-intro .bd p{
-    line-height: 22px;
-}
-.mod-intro .bd p.q{
-    font-weight: bold;
-    color: #646464;
-}
-.mod-intro .article p{
-    line-height: 22px;
-    text-indent: 2em;
-}
-.mod-intro .table-inner{
-    overflow-x: auto;
-}
-
-.mod-article{
-    margin-bottom: 65px;
-}
-.mod-article .bd{
-    position: relative;
-    padding: 30px 0;
-}
-.mod-article .bd::before{
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: '“';
-    font-size: 60px;
-    border-radius: 6px;
-}
-.mod-article .bd::after{
-    position: absolute;
-    bottom: -10px;
-    right: 0;
-    content: '”';
-    font-size: 60px;
-    border-radius: 6px;
-}
-.mod-article .bd p{
-    margin-bottom: 12px;
-    line-height: 28px;
-    font-size: 15px;
-    text-indent: 2em;
-}
-
-.mod-app{
-    margin-bottom: 65px;
-}
-.mod-app .hd{
-    margin: 0 5px 5px;
-    line-height: 30px;
-    text-align: center;
-}
-.mod-app .hd span{
-    font-size: 18px;
-    font-weight: bold;
-    color: #646464;
-}
-.mod-app .bd ul{
-    padding: 20px 0;
-    text-align: center;
-    overflow: hidden;
-}
-.mod-app .bd li{
-    display: inline-block;
-    width: 12%;
-    margin-bottom: 15px;
-}
-.mod-app .bd .app span{
-    display: block;
-    margin:0 15px;
-    line-height: 32px;
-    text-align: center;
-}
-.mod-app .bd .app span.icon{
-    margin-bottom: 5px;
-}
-
 .mod-copy{
     margin-bottom: 65px;
     padding: 35px 0;
@@ -395,7 +289,6 @@ a:hover{
     border-radius: 5px;
     word-break: break-word;
 }
-
 
 .mod-foot .bd{
     padding: 10px 0;
@@ -457,24 +350,6 @@ a:hover{
         line-height: 22px;
         font-size: 13px;
         overflow: hidden;
-    }
-
-    .mod-article{
-        margin-bottom: 25px;
-    }
-    .mod-article .bd{
-        padding: 15px 0;
-    }
-    .mod-article .bd::before{
-        font-size: 48px;
-    }
-    .mod-article .bd::after{
-        font-size: 48px;
-    }
-    .mod-article .bd p{
-        margin-bottom: 7px;
-        line-height: 22px;
-        font-size: 14px;
     }
 
     .mod-copy{
