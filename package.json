@@ -18,15 +18,13 @@
         "url": "https://github.com/mumuy/datex/issues"
     },
     "devDependencies": {
-        "gulp": "^4.0.2",
-        "gulp-rename": "^2.0.0",
         "tape": "^5.3.1",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0"
     },
     "scripts": {
         "test": "node test/index.js",
-        "build": "webpack && gulp mini && npm run test"
+        "build": "webpack && npm run test"
     },
     "homepage": "https://passer-by.com/datex/",
     "directories": {
