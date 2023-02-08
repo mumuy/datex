@@ -2,7 +2,7 @@ var langMap = {};
 langMap['en-US'] = {
     'MMM':['Jan.','Feb.','Mar.','Apr.','May.','Jun.','Jul.','Aug.','Sept.','Oct.','Nov.','Dec.'],
     'MMMM':['January','February','March','April','May','June','July','August','September','October','November','December'],
-    'Do':['1st','2st','3st','4st','5st','6st','7st','8st','9st','10st','11st','12st','13st','14st','15st','16st','17st','18st','19st','20st','21st','22st','23st','24st','25st','26st','27st','28st','29st','30st','31st'],
+    'Do':['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th','11th','12th','13th','14th','15th','16th','17th','18th','19th','20th','21st','22nd','23rd','24th','25th','26th','27th','28th','29th','30th','31st'],
     'W':['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
     'w':['Sun.','Mon.','Tues.','Wed.','Thur.','Fri.','Sat.'],
 };
