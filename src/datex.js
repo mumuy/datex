@@ -1,4 +1,4 @@
-var langMap = {};
+let langMap = {};
 langMap['en-US'] = {
     'MMM':['Jan.','Feb.','Mar.','Apr.','May.','Jun.','Jul.','Aug.','Sept.','Oct.','Nov.','Dec.'],
     'MMMM':['January','February','March','April','May','June','July','August','September','October','November','December'],
@@ -13,7 +13,7 @@ langMap['zh-CN'] = {
     'W':['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
     'w':['周日','周一','周二','周三','周四','周五','周六'],
 };
-var language = langMap['en-US'];
+let language = langMap['en-US'];
 if(typeof self!='undefined'&&self.navigator){
     language = langMap[self.navigator.language];
 }
@@ -22,6 +22,7 @@ function DateX(){
     return new DateX.prototype.init(...arguments);
 }
 DateX.prototype = {
+    _cache:null,
     _date:null,
     init:function(){
         if(arguments.length>=3){
@@ -40,7 +41,7 @@ DateX.prototype = {
         return this._date;
     },
     toObject(){
-        var _ = this._date;
+        let _ = this._date;
         return {
             'year':_.getFullYear(),
             'month':_.getMonth()+1,
@@ -54,8 +55,9 @@ DateX.prototype = {
         }
     },
     set(unit,value){
-        var _ = this._date
-        var $ = this.toObject();
+        let _ = this._date;
+        let $ = this.toObject();
+        this._cache = null;
         switch (unit) {
             case 'year':
                 _.setFullYear(value);
@@ -82,25 +84,26 @@ DateX.prototype = {
                 _.setTime(value);
                 break;
             case 'week':
-                var diff = $.week-value;
+                let diff = $.week-value;
                 _.setDate($.day-diff);
                 break;
         }
         return this;
     },
     get(unit){
-        var $ = this.toObject();
+        let $ = this.toObject();
         return $[unit];
     },
     change(unit,value){
-        var $ = this.toObject();
+        let $ = this.toObject();
+        this._cache = null;
         return this.set(unit,$[unit]+value);
     },
     format(pattern = 'YYYY-MM-DD HH:mm:ss'){
-        var _ = this._date;
-        var $ = this.toObject();
-        var match = _.toTimeString().match(/GMT([\+\-])(\d{2})(\d{2})/);
-        var map = {
+        let _ = this._date;
+        let $ = this.toObject();
+        let match = _.toTimeString().match(/GMT([\+\-])(\d{2})(\d{2})/);
+        let map = {
             'YYYY':''+$.year,
             'YY':(''+$.year).padStart(2,'0'),
             'MM':(''+$.month).padStart(2,'0'),
@@ -135,39 +138,9 @@ DateX.prototype = {
             return map[key]||'';
         });
     },
-    diff(unit,that){
-        if(typeof that=='undefined'){
-            that = DateX();
-        }else if(!(that instanceof DateX)){
-            that = DateX(that);
-        }
-        if(isNaN(that.getTime())){
-            return false;
-        }
-        var timestamp = this.getTime()-that.getTime();
-        var diffMap = {
-            'day':86400000,
-            'hour':3600000,
-            'minute':60000,
-            'second':1000,
-            'millsecond':1,
-            'timestamp':1
-        };
-        var value = 0;
-        if(diffMap[unit]){
-            value = ~~(timestamp/diffMap[unit]);
-        }else if(unit=='month'){
-            var this_month = 12*(this.get('year')-1)+this.get('month');
-            var that_month = 12*(that.get('year')-1)+that.get('month');
-            value = this_month -that_month;
-        }else if(unit=='year'){
-            value = this.get('year') - that.get('year');
-        }
-        return value;
-    },
     startOf(unit){
-        var $ = this.toObject();
-        var that = null;
+        let $ = this.toObject();
+        let that = null;
         switch (unit) {
             case 'year':
                 that = DateX($.year,1,1,0,0,0,0);
@@ -198,8 +171,58 @@ DateX.prototype = {
         return that;
     },
     endOf(unit){
-        var $ = this.toObject();
+        let $ = this.toObject();
         return this.startOf(unit).change(unit,unit=='week'?7:1).change('millsecond',-1);
+    },
+    diffWith(that,unit){
+        if(typeof that=='undefined'){
+            that = DateX();
+        }else if(!(that instanceof DateX)){
+            that = DateX(that);
+        }
+        if(isNaN(that.getTime())){
+            return false;
+        }
+        let diffMap = {
+            'day':86400000,
+            'hour':3600000,
+            'minute':60000,
+            'second':1000,
+            'millsecond':1,
+            'timestamp':1
+        };
+        let timestamp = this.getTime()-that.getTime();
+        let value = 0;
+        if(unit){
+            if(diffMap[unit]){
+                value = ~~(timestamp/diffMap[unit]);
+            }else if(unit=='month'){
+                let this_month = 12*(this.get('year')-1)+this.get('month');
+                let that_month = 12*(that.get('year')-1)+that.get('month');
+                value = this_month -that_month;
+                if(value<0&&this.get('day')>that.get('day')){
+                    value+=1;
+                }else if(value>0&&this.get('day')<that.get('day')){
+                    value-=1;
+                }
+            }else if(unit=='year'){
+                value = this.get('year') - that.get('year');
+                if(value<0&&(this.get('month')>that.get('month')||this.get('month')==that.get('month')&&this.get('day')>that.get('day'))){
+                    value+=1;
+                }else if(value>0&&(this.get('month')<that.get('month')||this.get('month')==that.get('month')&&this.get('day')<that.get('day'))){
+                    value-=1;
+                }
+            }
+            return value;
+        }else{
+            let clone = this.clone();
+            let hash = {};
+            ['year','month','day','hour','minute','second','millsecond'].forEach(function(unit){
+                hash[unit] = clone.diffWith(that,unit);
+                clone.set(unit,that.get(unit));
+            });
+            return hash;
+        }
     }
 };
 DateX.prototype.init.prototype = DateX.prototype;

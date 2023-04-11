@@ -26,6 +26,81 @@
 	<body>
 		<div class="wrapper">
 			<div class="header">
+				<div class="mod-menu">
+					<div class="bd">
+						<ul>
+							<li>
+								<a href="#hash1">
+									<span class="title">返回时间戳</span>
+									<span class="subtitle">getTime()</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash2">
+									<span class="title">返回克隆对象</span>
+									<span class="subtitle">clone()</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash3">
+									<span class="title">返回原生Date对象</span>
+									<span class="subtitle">toDate()</span>
+								</a>
+
+							</li>
+							<li>
+								<a href="#hash4">
+									<span class="title">返回时间字段对象</span>
+									<span class="subtitle">toObject()</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash5">
+									<span class="title">返回格式化时间</span>
+									<span class="subtitle">format(pattern)</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash6">
+									<span class="title">设置某字段值</span>
+									<span class="subtitle">set(name,value)</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash7">
+									<span class="title">增减某字段值</span>
+									<span class="subtitle">change(name,value)</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash8">
+									<span class="title">获取某字段起始时</span>
+									<span class="subtitle">startOf(name)</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash9">
+									<span class="title">获取某字段末尾时</span>
+									<span class="subtitle">endOf(name)</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash10">
+									<span class="title">返回某字段值</span>
+									<span class="subtitle">get(name)</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash11">
+									<span class="title">与某时间点差值</span>
+									<span class="subtitle">diffWith(dateStr|DateX,name)</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="container">
 				<div class="inner">
 					<div class="mod-head">
 						<div class="bd">
@@ -36,52 +111,51 @@
 							<a class="btn" href="/">个人网站</a>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="container">
-				<div class="mod-panel">
-					<div class="inner">
+					<div class="mod-panel">
 						<div class="hd">
 							<h1>DateX时间格式化工具<span class="tag">开源算法</span></h1>
 							<p>极度轻巧的时间格式化处理工具，适用于多数网页时间应用场景</p>
 							<p><a class="btn" href="https://passer-by.com/datex/dist/datex.min.js" target="_blank">获取脚本</a></p>
 						</div>
 						<div class="bd">
-							<div class="box">
+							<div id="hash1" class="box">
 								<div class="c-hd">
-									<span class="title">getTime() 返回时间戳</span>
+									<p class="title">返回时间戳</p>
+									<p class="subtitle">getTime()</p>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX().getTime()</p>
 									<p>返回：1670768193313</p>
 								</div>
 							</div>
-							<div class="box">
+							<div id="hash2" class="box">
 								<div class="c-hd">
-									<span class="title">clone() 返回克隆对象</span>
+									<p class="title">返回克隆对象</p>
+									<p class="subtitle">clone()</p>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX().clone()</p>
 								</div>
 							</div>
-							<div class="box">
+							<div id="hash3" class="box">
 								<div class="c-hd">
-									<span class="title">toDate() 返回原生Date对象</span>
+									<p class="title">返回原生Date对象</p>
+									<p class="subtitle">toDate()</p>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX().toDate()</p>
 									<p>返回：Sun Dec 11 2022 22:20:20 GMT+0800 (中国标准时间)</p>
 								</div>
 							</div>
-							<div class="box">
+							<div id="hash4" class="box">
 								<div class="c-hd">
-									<span class="title">toObject() 返回时间字段对象</span>
+									<p class="title">返回时间字段对象</p>
+									<p class="subtitle">toObject()</p>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX().toDate()</p>
 									<p>返回：
-<code><pre>
-{
+<code></code></p><pre><code>{
 	year:2022,
 	month:12,
 	day:11,
@@ -92,13 +166,14 @@
 	timestamp:1670768594612,
 	week:0
 }
-</pre></code>
-									</p>
+</code></pre>
+									<p></p>
 								</div>
 							</div>
-							<div class="box">
+							<div id="hash5" class="box">
 								<div class="c-hd">
-									<span class="title">format(pattern) 返回格式化时间</span>
+									<p class="title">返回格式化时间</p>
+									<p class="subtitle">format(pattern)</p>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX(2022,10,1).format('YYYY-MM-DD HH:mm:ss')</p>
@@ -249,9 +324,10 @@
 									</table>
 								</div>
 							</div>
-							<div class="box">
+							<div id="hash6" class="box">
 								<div class="c-hd">
-									<span class="title">set(name,value) 设置某字段值</span>
+									<p class="title">设置某字段值</p>
+									<p class="subtitle">set(name,value)</p>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX(2022,10,1).set('year',2020).format()</p>
@@ -304,9 +380,10 @@
 									</table>
 								</div>
 							</div>
-							<div class="box">
+							<div id="hash7" class="box">
 								<div class="c-hd">
-									<span class="title">change(name,value) 增减某字段值</span>
+									<p class="title">增减某字段值</p>
+									<p class="subtitle">change(name,value)</p>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX(2022,10,1).change('year',1).format()</p>
@@ -359,9 +436,10 @@
 									</table>
 								</div>
 							</div>
-							<div class="box">
+							<div id="hash8" class="box">
 								<div class="c-hd">
-									<span class="title">startOf(name) 获取某字段起始时</span>
+									<p class="title">获取某字段起始时</p>
+									<p class="subtitle">startOf(name)</p>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX(2022,10,10).startOf('month').format()</p>
@@ -414,9 +492,10 @@
 									</table>
 								</div>
 							</div>
-							<div class="box">
+							<div id="hash9" class="box">
 								<div class="c-hd">
-									<span class="title">endOf(name) 获取某字段末尾时</span>
+									<p class="title">获取某字段末尾时</p>
+									<p class="subtitle">endOf(name)</p>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX(2022,10,10).endOf('month').format()</p>
@@ -469,9 +548,10 @@
 									</table>
 								</div>
 							</div>
-							<div class="box">
+							<div id="hash10" class="box">
 								<div class="c-hd">
-									<span class="title">get(name) 返回某字段值</span>
+									<p class="title">返回某字段值</p>
+									<p class="subtitle">get(name)</p>
 								</div>
 								<div class="c-bd">
 									<p>运行：DateX(2022,10,1).get('year')</p>
@@ -524,13 +604,17 @@
 									</table>
 								</div>
 							</div>
-							<div class="box">
+							<div id="hash11" class="box">
 								<div class="c-hd">
-									<span class="title">diff(name,dateStr|DateX) 返回某字段差值</span>
+									<p class="title">与某时间点差值</p>
+									<p class="subtitle">diffWith(dateStr|DateX,name)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX('1949-10-01').diff('month','2022-12-01')</p>
+									<p>运行：DateX('1949-10-01').diffWith('2022-12-01','month')</p>
 									<p>返回：-878</p>
+									<br>
+									<p>运行：DateX('1949-10-01').diffWith('2022-12-01')</p>
+									<p>返回：{"year":-73,"month":-2,"day":0,"hour":0,"minute":0,"second":0,"millsecond":0}</p>
 									<table>
 										<thead>
 											<tr>
@@ -581,30 +665,36 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="mod-copy">
-					<div class="inner">
-						<div class="hd"><span>算法开源</span></div>
-						<div class="bd">
-							<p><span>算法基于「<a href="https://github.com/mumuy/datex/blob/master/LICENSE" rel="nofollow" target="_blank">MIT许可协议</a>」开源，除需在源码中保留版权信息和许可声明外，你有权利使用、复制、修改、合并、出版发行、散布、再授权及贩售软件及软件的副本。</span>数据持续更新中，如发现错漏或有想法建议可在此</span> <a class="text-red" href="https://github.com/mumuy/datex/issues" rel="nofollow" target="_blank">反馈问题</a>。</p>
-							<div class="buttons">
-								<a class="github-button" href="https://github.com/mumuy" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @mumuy on GitHub">Follow @mumuy</a>
-								<a class="github-button" href="https://github.com/mumuy/datex/fork" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork mumuy/datex on GitHub">Fork</a>
-								<a class="github-button" href="https://github.com/mumuy/datex" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star mumuy/datex on GitHub">Star</a>
-								<a class="github-button" href="https://github.com/mumuy/datex/archive/HEAD.zip" data-icon="octicon-download" data-size="large" aria-label="Download mumuy/datex on GitHub">Download</a>
+					<div class="mod-copy">
+						<div class="inner">
+							<div class="hd"><span>算法开源</span></div>
+							<div class="bd">
+								<p><span>算法基于「<a href="https://github.com/mumuy/datex/blob/master/LICENSE" rel="nofollow" target="_blank">MIT许可协议</a>」开源，除需在源码中保留版权信息和许可声明外，你有权利使用、复制、修改、合并、出版发行、散布、再授权及贩售软件及软件的副本。</span>数据持续更新中，如发现错漏或有想法建议可在此</span> <a class="text-red" href="https://github.com/mumuy/datex/issues" rel="nofollow" target="_blank">反馈问题</a>。</p>
+								<div class="buttons">
+									<a class="github-button" href="https://github.com/mumuy" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @mumuy on GitHub">Follow @mumuy</a>
+									<a class="github-button" href="https://github.com/mumuy/datex/fork" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork mumuy/datex on GitHub">Fork</a>
+									<a class="github-button" href="https://github.com/mumuy/datex" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star mumuy/datex on GitHub">Star</a>
+									<a class="github-button" href="https://github.com/mumuy/datex/archive/HEAD.zip" data-icon="octicon-download" data-size="large" aria-label="Download mumuy/datex on GitHub">Download</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="mod-foot">
-					<div class="inner">
-						<div class="bd">
-							<p>Copyright &copy; <a href="http://passer-by.com">passer-by.com</a></p>
+					<div class="mod-foot">
+						<div class="inner">
+							<div class="bd">
+								<p>Copyright &copy; <a href="http://passer-by.com">passer-by.com</a></p>
+							</div>
 						</div>
 					</div>
+					<script type="text/javascript" src="https://passer-by.com/public/script/projects.js"></script>
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="https://jquerywidget.com/public/script/jquery.min.js"></script>
+		<script type="text/javascript" src="https://jquerywidget.com/code/jquery.headroom.js"></script>
+		<script type="text/javascript">
+			$('.mod-menu').headroom({autoHide:false,scrollOffset:10});
+		</script>
 		<script async defer src="https://cdn.bootcdn.net/ajax/libs/github-buttons/2.21.1/buttons.min.js"></script>
 		<script>
       		var _hmt = _hmt || [];
@@ -629,6 +719,5 @@
 			    s.parentNode.insertBefore(bp, s);
 			})();
 		</script>
-		<script type="text/javascript" src="https://passer-by.com/public/script/projects.js"></script>
 	</body>
 </html>
