@@ -184,6 +184,7 @@ DateX.prototype = {
             return false;
         }
         let diffMap = {
+            'week':86400000*7,
             'day':86400000,
             'hour':3600000,
             'minute':60000,
