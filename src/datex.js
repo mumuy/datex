@@ -18,17 +18,17 @@ if(typeof self!='undefined'&&self.navigator){
     language = langMap[self.navigator.language];
 }
 
-function DateX(){
-    return new DateX.prototype.init(...arguments);
+function datex(){
+    return new datex.prototype.init(...arguments);
 }
 function getInstance(that){
-    if(!(that instanceof DateX)){
-        that = DateX(that);
+    if(!(that instanceof datex)){
+        that = datex(that);
     }
     return that;
 }
 
-DateX.prototype = {
+datex.prototype = {
     _date:null,
     init:function(){
         if(arguments.length>=3){
@@ -44,7 +44,7 @@ DateX.prototype = {
         return ~~(this._date.getTime()/1000);
     },
     clone(){
-        return DateX(this.getTime());
+        return datex(this.getTime());
     },
     toDate(){
         return this._date;
@@ -160,29 +160,29 @@ DateX.prototype = {
         let that = null;
         switch (unit) {
             case 'year':
-                that = DateX($.year,1,1,0,0,0,0);
+                that = datex($.year,1,1,0,0,0,0);
                 break;
             case 'month':
-                that = DateX($.year,$.month,1,0,0,0,0);
+                that = datex($.year,$.month,1,0,0,0,0);
                 break;
             case 'day':
-                that = DateX($.year,$.month,$.day,0,0,0,0);
+                that = datex($.year,$.month,$.day,0,0,0,0);
                 break;
             case 'hour':
-                that = DateX($.year,$.month,$.day,$.hour,0,0,0);
+                that = datex($.year,$.month,$.day,$.hour,0,0,0);
                 break;
             case 'minute':
-                that = DateX($.year,$.month,$.day,$.hour,$.minute,0,0);
+                that = datex($.year,$.month,$.day,$.hour,$.minute,0,0);
                 break;
             case 'second':
-                that = DateX($.year,$.month,$.day,$.hour,$.minute,$.second,0);
+                that = datex($.year,$.month,$.day,$.hour,$.minute,$.second,0);
                 break;
             case 'millsecond':
             case 'timestamp':
                 that = this.clone();
                 break;
             case 'week':
-                that = DateX($.year,$.month,$.day-$.week,0,0,0,0);
+                that = datex($.year,$.month,$.day-$.week,0,0,0,0);
                 break;
         }
         return that;
@@ -255,6 +255,6 @@ DateX.prototype = {
         return this.get(unit)>startDate.get(unit)&&this.get(unit)<endDate.get(unit);
     }
 };
-DateX.prototype.init.prototype = DateX.prototype;
+datex.prototype.init.prototype = datex.prototype;
 
-export default DateX;
+export default datex;

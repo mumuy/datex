@@ -160,7 +160,7 @@
 					</div>
 					<div class="mod-panel">
 						<div class="hd">
-							<h1>DateX时间格式化工具<span class="tag">开源算法</span></h1>
+							<h1>datex时间格式化工具<span class="tag">开源算法</span></h1>
 							<p>极度轻巧的时间格式化处理工具，适用于多数网页时间应用场景</p>
 							<p><a class="btn" href="https://passer-by.com/datex/dist/datex.min.js" target="_blank">获取脚本</a></p>
 						</div>
@@ -171,7 +171,7 @@
 									<p class="subtitle">getTime()</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX().getTime()</p>
+									<p>运行：datex().getTime()</p>
 									<p>返回：1670768193313</p>
 								</div>
 							</div>
@@ -181,7 +181,7 @@
 									<p class="subtitle">getUnix()</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX().getUnix()</p>
+									<p>运行：datex().getUnix()</p>
 									<p>返回：1670768193</p>
 								</div>
 							</div>
@@ -191,7 +191,7 @@
 									<p class="subtitle">clone()</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX().clone()</p>
+									<p>运行：datex().clone()</p>
 								</div>
 							</div>
 							<div id="hash4" class="box">
@@ -200,7 +200,7 @@
 									<p class="subtitle">toDate()</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX().toDate()</p>
+									<p>运行：datex().toDate()</p>
 									<p>返回：Sun Dec 11 2022 22:20:20 GMT+0800 (中国标准时间)</p>
 								</div>
 							</div>
@@ -210,7 +210,7 @@
 									<p class="subtitle">toObject()</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX().toDate()</p>
+									<p>运行：datex().toDate()</p>
 									<p>返回：
 <code></code></p><pre><code>{
 	year:2022,
@@ -233,7 +233,7 @@
 									<p class="subtitle">toArray()</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX().toArray()</p>
+									<p>运行：datex().toArray()</p>
 									<p>返回：[2022,12,11,22,23,14,612]</p>
 								</div>
 							</div>
@@ -243,7 +243,7 @@
 									<p class="subtitle">toString()</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX().toString()</p>
+									<p>运行：datex().toString()</p>
 									<p>返回：Wed Apr 12 2023 15:19:41 GMT+0800 (中国标准时间)</p>
 								</div>
 							</div>
@@ -253,7 +253,7 @@
 									<p class="subtitle">toISOString()</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX().toISOString()</p>
+									<p>运行：datex().toISOString()</p>
 									<p>返回：2023-04-12T07:20:23.363Z</p>
 								</div>
 							</div>
@@ -263,10 +263,10 @@
 									<p class="subtitle">format(pattern)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX(2022,10,1).format('YYYY-MM-DD HH:mm:ss')</p>
+									<p>运行：datex(2022,10,1).format('YYYY-MM-DD HH:mm:ss')</p>
 									<p>返回：2022-10-01 00:00:00 </p>
 									<br>
-									<p>运行：DateX(1671761818503).format('YYYY/MM/DD')</p>
+									<p>运行：datex(1671761818503).format('YYYY/MM/DD')</p>
 									<p>返回：2022/12/23</p>
 									<table>
 										<thead>
@@ -417,7 +417,7 @@
 									<p class="subtitle">set(name,value)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX(2022,10,1).set('year',2020).format()</p>
+									<p>运行：datex(2022,10,1).set('year',2020).format()</p>
 									<p>返回：2020-10-01 00:00:00 </p>
 									<table>
 										<thead>
@@ -473,7 +473,7 @@
 									<p class="subtitle">change(name,value)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX(2022,10,1).change('year',1).format()</p>
+									<p>运行：datex(2022,10,1).change('year',1).format()</p>
 									<p>返回：2022-10-01 00:00:00 </p>
 									<table>
 										<thead>
@@ -529,7 +529,7 @@
 									<p class="subtitle">startOf(name)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX(2022,10,10).startOf('month').format()</p>
+									<p>运行：datex(2022,10,10).startOf('month').format()</p>
 									<p>返回：2022-10-01 00:00:00 </p>
 									<table>
 										<thead>
@@ -585,7 +585,7 @@
 									<p class="subtitle">endOf(name)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX(2022,10,10).endOf('month').format()</p>
+									<p>运行：datex(2022,10,10).endOf('month').format()</p>
 									<p>返回：2022-10-31 23:59:59</p>
 									<table>
 										<thead>
@@ -641,7 +641,7 @@
 									<p class="subtitle">get(name)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX(2022,10,1).get('year')</p>
+									<p>运行：datex(2022,10,1).get('year')</p>
 									<p>返回：2020</p>
 									<table>
 										<thead>
@@ -694,13 +694,13 @@
 							<div id="hash15" class="box">
 								<div class="c-hd">
 									<p class="title">与某时间点差值</p>
-									<p class="subtitle">diffWith(dateStr|DateX,name)</p>
+									<p class="subtitle">diffWith(dateStr|datex,name)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX('1949-10-01').diffWith('2022-12-01','month')</p>
+									<p>运行：datex('1949-10-01').diffWith('2022-12-01','month')</p>
 									<p>返回：-878</p>
 									<br>
-									<p>运行：DateX('1949-10-01').diffWith('2022-12-01')</p>
+									<p>运行：datex('1949-10-01').diffWith('2022-12-01')</p>
 									<p>返回：{"year":-73,"month":-2,"day":0,"hour":0,"minute":0,"second":0,"millsecond":0}</p>
 									<table>
 										<thead>
@@ -753,10 +753,10 @@
 							<div id="hash16" class="box">
 								<div class="c-hd">
 									<p class="title">是否在某个时间点之前</p>
-									<p class="subtitle">isBefore(dateStr|DateX,name)</p>
+									<p class="subtitle">isBefore(dateStr|datex,name)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX('2008-08-08').isBefore('2022-02-02')</p>
+									<p>运行：datex('2008-08-08').isBefore('2022-02-02')</p>
 									<p>返回：true</p>
 									<table>
 										<thead>
@@ -809,10 +809,10 @@
 							<div id="hash17" class="box">
 								<div class="c-hd">
 									<p class="title">是否在某个时间点之后</p>
-									<p class="subtitle">isAfter(dateStr|DateX,name)</p>
+									<p class="subtitle">isAfter(dateStr|datex,name)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX('2008-08-08').isBefore('2022-02-02')</p>
+									<p>运行：datex('2008-08-08').isAfter('2022-02-02')</p>
 									<p>返回：false</p>
 									<table>
 										<thead>
@@ -865,13 +865,13 @@
 							<div id="hash18" class="box">
 								<div class="c-hd">
 									<p class="title">是否和某个时间点相等</p>
-									<p class="subtitle">isSame(dateStr|DateX,name)</p>
+									<p class="subtitle">isSame(dateStr|datex,name)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX('2008-08-08').isSame('2022-02-02')</p>
+									<p>运行：datex('2008-08-08').isSame('2022-02-02')</p>
 									<p>返回：false</p>
 									<br>
-									<p>运行：DateX('2008-08-08').isSame('2018-02-02','year')</p>
+									<p>运行：datex('2008-08-08').isSame('2018-02-02','year')</p>
 									<p>返回：true</p>
 									<table>
 										<thead>
@@ -924,10 +924,10 @@
 							<div id="hash19" class="box">
 								<div class="c-hd">
 									<p class="title">是否在两个时间点之间</p>
-									<p class="subtitle">isBetween(dateStr|DateX,dateStr|DateX,name)</p>
+									<p class="subtitle">isBetween(dateStr|datex,dateStr|datex,name)</p>
 								</div>
 								<div class="c-bd">
-									<p>运行：DateX('2008-08-08').isBetween('2003-07-13','2022-02-02')</p>
+									<p>运行：datex('2008-08-08').isBetween('2003-07-13','2022-02-02')</p>
 									<p>返回：true</p>
 									<table>
 										<thead>
