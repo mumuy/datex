@@ -31,7 +31,7 @@ gulp.task('default', () => {
         return bundle.write({
             file: './dist/datex.min.js',
             format: 'umd',
-            name: 'DateX',
+            name: 'datex',
             banner
         });
     });
