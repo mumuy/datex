@@ -1,3 +1,11 @@
+# Nodejs安装datex
+```js
+npm install datex.js
+```
+
+
+# datex方法说明
+
 ## getTime() 返回时间戳(毫秒)
 ```js
 datex().getTime()
