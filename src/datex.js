@@ -17,15 +17,13 @@ let language = langMap['en-US'];
 if(typeof self!='undefined'&&self.navigator){
     language = langMap[self.navigator.language];
 }
+const timeList = ['year','month','day','hour','minute','second','millsecond'];
 
 function datex(){
     return new datex.prototype.init(...arguments);
 }
 function getInstance(that){
-    if(!(that instanceof datex)){
-        that = datex(that);
-    }
-    return that;
+    return that instanceof datex?that:datex(that);
 }
 
 datex.prototype = {
@@ -65,7 +63,7 @@ datex.prototype = {
     },
     toArray(){
         let $ = this.toObject();
-        return [$.year,$.month,$.day,$.hour,$.minute,$.second,$.millsecond];
+        return timeList.map(name=>$[name]);
     },
     toString(){
         return this._date.toString();
@@ -102,8 +100,7 @@ datex.prototype = {
                 _.setTime(value);
                 break;
             case 'week':
-                let diff = $.week-value;
-                _.setDate($.day-diff);
+                _.setDate($.day-$.week+value);
                 break;
         }
         return this;
@@ -158,49 +155,31 @@ datex.prototype = {
     startOf(unit){
         let $ = this.toObject();
         let that = null;
-        switch (unit) {
-            case 'year':
-                that = datex($.year,1,1,0,0,0,0);
-                break;
-            case 'month':
-                that = datex($.year,$.month,1,0,0,0,0);
-                break;
-            case 'day':
-                that = datex($.year,$.month,$.day,0,0,0,0);
-                break;
-            case 'hour':
-                that = datex($.year,$.month,$.day,$.hour,0,0,0);
-                break;
-            case 'minute':
-                that = datex($.year,$.month,$.day,$.hour,$.minute,0,0);
-                break;
-            case 'second':
-                that = datex($.year,$.month,$.day,$.hour,$.minute,$.second,0);
-                break;
-            case 'millsecond':
-            case 'timestamp':
-                that = this.clone();
-                break;
-            case 'week':
-                that = datex($.year,$.month,$.day-$.week,0,0,0,0);
-                break;
+        let index = timeList.indexOf(unit)+1;
+        let dateSet = this.toArray();
+        let initSet = [1970,1,1,0,0,0,0].slice(index);
+        dateSet.splice(index,initSet.length,...initSet);
+        if(unit=='timestamp'){
+            that = this.clone();
+        }else if(unit=='week'){
+            that = datex($.year,$.month,$.day-$.week,0,0,0,0);
+        }else{
+            that = datex(...dateSet);
         }
         return that;
     },
     endOf(unit){
-        let $ = this.toObject();
         return this.startOf(unit).change(unit,unit=='week'?7:1).change('millsecond',-1);
     },
     diffWith(that,unit){
         that = getInstance(that);
-        if(isNaN(that.getTime())){
+        if(!that.isValid()){
             return false;
         }
         let diffMap = {
-            'week':86400000*7,
-            'day':86400000,
-            'hour':3600000,
-            'minute':60000,
+            'day':8.64e7,
+            'hour':3.6e6,
+            'minute':6e4,
             'second':1000,
             'millsecond':1,
             'timestamp':1
@@ -231,29 +210,32 @@ datex.prototype = {
         }else{
             let clone = this.clone();
             let hash = {};
-            ['year','month','day','hour','minute','second','millsecond'].forEach(function(unit){
+            timeList.forEach(function(unit){
                 hash[unit] = clone.diffWith(that,unit);
                 clone.set(unit,that.get(unit));
             });
             return hash;
         }
     },
-    isBefore(that,unit = 'millsecond'){
+    isBefore(that,unit = 'timestamp'){
         that = getInstance(that);
         return this.get(unit)<that.get(unit);
     },
-    isAfter(that,unit = 'millsecond'){
+    isAfter(that,unit = 'timestamp'){
         that = getInstance(that);
         return this.get(unit)>that.get(unit);
     },
-    isSame(that,unit = 'millsecond'){
+    isSame(that,unit = 'timestamp'){
         that = getInstance(that);
         return this.get(unit)==that.get(unit);
     },
-    isBetween(startDate,endDate,unit = 'millsecond'){
+    isBetween(startDate,endDate,unit = 'timestamp'){
         startDate = getInstance(startDate);
         endDate = getInstance(endDate);
         return this.get(unit)>startDate.get(unit)&&this.get(unit)<endDate.get(unit);
+    },
+    isValid(){
+        return !isNaN(this.getTime());
     }
 };
 datex.prototype.init.prototype = datex.prototype;
