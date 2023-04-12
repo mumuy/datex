@@ -31,6 +31,7 @@ a:hover{
     height: 100%;
     background: #fafafa;
     border-right: 1px solid rgba(0,0,0,0.045);
+    overflow-y: auto;
 }
 .container{
     margin-left: 240px;
@@ -41,7 +42,20 @@ a:hover{
     padding: 0 10px;
     margin: 0 auto;
 }
+.header::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+    background-color: #F5F5F5;
+}
+.header::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #888;
+}
 
+.mod-menu{
+    height: 100%;
+}
 .mod-menu .bd{
     padding: 25px 0;
 }

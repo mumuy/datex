@@ -21,8 +21,14 @@ if(typeof self!='undefined'&&self.navigator){
 function DateX(){
     return new DateX.prototype.init(...arguments);
 }
+function getInstance(that){
+    if(!(that instanceof DateX)){
+        that = DateX(that);
+    }
+    return that;
+}
+
 DateX.prototype = {
-    _cache:null,
     _date:null,
     init:function(){
         if(arguments.length>=3){
@@ -33,6 +39,9 @@ DateX.prototype = {
     },
     getTime(){
         return this._date.getTime();
+    },
+    getUnix(){
+        return ~~(this._date.getTime()/1000);
     },
     clone(){
         return DateX(this.getTime());
@@ -52,12 +61,21 @@ DateX.prototype = {
             'millsecond':_.getMilliseconds(),
             'timestamp':_.getTime(),
             'week':_.getDay()
-        }
+        };
+    },
+    toArray(){
+        let $ = this.toObject();
+        return [$.year,$.month,$.day,$.hour,$.minute,$.second,$.millsecond];
+    },
+    toString(){
+        return this._date.toString();
+    },
+    toISOString(){
+        return this._date.toISOString();
     },
     set(unit,value){
         let _ = this._date;
         let $ = this.toObject();
-        this._cache = null;
         switch (unit) {
             case 'year':
                 _.setFullYear(value);
@@ -96,7 +114,6 @@ DateX.prototype = {
     },
     change(unit,value){
         let $ = this.toObject();
-        this._cache = null;
         return this.set(unit,$[unit]+value);
     },
     format(pattern = 'YYYY-MM-DD HH:mm:ss'){
@@ -125,7 +142,7 @@ DateX.prototype = {
             'ZZ':match[1]+match[2]+match[3],
             'A':['AM','PM'][~~($.hour/12)],
             'a':['am','pm'][~~($.hour/12)],
-            'X':$.timestamp/1000,
+            'X':~~($.timestamp/1000),
             'x':$.timestamp,
             'Q':''+(~~($.month/3)),
         };
@@ -175,11 +192,7 @@ DateX.prototype = {
         return this.startOf(unit).change(unit,unit=='week'?7:1).change('millsecond',-1);
     },
     diffWith(that,unit){
-        if(typeof that=='undefined'){
-            that = DateX();
-        }else if(!(that instanceof DateX)){
-            that = DateX(that);
-        }
+        that = getInstance(that);
         if(isNaN(that.getTime())){
             return false;
         }
@@ -223,6 +236,23 @@ DateX.prototype = {
             });
             return hash;
         }
+    },
+    isBefore(that,unit = 'millsecond'){
+        that = getInstance(that);
+        return this.get(unit)<that.get(unit);
+    },
+    isAfter(that,unit = 'millsecond'){
+        that = getInstance(that);
+        return this.get(unit)>that.get(unit);
+    },
+    isSame(that,unit = 'millsecond'){
+        that = getInstance(that);
+        return this.get(unit)==that.get(unit);
+    },
+    isBetween(startDate,endDate,unit = 'millsecond'){
+        startDate = getInstance(startDate);
+        endDate = getInstance(endDate);
+        return this.get(unit)>startDate.get(unit)&&this.get(unit)<endDate.get(unit);
     }
 };
 DateX.prototype.init.prototype = DateX.prototype;
