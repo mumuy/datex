@@ -30,6 +30,12 @@
 					<div class="bd">
 						<ul>
 							<li>
+								<a href="#hash0">
+									<span class="title">初始化</span>
+									<span class="subtitle">datex</span>
+								</a>
+							</li>
+							<li>
 								<a href="#hash1">
 									<span class="title">返回时间戳(毫秒)</span>
 									<span class="subtitle">getTime</span>
@@ -171,6 +177,29 @@
 							<p><a class="btn" href="https://passer-by.com/datex/dist/datex.min.js" target="_blank">获取脚本</a></p>
 						</div>
 						<div class="bd">
+							<div id="hash0" class="box">
+								<div class="c-hd">
+									<p class="title">初始化</p>
+									<p class="subtitle">datex(dateStr|Array|Object|)</p>
+								</div>
+								<div class="c-bd">
+									<p>通过多个参数初始化</p>
+									<p>运行：datex(2018,8,8)</p>
+									<br>
+									<p>通过时间字符串初始化</p>
+									<p>运行：datex('2018-08-08')</p>
+									<p>运行：datex('2018-04-04T16:00:00.000Z')</p>
+									<br>
+									<p>通过时间对象初始化</p>
+									<p>运行：datex({year:2008,month:8,day:8,hour:8,minute:0,second:0})</p>
+									<br>
+									<p>通过时间数组初始化</p>
+									<p>运行：datex([2018,8,8,8,8,0])</p>
+									<br>
+									<p>无参数初始化</p>
+									<p>运行：datex()</p>
+								</div>
+							</div>
 							<div id="hash1" class="box">
 								<div class="c-hd">
 									<p class="title">返回时间戳(毫秒)</p>
@@ -743,14 +772,6 @@
 											<tr>
 												<td>millsecond</td>
 												<td>毫秒</td>
-											</tr>
-											<tr>
-												<td>timestamp</td>
-												<td>时间戳</td>
-											</tr>
-											<tr>
-												<td>week</td>
-												<td>周几</td>
 											</tr>
 										</tbody>
 									</table>

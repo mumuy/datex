@@ -17,22 +17,35 @@ let language = langMap['en-US'];
 if(typeof self!='undefined'&&self.navigator){
     language = langMap[self.navigator.language];
 }
-const timeList = ['year','month','day','hour','minute','second','millsecond'];
+const period = ['year','month','day','hour','minute','second','millsecond'];
+const initTime = [1970,1,1,0,0,0,0];
 
-function datex(){
-    return new datex.prototype.init(...arguments);
+function datex(...argu){
+    return new datex.prototype.init(...argu);
 }
 function getInstance(that){
     return that instanceof datex?that:datex(that);
 }
+function isObject(value){
+    return value != null && (typeof value == 'object' || typeof value == 'function');
+}
 
 datex.prototype = {
     _date:null,
-    init:function(){
-        if(arguments.length>=3){
-            arguments[1]--;
+    init:function(...argu){
+        if(!argu.length){
+            this._date = new Date();
+        }else{
+            if(Array.isArray(argu[0])){
+                argu = initTime.map((value,index)=>(argu[0][index]||value));
+            }else if(isObject(argu[0])){
+                argu = initTime.map((value,index)=>(argu[0][period[index]]||value));
+            }
+            if(argu.length>=3){
+                argu[1]--;
+            }
+            this._date = new Date(...argu);
         }
-        this._date = new Date(...arguments);
         return this;
     },
     getTime(){
@@ -63,7 +76,7 @@ datex.prototype = {
     },
     toArray(){
         let $ = this.toObject();
-        return timeList.map(name=>$[name]);
+        return period.map(name=>$[name]);
     },
     toString(){
         return this._date.toString();
@@ -155,9 +168,9 @@ datex.prototype = {
     startOf(unit){
         let $ = this.toObject();
         let that = null;
-        let index = timeList.indexOf(unit)+1;
+        let index = period.indexOf(unit)+1;
         let dateSet = this.toArray();
-        let initSet = [1970,1,1,0,0,0,0].slice(index);
+        let initSet = initTime.slice(index);
         dateSet.splice(index,initSet.length,...initSet);
         if(unit=='timestamp'){
             that = this.clone();
@@ -181,8 +194,7 @@ datex.prototype = {
             'hour':3.6e6,
             'minute':6e4,
             'second':1000,
-            'millsecond':1,
-            'timestamp':1
+            'millsecond':1
         };
         let timestamp = this.getTime()-that.getTime();
         let value = 0;
@@ -210,7 +222,7 @@ datex.prototype = {
         }else{
             let clone = this.clone();
             let hash = {};
-            timeList.forEach(function(unit){
+            period.forEach(function(unit){
                 hash[unit] = clone.diffWith(that,unit);
                 clone.set(unit,that.get(unit));
             });
