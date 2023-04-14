@@ -44,7 +44,12 @@ datex.prototype = {
             if(argu.length>=3){
                 argu[1]--;
             }
-            this._date = new Date(...argu);
+            if(typeof argu[0]=='number'&&argu[0]<100){
+                this._date = new Date(...argu).setFullYear(argu[0]);
+            }else{
+                this._date = new Date(...argu);
+            }
+            
         }
         return this;
     },
