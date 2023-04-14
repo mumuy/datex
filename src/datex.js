@@ -44,13 +44,10 @@ datex.prototype = {
             if(argu.length>=3){
                 argu[1]--;
             }
-            if(typeof argu[0]=='number'&&argu[0]<100){
-                let t = new Date(...argu).setFullYear(argu[0]);
-                this._date = new Date(t);
-            }else{
-                this._date = new Date(...argu);
+            this._date = new Date(...argu);
+            if(argu.length>=2&&!isNaN(argu[0])&&argu[0]<100){
+                this._date.setFullYear(argu[0]);
             }
-            
         }
         return this;
     },
