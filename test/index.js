@@ -3,7 +3,7 @@ var test = require('tape');
 var datex = require('..');
 
 test('[Test]', function (t) {
-    t.deepEqual(datex('2008-08-08').getTime(),1218153600000);
+    t.deepEqual(datex('2008-08-08').getTime(),1218124800000);
     t.deepEqual(datex(2022,10,1).format('YYYY年MM月DD日'),'2022年10月01日');
     t.deepEqual(datex(2022,10,1).set('year',2020).format(),'2020-10-01 00:00:00');
     t.deepEqual(datex(2022,10,1).change('year',1).format(),'2023-10-01 00:00:00');

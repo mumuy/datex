@@ -41,6 +41,19 @@ datex.prototype = {
             }else if(isObject(argu[0])){
                 argu = initTime.map((value,index)=>(argu[0][period[index]]||value));
             }
+            if(argu.length==1&&typeof argu[0]=='string'){
+                let matchs1 = argu[0].match(/(\d{1,4})[\-\/](\d{1,2})[\-\/](\d{1,2})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,3}))?)?/);
+                let matchs2 = argu[0].match(/(\d{1,2})[\-\/](\d{1,2})[\-\/](\d{3,4})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,3}))?)?/);
+                if(matchs1&&!matchs2){
+                    argu = [1,2,3,5,6,8,10].map(function(i,index){
+                        return +(matchs1[i]||initTime[index]);
+                    });
+                }else if(matchs2){
+                    argu = [3,1,2,5,6,8,10].map(function(i,index){
+                        return +(matchs2[i]||initTime[index]);
+                    });
+                }
+            }
             if(argu.length>=3){
                 argu[1]--;
             }
