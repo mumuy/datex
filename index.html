@@ -155,6 +155,18 @@
 									<span class="subtitle">isValid</span>
 								</a>
 							</li>
+							<li>
+								<a href="#hash21">
+									<span class="title">设置语言包</span>
+									<span class="subtitle">setLanguage(lang,data)</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash22">
+									<span class="title">切换语言包</span>
+									<span class="subtitle">chooseLanguage(lang)</span>
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -1026,6 +1038,32 @@
 								<div class="c-bd">
 									<p>运行：datex('2008-13-12').isValid()</p>
 									<p>返回：false</p>
+								</div>
+							</div>
+							<div id="hash21" class="box">
+								<div class="c-hd">
+									<p class="title">设置语言包</p>
+									<p class="subtitle">setLanguage(lang,data)</p>
+								</div>
+								<div class="c-bd">
+									<p>全局设置</p>
+									<p>运行：datex.setLanguage('zh-CN',{'w':['周日','周一','周二','周三','周四','周五','周六']})</p>
+									<br>
+									<p>实例设置</p>
+									<p>运行：datex().setLanguage('zh-CN',{'w':['周日','周一','周二','周三','周四','周五','周六']})</p>
+								</div>
+							</div>
+							<div id="hash22" class="box">
+								<div class="c-hd">
+									<p class="title">切换语言包</p>
+									<p class="subtitle">chooseLanguage(lang)</p>
+								</div>
+								<div class="c-bd">
+									<p>全局设置</p>
+									<p>运行：datex.setLanguage('en-US')</p>
+									<br>
+									<p>实例设置</p>
+									<p>运行：datex().setLanguage('en-US')</p>
 								</div>
 							</div>
 						</div>
