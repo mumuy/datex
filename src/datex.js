@@ -192,8 +192,8 @@ datex.prototype = {
             'ZZ':match[1]+match[2]+match[3],
             'A':['AM','PM'][~~($.hour/12)],
             'a':['am','pm'][~~($.hour/12)],
-            'X':~~($.timestamp/1000),
-            'x':$.timestamp,
+            'X':$.timestamp,
+            'x':~~($.timestamp/1000),
             'Q':''+(~~($.month/3)),
             'W':$.week
         };
