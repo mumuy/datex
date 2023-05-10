@@ -18,6 +18,7 @@ if(typeof self!='undefined'&&self.navigator){
     _lang = self.navigator.language;
 }
 let _timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+let _offset = 0;
 const period = ['year','month','day','hour','minute','second','millsecond'];
 const initTime = [1970,1,1,0,0,0,0];
 const convertTimeZone = (date, timeZone) => {return new Date(date.toLocaleString('en-US', { timeZone }))};
@@ -43,6 +44,7 @@ datex.switchLanguage = function(lang){
 datex.now = Date.now;
 datex.switchTimezone = function(timezone){
     _timezone = timezone;
+    _offset = convertTimeZone(new Date('1970/1/1'),_timezone).getTime() - (new Date('1970/1/1')).getTime();
 };
 datex.getTimezone = function(){
     return _timezone;
@@ -53,44 +55,49 @@ datex.prototype = {
     _langMap:{},
     _lang:null,
     _timezone:null,
+    _offset:0,
     init:function(...argu){
-        if(!argu.length){
-            this._date = new Date();
-        }else if(argu[0] instanceof Date){
-            this._date = argu[0];
-        }else{
-            if(Array.isArray(argu[0])){
-                argu = initTime.map((value,index)=>(argu[0][index]||value));
-            }else if(isObject(argu[0])){
-                argu = initTime.map((value,index)=>(argu[0][period[index]]||value));
-            }
-            if(argu.length==1&&typeof argu[0]=='string'){
-                let matchs1 = argu[0].match(/(\d{1,4})[\-\/](\d{1,2})[\-\/](\d{1,2})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,3}))?)?/);
-                let matchs2 = argu[0].match(/(\d{1,2})[\-\/](\d{1,2})[\-\/](\d{3,4})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,3}))?)?/);
-                let matchs3 = argu[0].match(/^([12]\d{3})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?(\d{1,3})?/);
-                if(matchs1&&!matchs2){
-                    argu = [1,2,3,5,6,8,10].map(function(i,index){
-                        return +(matchs1[i]||initTime[index]);
-                    });
-                }else if(matchs2){
-                    argu = [3,1,2,5,6,8,10].map(function(i,index){
-                        return +(matchs2[i]||initTime[index]);
-                    });
-                }else if(matchs3){
-                    argu = [1,2,3,4,5,6,7].map(function(i,index){
-                        return +(matchs3[i]||initTime[index]);
-                    });
+        if(argu.length){
+            if(argu[0] instanceof Date){
+                this._date = argu[0];
+            }else{
+                if(Array.isArray(argu[0])){
+                    argu = initTime.map((value,index)=>(argu[0][index]||value));
+                }else if(isObject(argu[0])){
+                    argu = initTime.map((value,index)=>(argu[0][period[index]]||value));
+                }
+                if(argu.length==1&&typeof argu[0]=='string'){
+                    let matchs1 = argu[0].match(/(\d{1,4})[\-\/](\d{1,2})[\-\/](\d{1,2})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,3}))?)?/);
+                    let matchs2 = argu[0].match(/(\d{1,2})[\-\/](\d{1,2})[\-\/](\d{3,4})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,3}))?)?/);
+                    let matchs3 = argu[0].match(/^([12]\d{3})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?(\d{1,3})?/);
+                    if(matchs1&&!matchs2){
+                        argu = [1,2,3,5,6,8,10].map(function(i,index){
+                            return +(matchs1[i]||initTime[index]);
+                        });
+                    }else if(matchs2){
+                        argu = [3,1,2,5,6,8,10].map(function(i,index){
+                            return +(matchs2[i]||initTime[index]);
+                        });
+                    }else if(matchs3){
+                        argu = [1,2,3,4,5,6,7].map(function(i,index){
+                            return +(matchs3[i]||initTime[index]);
+                        });
+                    }
+                }
+                if(argu.length>=3){
+                    argu[1]--;
+                }
+                this._date = new Date(...argu);
+                if(argu.length>=2&&!isNaN(argu[0])&&argu[0]<100){
+                    this._date.setFullYear(argu[0]);
                 }
             }
-            if(argu.length>=3){
-                argu[1]--;
+            if(_offset){
+                this._date.setTime(this._date.getTime()-_offset);
             }
-            this._date = new Date(...argu);
-            if(argu.length>=2&&!isNaN(argu[0])&&argu[0]<100){
-                this._date.setFullYear(argu[0]);
-            }
+        }else{
+            this._date = new Date();
         }
-        this._date = convertTimeZone(this._date,this._timezone||_timezone);
         return this;
     },
     setLanguage(lang,data={}){
@@ -103,7 +110,7 @@ datex.prototype = {
     },
     switchTimezone(timezone){
         this._timezone = timezone;
-        this._date = convertTimeZone(this._date,this._timezone||_timezone);
+        this._offset = convertTimeZone(new Date('1970/1/1'),this._timezone).getTime() - (new Date('1970/1/1')).getTime();
         return this;
     },
     getTimezone(){
@@ -188,8 +195,11 @@ datex.prototype = {
         return this.set(unit,$[unit]+value);
     },
     format(pattern = 'YYYY-MM-DD HH:mm:ss'){
-        let _ = this._date;
-        let $ = this.toObject();
+        let that = this.clone();
+        let offset = this._offset||_offset;
+        that._date.setTime(this._date.getTime()+offset);
+        let _ = that._date;
+        let $ = that.toObject();
         let match = _.toTimeString().match(/GMT([\+\-])(\d{2})(\d{2})/);
         let map = {
             'YYYY':''+$.year,
