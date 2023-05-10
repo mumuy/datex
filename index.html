@@ -164,7 +164,25 @@
 							<li>
 								<a href="#hash22">
 									<span class="title">切换语言包</span>
-									<span class="subtitle">chooseLanguage(lang)</span>
+									<span class="subtitle">switchLanguage(lang)</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash23">
+									<span class="title">获取时区</span>
+									<span class="subtitle">getTimezone()</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash24">
+									<span class="title">切换时区</span>
+									<span class="subtitle">switchTimezone(timezone)</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash25">
+									<span class="title">返回当前时间戳(毫秒)</span>
+									<span class="subtitle">now()</span>
 								</a>
 							</li>
 						</ul>
@@ -211,6 +229,9 @@
 									<br>
 									<p>通过时间戳</p>
 									<p>运行：datex(1218124800000)</p>
+									<br>
+									<p>通过原生Date实例对象</p>
+									<p>运行：datex(new Date('2018-08-08'))</p>
 									<br>
 									<p>无参数初始化</p>
 									<p>运行：datex()</p>
@@ -1061,14 +1082,52 @@
 							<div id="hash22" class="box">
 								<div class="c-hd">
 									<p class="title">切换语言包</p>
-									<p class="subtitle">chooseLanguage(lang)</p>
+									<p class="subtitle">switchLanguage(lang)</p>
 								</div>
 								<div class="c-bd">
 									<p>全局设置</p>
-									<p>运行：datex.setLanguage('en-US')</p>
+									<p>运行：datex.switchLanguage('en-US')</p>
 									<br>
 									<p>实例设置</p>
-									<p>运行：datex().setLanguage('en-US')</p>
+									<p>运行：datex().switchLanguage('en-US')</p>
+								</div>
+							</div>
+							<div id="hash23" class="box">
+								<div class="c-hd">
+									<p class="title">获取时区</p>
+									<p class="subtitle">getTimezone()</p>
+								</div>
+								<div class="c-bd">
+									<p>全局获取</p>
+									<p>运行：datex.getTimezone()</p>
+									<p>返回：'Asia/Shanghai'</p>
+									<br>
+									<p>实例获取</p>
+									<p>运行：datex().getTimezone()</p>
+									<p>返回：'Asia/Shanghai'</p>
+								</div>
+							</div>
+							<div id="hash24" class="box">
+								<div class="c-hd">
+									<p class="title">切换时区</p>
+									<p class="subtitle">switchTimezone(timezone)</p>
+								</div>
+								<div class="c-bd">
+									<p>全局设置</p>
+									<p>运行：datex.switchTimezone('Asia/Tokyo')</p>
+									<br>
+									<p>实例设置</p>
+									<p>运行：datex().switchTimezone('Asia/Tokyo')</p>
+								</div>
+							</div>
+							<div id="hash25" class="box">
+								<div class="c-hd">
+									<p class="title">返回当前时间戳(毫秒)</p>
+									<p class="subtitle">now()</p>
+								</div>
+								<div class="c-bd">
+									<p>全局设置</p>
+									<p>运行：datex.now()</p>
 								</div>
 							</div>
 						</div>

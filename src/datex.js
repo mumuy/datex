@@ -4,7 +4,7 @@ _langMap['en-US'] = {
     'MMMM':['January','February','March','April','May','June','July','August','September','October','November','December'],
     'Do':['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th','11th','12th','13th','14th','15th','16th','17th','18th','19th','20th','21st','22nd','23rd','24th','25th','26th','27th','28th','29th','30th','31st'],
     'WW':['Sun.','Mon.','Tues.','Wed.','Thur.','Fri.','Sat.'],
-    'WWW':['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], 
+    'WWW':['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
 };
 _langMap['zh-CN'] = {
     'MMM':['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
@@ -17,8 +17,10 @@ let _lang = 'en-US';
 if(typeof self!='undefined'&&self.navigator){
     _lang = self.navigator.language;
 }
+let _timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const period = ['year','month','day','hour','minute','second','millsecond'];
 const initTime = [1970,1,1,0,0,0,0];
+const convertTimeZone = (date, timeZone) => {return new Date(date.toLocaleString('en-US', { timeZone }))};
 
 function datex(...argu){
     return new datex.prototype.init(...argu);
@@ -34,18 +36,28 @@ datex.setLanguage = function(lang,data={}){
     _langMap[lang] = Object.assign(_langMap[lang]||{},data);
     return this;
 };
-datex.chooseLanguage = function(lang){
+datex.switchLanguage = function(lang){
     _lang = lang;
     return this;
+};
+datex.now = Date.now;
+datex.switchTimezone = function(timezone){
+    _timezone = timezone;
+};
+datex.getTimezone = function(){
+    return _timezone;
 };
 
 datex.prototype = {
     _date:null,
     _langMap:{},
     _lang:null,
+    _timezone:null,
     init:function(...argu){
         if(!argu.length){
             this._date = new Date();
+        }else if(argu[0] instanceof Date){
+            this._date = argu[0];
         }else{
             if(Array.isArray(argu[0])){
                 argu = initTime.map((value,index)=>(argu[0][index]||value));
@@ -78,15 +90,24 @@ datex.prototype = {
                 this._date.setFullYear(argu[0]);
             }
         }
+        this._date = convertTimeZone(this._date,this._timezone||_timezone);
         return this;
     },
     setLanguage(lang,data={}){
         this._langMap[lang] = Object.assign(this._langMap[lang]||{},data);
         return this;
     },
-    chooseLanguage(lang){
+    switchLanguage(lang){
         this._lang = lang;
         return this;
+    },
+    switchTimezone(timezone){
+        this._timezone = timezone;
+        this._date = convertTimeZone(this._date,this._timezone||_timezone);
+        return this;
+    },
+    getTimezone(){
+        return this._timezone||_timezone;
     },
     getTime(){
         return this._date.getTime();
