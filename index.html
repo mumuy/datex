@@ -179,8 +179,21 @@
 									<span class="subtitle">switchTimezone(timezone)</span>
 								</a>
 							</li>
+
 							<li>
 								<a href="#hash25">
+									<span class="title">获取支持时区列表</span>
+									<span class="subtitle">datex.supportedTimezones</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash26">
+									<span class="title">获取当前时区间差(分钟)</span>
+									<span class="subtitle">getTimezoneOffset()</span>
+								</a>
+							</li>
+							<li>
+								<a href="#hash27">
 									<span class="title">返回当前时间戳(毫秒)</span>
 									<span class="subtitle">now()</span>
 								</a>
@@ -1124,6 +1137,28 @@
 							</div>
 							<div id="hash25" class="box">
 								<div class="c-hd">
+									<p class="title">获取支持时区列表</p>
+									<p class="subtitle">datex.supportedTimezones</p>
+								</div>
+								<div class="c-bd">
+									<p>支持的时区</p>
+									<p>运行：datex.supportedTimezones</p>
+									<p>返回：['Africa/Abidjan', 'Africa/Accra', 'Africa/Addis_Ababa', 'Africa/Algiers', 'Africa/Asmera', 'Africa/Bamako',...]</p>
+								</div>
+							</div>
+							<div id="hash26" class="box">
+								<div class="c-hd">
+									<p class="title">获取当前时区与UTC的时间差(分钟)</p>
+									<p class="subtitle">getTimezoneOffset()</p>
+								</div>
+								<div class="c-bd">
+									<p>全局设置</p>
+									<p>运行：datex().switchTimezone("Europe/Berlin").getTimezoneOffset()</p>
+									<p>返回：-60</p>
+								</div>
+							</div>
+							<div id="hash27" class="box">
+								<div class="c-hd">
 									<p class="title">返回当前时间戳(毫秒)</p>
 									<p class="subtitle">now()</p>
 								</div>
@@ -1161,6 +1196,7 @@
 		</div>
 		<script type="text/javascript" src="https://jquerywidget.com/public/script/jquery.min.js"></script>
 		<script type="text/javascript" src="https://jquerywidget.com/code/jquery.headroom.js"></script>
+		<script type="text/javascript" src="./src/datex.js"></script>
 		<script type="text/javascript">
 			$('.mod-menu').headroom({autoHide:false,scrollOffset:10,background:'transparent',autoFixed:false});
 		</script>

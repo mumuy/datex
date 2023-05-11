@@ -50,6 +50,8 @@ datex.getTimezone = function(){
     return _timezone;
 };
 
+datex.supportedTimezones =  typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[];
+
 datex.prototype = {
     _date:null,
     _langMap:{},
@@ -99,22 +101,6 @@ datex.prototype = {
             this._date = new Date();
         }
         return this;
-    },
-    setLanguage(lang,data={}){
-        this._langMap[lang] = Object.assign(this._langMap[lang]||{},data);
-        return this;
-    },
-    switchLanguage(lang){
-        this._lang = lang;
-        return this;
-    },
-    switchTimezone(timezone){
-        this._timezone = timezone;
-        this._offset = convertTimeZone(new Date('1970/1/1'),this._timezone).getTime() - (new Date('1970/1/1')).getTime();
-        return this;
-    },
-    getTimezone(){
-        return this._timezone||_timezone;
     },
     getTime(){
         return this._date.getTime();
@@ -319,6 +305,25 @@ datex.prototype = {
         startDate = getInstance(startDate);
         endDate = getInstance(endDate);
         return this.get(unit)>startDate.get(unit)&&this.get(unit)<endDate.get(unit);
+    },
+    setLanguage(lang,data={}){
+        this._langMap[lang] = Object.assign(this._langMap[lang]||{},data);
+        return this;
+    },
+    switchLanguage(lang){
+        this._lang = lang;
+        return this;
+    },
+    switchTimezone(timezone){
+        this._timezone = timezone;
+        this._offset = convertTimeZone(new Date('1970/1/1'),this._timezone).getTime() - (new Date('1970/1/1')).getTime();
+        return this;
+    },
+    getTimezone(){
+        return this._timezone||_timezone;
+    },
+    getTimezoneOffset(){
+        return this._date.getTimezoneOffset() - (this._offset||_offset)/60000;
     },
     isValid(){
         return !isNaN(this.getTime());
