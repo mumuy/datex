@@ -42,6 +42,7 @@ datex.switchLanguage = function(lang){
     return this;
 };
 datex.now = Date.now;
+datex.supportedTimezones =  typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[];
 datex.switchTimezone = function(timezone){
     _timezone = timezone;
     _offset = convertTimeZone(new Date('1970/1/1'),_timezone).getTime() - (new Date('1970/1/1')).getTime();
@@ -49,8 +50,9 @@ datex.switchTimezone = function(timezone){
 datex.getTimezone = function(){
     return _timezone;
 };
-
-datex.supportedTimezones =  typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[];
+datex.getTimezoneOffset = function(){
+    return (new Date).getTimezoneOffset() - _offset/60000;
+};
 
 datex.prototype = {
     _date:null,
