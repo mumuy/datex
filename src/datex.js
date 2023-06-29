@@ -16,8 +16,8 @@ _langMap['zh-cn'] = {
 let _lang = 'en-us';
 if(typeof self!='undefined'&&self.navigator){
     _lang = self.navigator.language.toLowerCase();
-    if (!(_lang in _langMap)) {
-        _lang = 'en-us'
+    if (!_langMap[_lang]) {
+        _lang = 'en-us';
     }
 }
 let _timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -312,11 +312,12 @@ datex.prototype = {
         return this.get(unit)>startDate.get(unit)&&this.get(unit)<endDate.get(unit);
     },
     setLanguage(lang,data={}){
+        lang = lang.toLowerCase();
         this._langMap[lang] = Object.assign(this._langMap[lang]||{},data);
         return this;
     },
     switchLanguage(lang){
-        this._lang = lang;
+        this._lang = lang.toLowerCase();
         return this;
     },
     switchTimezone(timezone){
