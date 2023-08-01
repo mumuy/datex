@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const rename = require("gulp-rename");
 const rollup = require('rollup');
 const terser = require('@rollup/plugin-terser');
 const pkg = require('./package');
