@@ -37,11 +37,12 @@ function isObject(value){
 }
 
 datex.setLanguage = function(lang,data={}){
+    lang = lang.toLowerCase();
     _langMap[lang] = Object.assign(_langMap[lang]||{},data);
     return this;
 };
 datex.switchLanguage = function(lang){
-    _lang = lang;
+    _lang = lang.toLowerCase();
     return this;
 };
 datex.now = Date.now;
@@ -55,6 +56,14 @@ datex.getTimezone = function(){
 };
 datex.getTimezoneOffset = function(){
     return (new Date).getTimezoneOffset() - _offset/60000;
+};
+
+let diffMap = {
+    'day':8.64e7,
+    'hour':3.6e6,
+    'minute':6e4,
+    'second':1000,
+    'millsecond':1
 };
 
 datex.prototype = {
@@ -183,7 +192,11 @@ datex.prototype = {
     },
     change(unit,value){
         let $ = this.toObject();
-        return this.set(unit,$[unit]+value);
+        if(typeof diffMap[unit]!='undefined'){
+            return this.set('timestamp',$['timestamp']+value*diffMap[unit]);
+        }else{
+            return this.set(unit,$[unit]+value);
+        }
     },
     format(pattern = 'YYYY-MM-DD HH:mm:ss'){
         let that = this.clone();
@@ -254,13 +267,6 @@ datex.prototype = {
         if(!that.isValid()){
             return false;
         }
-        let diffMap = {
-            'day':8.64e7,
-            'hour':3.6e6,
-            'minute':6e4,
-            'second':1000,
-            'millsecond':1
-        };
         let timestamp = this.getTime()-that.getTime();
         let value = 0;
         if(unit){
