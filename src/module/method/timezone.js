@@ -28,16 +28,15 @@ export default function(datex,proto){
             return this;
         },
         getTimezoneOffset(){
-            return this._date.getTimezoneOffset() - (this._offset||_offset)/60000;
+            return this._date.getTimezoneOffset() - this._offset/60000;
         },
         getTimezone(){
-            return this._timezone||_timezone;
+            return this._timezone;
         }
     });
 
     proto.onInit(function(){
-        if(_offset){
-            this._date.setTime(this._date.getTime()-_offset);
-        }
+        this._timezone = _timezone;
+        this._offset = _offset;
     });
 };

@@ -41,8 +41,13 @@ export default function(datex,proto){
             return this;
         },
         getLanguage(){
-            return this._langMap[this._lang]||_langMap[_lang];
+            return this._langMap[this._lang];
         }
+    });
+
+    proto.onInit(function(){
+        this._langMap = Object.assign(this._langMap,_langMap);
+        this._lang = _lang;
     });
 
     // 重写

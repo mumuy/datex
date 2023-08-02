@@ -44,7 +44,8 @@ export default function(datex,proto){
         },
         format(pattern = 'YYYY-MM-DD HH:mm:ss'){
             let that = this.clone();
-            that._date.setTime(this._date.getTime()+this._offset);
+            let offset = (this._offset||0);
+            that._date.setTime(this._date.getTime()+offset);
             let _ = that._date;
             let $ = that.toObject();
             let match = _.toTimeString().match(/GMT([\+\-])(\d{2})(\d{2})/);

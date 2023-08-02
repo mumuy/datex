@@ -47,7 +47,10 @@ export default {
         }else{
             this._date = new Date();
         }
-        taskQueue.forEach(task=>task());
+        let _ = this;
+        taskQueue.forEach(function(task){
+            task.bind(_)();
+        });
         return this;
     },
     onInit:function(callback){
