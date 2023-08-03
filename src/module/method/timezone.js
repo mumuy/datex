@@ -35,8 +35,26 @@ export default function(datex,proto){
         }
     });
 
-    proto.onInit(function(){
+    proto.onInit(function(...argu){
         this._timezone = _timezone;
         this._offset = _offset;
+        if(argu.length){
+            if(argu[0] instanceof Date){
+            }else if(argu[0] instanceof datex){
+            }else if(argu.length==1&&typeof argu[0]=='number'){
+            }else if(_offset){
+                this._date.setTime(this._date.getTime()-_offset);
+            }
+        }
+    });
+
+    // 重写
+    let format = proto.format;
+    Object.assign(proto,{
+        format(pattern = 'YYYY-MM-DD HH:mm:ss'){
+            let that = this.clone();
+            that._date.setTime(that._date.getTime()+that._offset);
+            return format.bind(that)(pattern);
+        }
     });
 };

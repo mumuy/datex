@@ -10,7 +10,10 @@ export default {
     _date:null,
     init:function(...argu){
         if(argu.length){
-            if(argu[0] instanceof Date){
+
+            if(argu[0].__proto__==this.__proto__){
+                return argu[0];
+            }else if(argu[0] instanceof Date){
                 this._date = argu[0];
             }else{
                 if(Array.isArray(argu[0])){
@@ -47,9 +50,10 @@ export default {
         }else{
             this._date = new Date();
         }
+
         let _ = this;
         taskQueue.forEach(function(task){
-            task.bind(_)();
+            task.bind(_)(...argu);
         });
         return this;
     },

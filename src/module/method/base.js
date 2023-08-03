@@ -1,4 +1,4 @@
-import {periodKey} from './map/period';
+import {periodKey,periodTime} from './map/period';
 
 export default function(datex,proto){
 
@@ -37,15 +37,66 @@ export default function(datex,proto){
             return ~~(this._date.getTime()/1000);
         },
         clone(){
-            return datex(this.getTime());
+            let that = this;
+            let clone =  datex(this.getTime());
+            Object.getOwnPropertyNames(that).forEach(function(name){
+                if(name!='_date'){
+                    clone[name] = that[name];
+                }
+            });
+            return clone;
         },
         isValid(){
             return !isNaN(this.getTime());
         },
+        set(unit,value){
+            let _ = this._date;
+            let $ = this.toObject();
+            switch (unit) {
+                case 'year':
+                    _.setFullYear(value);
+                    break;
+                case 'month':
+                    _.setMonth(value-1);
+                    break;
+                case 'day':
+                    _.setDate(value);
+                    break;
+                case 'hour':
+                    _.setHours(value);
+                    break;
+                case 'minute':
+                    _.setMinutes(value);
+                    break;
+                case 'second':
+                    _.setSeconds(value);
+                    break;
+                case 'millsecond':
+                    _.setMilliseconds(value);
+                    break;
+                case 'timestamp':
+                    _.setTime(value);
+                    break;
+                case 'week':
+                    _.setDate($.day-$.week+value);
+                    break;
+            }
+            return this;
+        },
+        change(unit,value){
+            let $ = this.toObject();
+            if(typeof periodTime[unit]!='undefined'){
+                return this.set('timestamp',$['timestamp']+value*periodTime[unit]);
+            }else{
+                return this.set(unit,$[unit]+value);
+            }
+        },
+        get(unit){
+            let $ = this.toObject();
+            return $[unit];
+        },
         format(pattern = 'YYYY-MM-DD HH:mm:ss'){
             let that = this.clone();
-            let offset = (this._offset||0);
-            that._date.setTime(this._date.getTime()+offset);
             let _ = that._date;
             let $ = that.toObject();
             let match = _.toTimeString().match(/GMT([\+\-])(\d{2})(\d{2})/);
