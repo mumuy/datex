@@ -269,6 +269,8 @@ a:hover{
     display: inline-block;
     height: 36px;
     min-width: 90px;
+    padding:0 12px;
+    margin: 0 8px;
     background: #2095f2;
     border: medium none;
     line-height: 36px;
