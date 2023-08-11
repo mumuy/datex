@@ -11,7 +11,7 @@ export default {
     init:function(...argu){
         if(argu.length){
 
-            if(argu[0].__proto__==this.__proto__){
+            if(Object.getPrototypeOf(argu[0])==Object.getPrototypeOf(this)){
                 return argu[0];
             }else if(argu[0] instanceof Date){
                 this._date = argu[0];
