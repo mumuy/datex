@@ -27,11 +27,17 @@ gulp.task('default', () => {
             terser()
         ]
     }).then(bundle => {
-        return bundle.write({
+        return Promise.all([bundle.write({
             file: './dist/datex.min.js',
             format: 'umd',
             name: 'datex',
             banner
-        });
+        }),
+        bundle.write({
+            file: './dist/datex.esm.js',
+            format: 'esm',
+            name: 'datex',
+            banner
+        })]);
     });
 });
