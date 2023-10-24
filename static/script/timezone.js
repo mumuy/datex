@@ -231,7 +231,7 @@ var _data = {
 	"Asia/Bishkek":"吉尔吉斯斯坦,比什凯克",
 	"Asia/Brunei":"文莱,文莱",
 	"Asia/Calcutta":"印度,加尔各答",
-	"Asia/Chita":"俄罗斯,巴尔瑙尔",
+	"Asia/Chita":"俄罗斯,赤塔",
 	"Asia/Choibalsan":"蒙古国,乔巴山",
 	"Asia/Colombo":"斯里兰卡,科伦坡",
 	"Asia/Damascus":"叙利亚,大马士革",
