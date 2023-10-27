@@ -9,7 +9,12 @@
         "format",
         "时间格式化"
     ],
-    "main": "dist/datex.min.js",
+    "main": "./dist/datex.min.js",
+    "module": "./dist/datex.min.mjs",
+    "exports": {
+        "default": "./dist/datex.min.js",
+        "import": "./dist/datex.min.mjs"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/mumuy/datex.git"
@@ -18,17 +23,29 @@
         "url": "https://github.com/mumuy/datex/issues"
     },
     "devDependencies": {
+        "@babel/core": "^7.22.9",
+        "@babel/plugin-syntax-import-attributes": "^7.22.5",
+        "@babel/plugin-transform-runtime": "^7.22.9",
+        "@babel/preset-env": "^7.22.9",
+        "@babel/runtime": "^7.22.6",
+        "@rollup/plugin-babel": "^6.0.3",
+        "@rollup/plugin-node-resolve": "^15.1.0",
         "@rollup/plugin-terser": "^0.4.1",
-        "gulp": "^4.0.2",
-        "rollup": "^3.20.2",
+        "acorn-import-assertions": "^1.9.0",
+        "rollup": "^3.26.3",
+        "rollup-plugin-import-assert": "^3.0.1",
         "tape": "^5.6.3"
     },
     "scripts": {
         "test": "node test/index.js",
-        "build": "gulp && npm run test"
+        "build": "rollup -c && npm run test",
+        "watch": "rollup -wc"
     },
     "homepage": "https://passer-by.com/datex/",
     "directories": {
         "test": "test"
+    },
+    "dependencies": {
+        "@babel/plugin-transform-class-properties": "^7.22.5"
     }
 }
