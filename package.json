@@ -25,6 +25,7 @@
     "devDependencies": {
         "@babel/core": "^7.22.9",
         "@babel/plugin-syntax-import-attributes": "^7.22.5",
+        "@babel/plugin-transform-class-properties": "^7.22.5",
         "@babel/plugin-transform-runtime": "^7.22.9",
         "@babel/preset-env": "^7.22.9",
         "@babel/runtime": "^7.22.6",
@@ -44,8 +45,5 @@
     "homepage": "https://passer-by.com/datex/",
     "directories": {
         "test": "test"
-    },
-    "dependencies": {
-        "@babel/plugin-transform-class-properties": "^7.22.5"
     }
 }
