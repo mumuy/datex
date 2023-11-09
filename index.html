@@ -123,12 +123,6 @@
 								</a>
 							</li>
 							<li>
-								<a href="#diffWith">
-									<span class="title">与某时间点差值</span>
-									<span class="subtitle">diffWith()</span>
-								</a>
-							</li>
-							<li>
 								<a href="#isBefore">
 									<span class="title">是否在某个时间点之前</span>
 									<span class="subtitle">isBefore()</span>
@@ -159,6 +153,12 @@
 								</a>
 							</li>
 							<li>
+								<a href="#diffWith">
+									<span class="title">与某时间点差值</span>
+									<span class="subtitle">diffWith()</span>
+								</a>
+							</li>
+							<li>
 								<h3>全局方法</h3>
 							</li>
 							<li>
@@ -175,7 +175,7 @@
 							</li>
 							<li>
 								<a href="#duration">
-									<span class="title">时长处理</span>
+									<span class="title text-red">时长处理</span>
 									<span class="subtitle">duration()</span>
 								</a>
 							</li>
@@ -815,57 +815,6 @@
 									</table>
 								</div>
 							</div>
-							<div id="diffWith" class="box">
-								<div class="c-hd">
-									<p class="title">与某时间点差值</p>
-									<p class="subtitle">diffWith(dateStr|datex,name)</p>
-								</div>
-								<div class="c-bd">
-									<p>运行：datex('1949-10-01').diffWith('2022-12-01','month')</p>
-									<p>返回：-878</p>
-									<br>
-									<p>运行：datex('1949-10-01').diffWith('2022-12-01')</p>
-									<p>返回：{"year":-73,"month":-2,"day":0,"hour":0,"minute":0,"second":0,"millsecond":0}</p>
-									<table>
-										<thead>
-											<tr>
-												<th>单位</th>
-												<th>说明</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>year</td>
-												<td>年</td>
-											</tr>
-											<tr>
-												<td>month</td>
-												<td>月</td>
-											</tr>
-											<tr>
-												<td>day</td>
-												<td>日</td>
-											</tr>
-											<tr>
-												<td>hour</td>
-												<td>小时</td>
-											</tr>
-											<tr>
-												<td>minute</td>
-												<td>分钟</td>
-											</tr>
-											<tr>
-												<td>second</td>
-												<td>秒</td>
-											</tr>
-											<tr>
-												<td>millsecond</td>
-												<td>毫秒</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
 							<div id="isBefore" class="box">
 								<div class="c-hd">
 									<p class="title">是否在某个时间点之前</p>
@@ -1103,6 +1052,66 @@
 									<p>返回：false</p>
 								</div>
 							</div>
+							<div id="diffWith" class="box">
+								<div class="c-hd">
+									<p class="title">与某时间点差值</p>
+									<p class="subtitle">diffWith(dateStr|datex,name)</p>
+								</div>
+								<div class="c-bd">
+									<p>运行：datex('1949-10-01').diffWith()</p>
+									<p>返回：<span class="text-blue">【时长对象】</span></p>
+									<p>运行：datex('1949-10-01').diffWith('2022-12-01')</p>
+									<p>返回：<span class="text-blue">【时长对象】</span></p>
+									<br>
+									<p>运行：datex('1949-10-01').diffWith('2022-12-01','month')</p>
+									<p>返回：-878</p>
+									<br>
+									<p>运行：datex('1949-10-01').diffWith('2022-12-01').toObject()</p>
+									<p>返回：{"year":-73,"month":-2,"day":0,"hour":0,"minute":0,"second":0,"millsecond":0,"value": -2308953600000}</p>
+									<br>
+									<p>运行：datex('1997-07-01').diffWith('1949-10-01').format('Y年M个月D天')</p>
+									<p>返回：'47年9个月0天'</p>
+									<p>运行：datex('1997-07-01').diffWith('1949-10-01').format(function(durationData){...})</p>
+									<table>
+										<thead>
+											<tr>
+												<th>单位</th>
+												<th>说明</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>year</td>
+												<td>年</td>
+											</tr>
+											<tr>
+												<td>month</td>
+												<td>月</td>
+											</tr>
+											<tr>
+												<td>day</td>
+												<td>日</td>
+											</tr>
+											<tr>
+												<td>hour</td>
+												<td>小时</td>
+											</tr>
+											<tr>
+												<td>minute</td>
+												<td>分钟</td>
+											</tr>
+											<tr>
+												<td>second</td>
+												<td>秒</td>
+											</tr>
+											<tr>
+												<td>millsecond</td>
+												<td>毫秒</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
 							<div id="supportedTimezones" class="box">
 								<div class="c-hd">
 									<p class="title">获取支持时区列表</p>
@@ -1126,11 +1135,11 @@
 							</div>
 							<div id="duration" class="box">
 								<div class="c-hd">
-									<p class="title">时长处理</p>
+									<p class="title text-red">时长处理</p>
 									<p class="subtitle">duration()</p>
 								</div>
 								<div class="c-bd">
-									<p>初始化时长</p>
+									<p>初始化，返回<span class="text-blue">【时长对象】</span></p>
 									<p>运行：datex.duration(2,'day')</p>
 									<p>运行：datex.duration({'day':1,'hour':2,'minute':3})</p>
 									<p>运行：datex.duration(10000000)</p>

@@ -7,17 +7,17 @@ export default function(datex,proto){
             return this._date;
         },
         toObject(){
-            let _ = this._date;
+            let D = this._date;
             return {
-                'year':_.getFullYear(),
-                'month':_.getMonth()+1,
-                'day':_.getDate(),
-                'hour':_.getHours(),
-                'minute':_.getMinutes(),
-                'second':_.getSeconds(),
-                'millsecond':_.getMilliseconds(),
-                'timestamp':_.getTime(),
-                'week':_.getDay()
+                'year':D.getFullYear(),
+                'month':D.getMonth()+1,
+                'day':D.getDate(),
+                'hour':D.getHours(),
+                'minute':D.getMinutes(),
+                'second':D.getSeconds(),
+                'millsecond':D.getMilliseconds(),
+                'timestamp':D.getTime(),
+                'week':D.getDay()
             };
         },
         toArray(){
@@ -50,35 +50,35 @@ export default function(datex,proto){
             return !isNaN(this.getTime());
         },
         set(unit,value){
-            let _ = this._date;
+            let D = this._date;
             let $ = this.toObject();
             switch (unit) {
                 case 'year':
-                    _.setFullYear(value);
+                    D.setFullYear(value);
                     break;
                 case 'month':
-                    _.setMonth(value-1);
+                    D.setMonth(value-1);
                     break;
                 case 'day':
-                    _.setDate(value);
+                    D.setDate(value);
                     break;
                 case 'hour':
-                    _.setHours(value);
+                    D.setHours(value);
                     break;
                 case 'minute':
-                    _.setMinutes(value);
+                    D.setMinutes(value);
                     break;
                 case 'second':
-                    _.setSeconds(value);
+                    D.setSeconds(value);
                     break;
                 case 'millsecond':
-                    _.setMilliseconds(value);
+                    D.setMilliseconds(value);
                     break;
                 case 'timestamp':
-                    _.setTime(value);
+                    D.setTime(value);
                     break;
                 case 'week':
-                    _.setDate($.day-$.week+value);
+                    D.setDate($.day-$.week+value);
                     break;
             }
             return this;
@@ -96,34 +96,38 @@ export default function(datex,proto){
             return $[unit];
         },
         format(pattern = 'YYYY-MM-DD HH:mm:ss'){
-            let that = this.clone();
-            let _ = that._date;
-            let $ = that.toObject();
-            let match = _.toTimeString().match(/GMT([\+\-])(\d{2})(\d{2})/);
-            let map = {
-                'YYYY':(''+$.year).padStart(4,'0'),
-                'YY':(''+($.year%100)).padStart(2,'0'),
-                'M':''+$.month,
-                'D':''+$.day,
-                'H':''+$.hour,
-                'h':''+($.hour%12),
-                'm':''+$.minute,
-                's':''+$.second,
-                'S':''+(~~($.millsecond/100)),
-                'SS':''+(~~($.millsecond/10)),
-                'SSS':''+$.millsecond,
-                'Z':match[1]+match[2]+':'+match[3],
-                'ZZ':match[1]+match[2]+match[3],
-                'A':['AM','PM'][~~($.hour/12)],
-                'a':['am','pm'][~~($.hour/12)],
-                'X':$.timestamp,
-                'x':~~($.timestamp/1000),
-                'Q':''+(~~($.month/3)),
-                'W':$.week
-            };
-            return pattern.replace(/Y+|M+|D+|H+|h+|m+|s+|S+|Z+|A|a|X|x|Q|W+/g,function(key){
-                return map[key]||map[key[0]].padStart(key.length,'0')||'';
-            });
+            if(typeof pattern=='string'){
+                let that = this.clone();
+                let D = that._date;
+                let $ = that.toObject();
+                let match = D.toTimeString().match(/GMT([\+\-])(\d{2})(\d{2})/);
+                let map = {
+                    'YYYY':(''+$.year).padStart(4,'0'),
+                    'YY':(''+($.year%100)).padStart(2,'0'),
+                    'M':''+$.month,
+                    'D':''+$.day,
+                    'H':''+$.hour,
+                    'h':''+($.hour%12),
+                    'm':''+$.minute,
+                    's':''+$.second,
+                    'S':''+(~~($.millsecond/100)),
+                    'SS':''+(~~($.millsecond/10)),
+                    'SSS':''+$.millsecond,
+                    'Z':match[1]+match[2]+':'+match[3],
+                    'ZZ':match[1]+match[2]+match[3],
+                    'A':['AM','PM'][~~($.hour/12)],
+                    'a':['am','pm'][~~($.hour/12)],
+                    'X':$.timestamp,
+                    'x':~~($.timestamp/1000),
+                    'Q':''+(~~($.month/3)),
+                    'W':$.week
+                };
+                return pattern.replace(/Y+|M+|D+|H+|h+|m+|s+|S+|Z+|A|a|X|x|Q|W+/g,function(key){
+                    return map[key]||map[key[0]].padStart(key.length,'0')||'';
+                });
+            }else if(typeof pattern=='function'){
+                return pattern(this.toObject()).toString()||'';
+            }
         }
     });
 };

@@ -13,5 +13,6 @@ test('[Test]', function (t) {
     t.deepEqual(datex('2008-08-08 20:00').change('hour',0.5).format('HH:mm'),'20:30');
     t.deepEqual(datex(2008,8,8,23,45,45).get('hour'),23);
     t.deepEqual(datex('1949-10-01').diffWith('2022-12-01','month'),-878);
+    t.deepEqual(datex.duration({'day':1,'hour':2,'minute':3}).format('HH:mm:ss'),'26:03:00');
     t.end();
 });

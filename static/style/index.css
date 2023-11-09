@@ -52,6 +52,18 @@ a:hover{
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #888;
 }
+.text-green{
+    color: #4bae4f!important;
+}
+.text-red{
+    color:#f56954!important;
+}
+.text-blue{
+    color: #2095f2!important;
+}
+.text-orange{
+    color: #fc9000!important;
+}
 
 .mod-menu{
     height: 100%;
@@ -332,12 +344,6 @@ a:hover{
 }
 .mod-panel .bd p span{
     margin-right: 4px;
-}
-.mod-panel .bd .text-green{
-    color: #4bae4f;
-}
-.mod-panel .bd .text-red{
-    color:#f56954;
 }
 
 .mod-copy{
