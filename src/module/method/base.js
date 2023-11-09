@@ -1,4 +1,4 @@
-import {periodKey,periodTime} from './map/period';
+import {periodKey,periodMap} from './config/period';
 
 export default function(datex,proto){
 
@@ -85,8 +85,8 @@ export default function(datex,proto){
         },
         change(unit,value){
             let $ = this.toObject();
-            if(typeof periodTime[unit]!='undefined'){
-                return this.set('timestamp',$['timestamp']+value*periodTime[unit]);
+            if(['day','hour','minute','second','millsecond'].includes(unit)){
+                return this.set('timestamp',$['timestamp']+value*periodMap[unit]);
             }else{
                 return this.set(unit,$[unit]+value);
             }
@@ -101,23 +101,17 @@ export default function(datex,proto){
             let $ = that.toObject();
             let match = _.toTimeString().match(/GMT([\+\-])(\d{2})(\d{2})/);
             let map = {
-                'YYYY':''+$.year,
-                'YY':(''+$.year).padStart(2,'0'),
-                'MM':(''+$.month).padStart(2,'0'),
+                'YYYY':(''+$.year).padStart(4,'0'),
+                'YY':(''+($.year%100)).padStart(2,'0'),
                 'M':''+$.month,
-                'DD':(''+$.day).padStart(2,'0'),
                 'D':''+$.day,
-                'HH':(''+$.hour).padStart(2,'0'),
                 'H':''+$.hour,
-                'hh':(''+($.hour%12)).padStart(2,'0'),
                 'h':''+($.hour%12),
-                'mm':(''+$.minute).padStart(2,'0'),
                 'm':''+$.minute,
-                'ss':(''+$.second).padStart(2,'0'),
                 's':''+$.second,
-                'S':''+(~~(($.millsecond%1000)/100)),
-                'SS':''+(~~(($.millsecond%1000)/10)),
-                'SSS':''+($.millsecond%1000),
+                'S':''+(~~($.millsecond/100)),
+                'SS':''+(~~($.millsecond/10)),
+                'SSS':''+$.millsecond,
                 'Z':match[1]+match[2]+':'+match[3],
                 'ZZ':match[1]+match[2]+match[3],
                 'A':['AM','PM'][~~($.hour/12)],
@@ -128,7 +122,7 @@ export default function(datex,proto){
                 'W':$.week
             };
             return pattern.replace(/Y+|M+|D+|H+|h+|m+|s+|S+|Z+|A|a|X|x|Q|W+/g,function(key){
-                return map[key]||'';
+                return map[key]||map[key[0]].padStart(key.length,'0')||'';
             });
         }
     });

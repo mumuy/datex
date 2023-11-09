@@ -1,4 +1,4 @@
-import {periodKey,periodValue,periodTime} from './map/period';
+import {periodKey,periodValue,periodMap} from './config/period';
 
 export default function(datex,proto){
 
@@ -11,9 +11,7 @@ export default function(datex,proto){
             let timestamp = this.getTime()-that.getTime();
             let value = 0;
             if(unit){
-                if(periodTime[unit]){
-                    value = ~~(timestamp/periodTime[unit]);
-                }else if(unit=='month'){
+                if(unit=='month'){
                     let this_month = 12*(this.get('year')-1)+this.get('month');
                     let that_month = 12*(that.get('year')-1)+that.get('month');
                     value = this_month -that_month;
@@ -29,6 +27,8 @@ export default function(datex,proto){
                     }else if(value>0&&(this.get('month')<that.get('month')||this.get('month')==that.get('month')&&this.get('day')<that.get('day'))){
                         value-=1;
                     }
+                }else if(periodMap[unit]){
+                    value = ~~(timestamp/periodMap[unit]);
                 }
                 return value;
             }else{

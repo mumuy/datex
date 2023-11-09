@@ -59,6 +59,16 @@ a:hover{
 .mod-menu .bd{
     padding: 25px 0;
 }
+.mod-menu .bd li h3{
+    height: 40px;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    background: #f0f0f0;
+    line-height: 40px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}
 .mod-menu .bd li a{
     display: block;
     position: relative;
