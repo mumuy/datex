@@ -5,6 +5,7 @@ import compareLoader from './module/method/compare';
 import durationLoader from './module/method/duration';
 import languageLoader from './module/method/language';
 import timezoneLoader from './module/method/timezone';
+import parseFormat from './module/method/parseFormat';
 
 // 功能加载
 [
@@ -13,7 +14,8 @@ import timezoneLoader from './module/method/timezone';
     compareLoader,
     durationLoader,
     languageLoader,
-    timezoneLoader
+    timezoneLoader,
+    parseFormat,
 ].forEach(datex.extend);
 
 export default datex;

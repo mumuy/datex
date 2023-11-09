@@ -1,3 +1,8 @@
+/*
+ * 时区设置
+*/
+import {isNumber,isDate} from './untils/type';
+
 export default function(datex,proto){
     let _timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let _offset = 0;
@@ -38,10 +43,10 @@ export default function(datex,proto){
     proto.onInit(function(...argu){
         this._timezone = _timezone;
         this._offset = _offset;
-        if(argu.length){
-            if(argu[0] instanceof Date){
+        if(argu.length&&argu[0]){
+            if(isDate(argu[0])){
             }else if(argu[0] instanceof datex){
-            }else if(argu.length==1&&typeof argu[0]=='number'){
+            }else if(argu.length==1&&isNumber(argu[0])){
             }else if(_offset){
                 this._date.setTime(this._date.getTime()-_offset);
             }

@@ -14,8 +14,8 @@ export const sign2key = {
     'M':'month',
     'D':'day',
     'H':'hour',
-    'h':'hour',
     'm':'minute',
     's':'second',
-    'S':'millsecond'
+    'S':'millsecond',
+    'W':'week'
 };

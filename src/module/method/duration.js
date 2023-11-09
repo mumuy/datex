@@ -1,4 +1,8 @@
+/*
+ * 时长间隔相关方法
+*/
 import {periodKey,periodMap,sign2key} from './config/period';
+import {isObject,isNumber,isString,isFunction} from './untils/type';
 
 class duration{
     #source = null;
@@ -7,19 +11,19 @@ class duration{
     constructor(...param){
         let _ = this;
         if(param.length==2){
-            if(typeof param[0]=='object'&&typeof param[1]=='object'){
+            if(isObject(param[0])&&isObject(param[1])){
                 _.#source = param[0];
                 _.#target = param[1];
                 _.#timeValue = _.#source.getTime() - _.#target.getTime();
-            }else if(typeof param[0]=='number'&&typeof param[1]=='string'){
+            }else if(isNumber(param[0])&&isString(param[1])){
                 _.change(param[1],param[0]);
             }
         }else if(param.length==1){
-            if(typeof param[0]=='object'){
+            if(isObject(param[0])){
                 for(let unit in param[0]){
                     _.change(unit,param[0][unit]);
                 }
-            }else if(typeof param[0]=='number'){
+            }else if(isNumber(param[0])){
                 _.#timeValue += param[0];
             }
         }
@@ -104,9 +108,9 @@ class duration{
     }
     format(pattern = 'YYYY-MM-DD HH:mm:ss'){
         let _ = this
-        if(typeof pattern=='string'){
+        if(isString(pattern)){
             let keys = [];
-            pattern.match(/Y+|M+|D+|H+|h+|m+|s+|S+/g).forEach(function(sign){
+            pattern.match(/Y+|M+|D+|H+|m+|s+|S+/g).forEach(function(sign){
                 let key = sign2key[sign[0]];
                 if(!keys.includes(key)){
                     keys.push(key);
@@ -122,7 +126,7 @@ class duration{
                 's':''+$.second,
                 'S':''+$.millsecond,
             };
-            return pattern.replace(/Y+|M+|D+|H+|h+|m+|s+|S+/g,function(key){
+            return pattern.replace(/Y+|M+|D+|H+|m+|s+|S+/g,function(key){
                 if(map[key]){
                     return map[key];
                 }else if(map[key[0]]){
@@ -132,7 +136,7 @@ class duration{
                 }
                 return '';
             });
-        }else if(typeof pattern=='function'){
+        }else if(isFunction(pattern)){
             return pattern(this.toObject()).toString()||'';
         }
     }

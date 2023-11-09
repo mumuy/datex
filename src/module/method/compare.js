@@ -1,5 +1,8 @@
+/*
+ * 对比方法
+*/
 export default function(datex,proto){
-    
+
     Object.assign(proto,{
         isAfter(that,unit = 'timestamp'){
             that = datex(that);

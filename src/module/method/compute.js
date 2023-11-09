@@ -1,3 +1,6 @@
+/*
+ * 计算推断方法
+*/
 import {periodKey,periodValue} from './config/period';
 
 export default function(datex,proto){

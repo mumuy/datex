@@ -1,4 +1,8 @@
+/*
+ * 基础方法
+*/
 import {periodKey,periodMap} from './config/period';
+import {isString,isFunction} from './untils/type';
 
 export default function(datex,proto){
 
@@ -96,7 +100,7 @@ export default function(datex,proto){
             return $[unit];
         },
         format(pattern = 'YYYY-MM-DD HH:mm:ss'){
-            if(typeof pattern=='string'){
+            if(isString(pattern)){
                 let that = this.clone();
                 let D = that._date;
                 let $ = that.toObject();
@@ -122,10 +126,10 @@ export default function(datex,proto){
                     'Q':''+(~~($.month/3)),
                     'W':$.week
                 };
-                return pattern.replace(/Y+|M+|D+|H+|h+|m+|s+|S+|Z+|A|a|X|x|Q|W+/g,function(key){
+                return pattern.replace(/Y+|M+|Do|D+|H+|h+|m+|s+|S+|Z+|A|a|X|x|Q|W+/g,function(key){
                     return map[key]||map[key[0]].padStart(key.length,'0')||'';
                 });
-            }else if(typeof pattern=='function'){
+            }else if(isFunction(pattern)){
                 return pattern(this.toObject()).toString()||'';
             }
         }
