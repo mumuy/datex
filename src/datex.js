@@ -1,10 +1,10 @@
-import datex from './module/factory';
-import baseLoader from './module/method/base';
-import computeLoader from './module/method/compute';
-import compareLoader from './module/method/compare';
-import durationLoader from './module/method/duration';
-import languageLoader from './module/method/language';
-import timezoneLoader from './module/method/timezone';
+import datex from './module/factory.js';
+import baseLoader from './module/method/base.js';
+import computeLoader from './module/method/compute.js';
+import compareLoader from './module/method/compare.js';
+import durationLoader from './module/method/duration.js';
+import languageLoader from './module/method/language.js';
+import timezoneLoader from './module/method/timezone.js';
 
 // 功能加载
 [

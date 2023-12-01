@@ -1,4 +1,4 @@
-import {periodKey,periodMap} from './config/period';
+import {periodKey,periodMap} from './config/period.js';
 
 export default function(datex,proto){
 

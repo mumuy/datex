@@ -1,4 +1,4 @@
-import {periodKey,periodMap,sign2key} from './config/period';
+import {periodKey,periodMap,sign2key} from './config/period.js';
 
 class duration{
     #source = null;

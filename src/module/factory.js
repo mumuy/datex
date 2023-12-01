@@ -1,4 +1,4 @@
-import prototype from './prototype';
+import prototype from './prototype.js';
 
 // 构造器
 function datex(...argu){

@@ -1,5 +1,5 @@
-import en_us from './locale/en-us';
-import zh_cn from './locale/zh-cn';
+import en_us from './locale/en-us.js';
+import zh_cn from './locale/zh-cn.js';
 
 export default function(datex,proto){
     let _langMap = {};

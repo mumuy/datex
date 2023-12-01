@@ -1,4 +1,4 @@
-import {periodKey,periodValue} from './method/config/period';
+import {periodKey,periodValue} from './method/config/period.js';
 
 function isObject(value){
     return value != null && (typeof value == 'object' || typeof value == 'function');
