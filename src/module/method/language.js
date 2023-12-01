@@ -1,3 +1,6 @@
+/*
+ * 本地化语言
+*/
 import en_us from './locale/en-us.js';
 import zh_cn from './locale/zh-cn.js';
 

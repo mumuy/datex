@@ -1,26 +1,25 @@
 import {periodKey,periodValue} from './method/config/period.js';
-
-function isObject(value){
-    return value != null && (typeof value == 'object' || typeof value == 'function');
-}
+import {isObject,isNumber,isString,isArray,isDate} from './method/untils/type.js';
 
 let taskQueue = [];
 
 export default {
     _date:null,
-    init:function(...param){
+    init:function(...argu){
+        let param = argu.slice(0);
         if(param.length&&param[0]){
             if(Object.getPrototypeOf(param[0])==Object.getPrototypeOf(this)){
                 return param[0];
-            }else if(param[0] instanceof Date){
+            }else if(isDate(param[0])){
                 this._date = param[0];
             }else{
-                if(Array.isArray(param[0])){
+                // 参数映射
+                if(isArray(param[0])){
                     param = periodValue.map((value,index)=>(param[0][index]||value));
                 }else if(isObject(param[0])){
                     param = periodValue.map((value,index)=>(param[0][periodKey[index]]||value));
                 }
-                if(param.length==1&&typeof param[0]=='string'){
+                if(param.length==1&&isString(param[0])){
                     let matchs1 = param[0].match(/(\d{1,4})[\-\/](\d{1,2})[\-\/](\d{1,2})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,3}))?)?/);
                     let matchs2 = param[0].match(/(\d{1,2})[\-\/](\d{1,2})[\-\/](\d{3,4})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,3}))?)?/);
                     let matchs3 = param[0].match(/^([12]\d{3})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?(\d{1,3})?/);
@@ -38,11 +37,13 @@ export default {
                         });
                     }
                 }
+                // 参数修复
                 if(param.length>=3){
                     param[1]--;
                 }
+                // 初始化
                 this._date = new Date(...param);
-                if(param.length>=2&&!isNaN(param[0])&&param[0]<100){
+                if(param.length>=2&&isNumber(param[0])&&param[0]<100){
                     this._date.setFullYear(param[0]);
                 }
             }
@@ -52,7 +53,7 @@ export default {
 
         let _ = this;
         taskQueue.forEach(function(task){
-            task.bind(_)(...param);
+            task.bind(_)(...argu);
         });
         return this;
     },
