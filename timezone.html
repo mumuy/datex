@@ -267,12 +267,17 @@
 						</div>
 					</div>
 				</div>
-                		<script type="text/javascript" src="https://passer-by.com/public/script/projects.js"></script>
+                <script type="text/javascript" src="https://passer-by.com/public/script/projects.js"></script>
 				<div class="mod-foot">
 					<div class="inner">
 						<div class="bd">
 							<p>Copyright &copy; <a href="http://passer-by.com">passer-by.com</a></p>
 						</div>
+					</div>
+				</div>
+				<div class="mod-fixedbar">
+					<div class="bd">
+						<a href="javascript:;"><img src="static/image/gotop.png" width="24" height="24"></a>
 					</div>
 				</div>
 			</div>
@@ -327,6 +332,26 @@
             };
             setInterval(countTime,1000);
             countTime();
+
+			// 底部滚动
+			(function(){
+				let timer = null;
+				let $gotop = document.querySelector('.mod-fixedbar a');
+				$gotop.addEventListener('click',function(){
+					cancelAnimationFrame(timer);
+					let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+					let move = scrollTop/18;
+					timer = requestAnimationFrame(function fn(){
+						var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+						if(oTop > 0){
+							document.body.scrollTop = document.documentElement.scrollTop = oTop - move;
+							timer = requestAnimationFrame(fn);
+						}else{
+							cancelAnimationFrame(timer);
+						}
+					});
+				});
+			})();
 		</script>
 		<script async defer src="https://cdn.bootcdn.net/ajax/libs/github-buttons/2.21.1/buttons.min.js"></script>
 		<script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
