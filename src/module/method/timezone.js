@@ -9,11 +9,13 @@ export default function(datex,proto){
 
     const convertTimeZone = (date, timeZone) => {return new Date(date.toLocaleString('en-US', { timeZone }))};
 
+    let referDate = '1970/1/1';
+
     Object.assign(datex,{
         supportedTimezones:(typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[]),
         switchTimezone(timeZone){
             _timezone = timeZone;
-            _offset =  convertTimeZone(new Date('1970/1/1'),_timezone).getTime() - (new Date('1970/1/1')).getTime();
+            _offset =  convertTimeZone(new Date(referDate),_timezone).getTime() - Date.parse(referDate);
             return this;
         },
         getTimezoneOffset(){
@@ -29,7 +31,7 @@ export default function(datex,proto){
         _offset:0,
         switchTimezone(timezone){
             this._timezone = timezone;
-            this._offset = convertTimeZone(new Date('1970/1/1'),this._timezone).getTime() - (new Date('1970/1/1')).getTime();
+            this._offset = convertTimeZone(new Date(referDate),this._timezone).getTime() - Date.parse(referDate);
             return this;
         },
         getTimezoneOffset(){
