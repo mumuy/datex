@@ -11,16 +11,16 @@ export default function(datex,proto){
     let customParseFormat = function(formatStr,pattern){
         let keyList = [];
         let patternStr = pattern.replace(/Y+|M+|Do|D+|H+|h+|m+|s+|S+|Z+|A|a|X|x|Q|W+/g,function(sign,index){
-            if(languageMap[sign]){
+            if(languageMap['format'][sign]){
                 if(['MMM','MMMM'].includes(sign)){
                     keyList.push('month');
-                    return '('+languageMap[sign].join('|')+')';
+                    return '('+languageMap['format'][sign].join('|')+')';
                 }else if(['Do'].includes(sign)){
                     keyList.push('day');
-                    return '('+languageMap[sign].join('|')+')';
+                    return '('+languageMap['format'][sign].join('|')+')';
                 }else if(['WW','WWW'].includes(sign)){
                     keyList.push('week');
-                    return '('+languageMap[sign].join('|')+')';
+                    return '('+languageMap['format'][sign].join('|')+')';
                 }
             }else if(sign2key[sign[0]]){
                 keyList.push(sign2key[sign[0]]);

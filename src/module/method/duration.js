@@ -1,6 +1,6 @@
 /*
  * 时长间隔相关方法
-*/
+*/ 
 import {periodKey,periodMap,sign2key} from './config/period.js';
 import {isObject,isNumber,isString,isFunction} from './untils/type.js';
 
@@ -161,6 +161,29 @@ export default function(datex,proto){
             }else{
                 return duration;
             }
+        },
+        fromNow(){
+            let now = datex();
+            let duration = datex.duration(this,now);
+            let $ = duration.toObject();
+            let isPast = $.value<0;
+            let result = '';
+            let languageMap= datex.getLanguage();
+            ['year','month','day','hour','minute','second'].forEach(function(unit){
+                let value = Math.abs($[unit]);
+                if(!result&&value){
+                    let unitValue = (value>1?languageMap['duration'][unit+'s']:languageMap['duration'][unit]).replace('%d',value);
+                    result = (isPast?languageMap['duration']['past']:languageMap['duration']['future']).replace('%s',unitValue);
+                }
+            });
+            if(!result){
+                if($.value){
+                    result = (isPast?languageMap['duration']['past moments']:languageMap['duration']['future moments']);
+                }else{
+                    result = languageMap['duration']['now'];
+                } 
+            }
+            return result;
         }
     });
 };

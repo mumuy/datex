@@ -8,6 +8,9 @@ export default function(datex,proto){
     let _langMap = {};
     _langMap['en-us'] = en_us;
     _langMap['zh-cn'] = zh_cn;
+    [en_us,zh_cn].forEach(function(item){
+        _langMap[item['name']] = item;
+    });
     let _lang = 'en-us';
     if(typeof self!='undefined'&&self.navigator){
         _lang = self.navigator.language.toLowerCase();
@@ -59,13 +62,13 @@ export default function(datex,proto){
         format(pattern = 'YYYY-MM-DD HH:mm:ss'){
             let that = this.clone();
             let $ = that.toObject();
-            let language = datex.getLanguage()||this.getLanguage();
+            let languageMap = datex.getLanguage()||this.getLanguage();
             let map = {};
-            map['MMM'] = language['MMM'][$.month-1];
-            map['MMMM'] = language['MMMM'][$.month-1];
-            map['Do'] = language['Do'][$.day-1];
-            map['WW'] = language['WW'][$.week];
-            map['WWW'] = language['WWW'][$.week];
+            map['MMM'] = languageMap['format']['MMM'][$.month-1];
+            map['MMMM'] = languageMap['format']['MMMM'][$.month-1];
+            map['Do'] = languageMap['format']['Do'][$.day-1];
+            map['WW'] = languageMap['format']['WW'][$.week];
+            map['WWW'] = languageMap['format']['WWW'][$.week];
             for (let key in map) {
                 pattern = pattern.replace(key,map[key]||'');
             }
