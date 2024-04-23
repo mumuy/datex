@@ -41,14 +41,8 @@ export default function(datex,proto){
             return ~~(this._date.getTime()/1000);
         },
         clone(){
-            let that = this;
-            let clone =  datex(this.getTime());
-            Object.getOwnPropertyNames(that).forEach(function(name){
-                if(name!='_date'){
-                    clone[name] = that[name];
-                }
-            });
-            return clone;
+            let clone = datex(this.getTime());
+            return Object.assign(clone, structuredClone(this));
         },
         isValid(){
             return !isNaN(this.getTime());
