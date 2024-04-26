@@ -2,7 +2,7 @@
  * 基础方法
 */
 import {periodKey,periodMap} from './config/period.js';
-import {isString,isFunction} from './untils/type.js';
+import {isString,isFunction,isNumber} from './untils/type.js';
 
 export default function(datex,proto){
 
@@ -45,7 +45,7 @@ export default function(datex,proto){
             return Object.assign(clone, structuredClone(this));
         },
         isValid(){
-            return !isNaN(this.getTime());
+            return isNumber(this.getTime());
         },
         set(unit,value){
             let D = this._date;
