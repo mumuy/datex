@@ -6,18 +6,10 @@ import zh_cn from './locale/zh-cn.js';
 
 export default function(datex,proto){
     let _langMap = {};
-    _langMap['en-us'] = en_us;
-    _langMap['zh-cn'] = zh_cn;
     [en_us,zh_cn].forEach(function(item){
         _langMap[item['name']] = item;
     });
-    let _lang = 'en-us';
-    if(typeof self!='undefined'&&self.navigator){
-        _lang = self.navigator.language.toLowerCase();
-        if (!_langMap[_lang]) {
-            _lang = 'en-us';
-        }
-    }
+    let _lang = globalThis?.navigator?.language.toLowerCase()||'en-us';
 
     Object.assign(datex,{
         setLanguage(lang,data={}){
