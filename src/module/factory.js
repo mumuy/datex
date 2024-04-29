@@ -13,7 +13,7 @@ datex.extend = function(loader){
     loader(datex,prototype);
 };
 
-// 初始化 - 类似于jQuery
+// 无new实例化 - 类似于jQuery
 datex.prototype = prototype;
 prototype.init.prototype = prototype;
 

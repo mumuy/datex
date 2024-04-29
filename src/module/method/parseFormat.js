@@ -69,9 +69,9 @@ export default function(datex,proto){
                 $['hour'] += 12;
             }
         }else if(keyMap['timestamp']){
-            $ = datex(keyMap['timestamp']);
+            $ = datex(keyMap['timestamp']).toObject();
         }else if(keyMap['unix']){
-            $ = datex(keyMap['unix']*1000);
+            $ = datex(keyMap['unix']*1000).toObject();
         }
         return $;
     };
