@@ -173,7 +173,7 @@ export default function(datex,proto){
             const rtf = new Intl.RelativeTimeFormat(lang);
             ['year','month','day','hour','minute','second'].forEach(function(unit){
                 let value = $[unit];
-                if(value){
+                if(!result&&value){
                     result = rtf.format(value, unit);
                 }
             });
