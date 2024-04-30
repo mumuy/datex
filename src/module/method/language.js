@@ -23,6 +23,9 @@ export default function(datex,proto){
         },
         getLanguage(){
             return _langMap[_lang];
+        },
+        getLanguageCode(){
+            return _lang;
         }
     });
 
@@ -40,6 +43,9 @@ export default function(datex,proto){
         },
         getLanguage(){
             return this._langMap[this._lang];
+        },
+        getLanguageCode(){
+            return this._lang;
         }
     });
 

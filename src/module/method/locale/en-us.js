@@ -8,24 +8,8 @@ export default {
         'WWW':['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
     },
     'duration':{
-        'past':'%s ago',
-        'future':'in %s',
         'past moments':'just now',
         'future moments':'moments later',
-        'now':'now',
-        'year':'%d year',
-        'month':'%d month',
-        'day':'%d day',
-        'hour':'%d hour',
-        'minute':'%d minute',
-        'second':'%d second',
-        'millsecond':'just now',
-        'years':'%d years',
-        'months':'%d months',
-        'days':'%d days',
-        'hours':'%d hours',
-        'minutes':'%d minutes',
-        'seconds':'%d seconds',
-        'millseconds':'just now',
+        'now':'now'
     }
 };

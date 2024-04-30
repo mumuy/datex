@@ -169,11 +169,12 @@ export default function(datex,proto){
             let isPast = $.value<0;
             let result = '';
             let languageMap= datex.getLanguage();
+            const lang = this.getLanguageCode();
+            const rtf = new Intl.RelativeTimeFormat(lang);
             ['year','month','day','hour','minute','second'].forEach(function(unit){
-                let value = Math.abs($[unit]);
-                if(!result&&value){
-                    let unitValue = (value>1?languageMap['duration'][unit+'s']:languageMap['duration'][unit]).replace('%d',value);
-                    result = (isPast?languageMap['duration']['past']:languageMap['duration']['future']).replace('%s',unitValue);
+                let value = $[unit];
+                if(value){
+                    result = rtf.format(value, unit);
                 }
             });
             if(!result){

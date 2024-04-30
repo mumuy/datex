@@ -8,22 +8,8 @@ export default {
         'WWW':['星期日','星期一','星期二','星期三','星期四','星期五','星期六']
     },
     'duration':{
-        'past':'%s前',
-        'future':'%s后',
         'past moments':'刚刚',
         'future moments':'片刻后',
-        'now':'现在',
-        'year':'%d年',
-        'month':'%d月',
-        'day':'%d天',
-        'hour':'%d小时',
-        'minute':'%d分钟',
-        'second':'%d秒',
-        'years':'%d年',
-        'months':'%d月',
-        'days':'%d天',
-        'hours':'%d小时',
-        'minutes':'%d分钟',
-        'seconds':'%d秒'
+        'now':'现在'
     }
 };
