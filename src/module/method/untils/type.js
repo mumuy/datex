@@ -3,7 +3,7 @@ export function isObject(value){
 }
 
 export function isNumber(value){
-    return !Number.isNaN(value);
+    return typeof value==='number'&&!isNaN(value);
 }
 
 export function isString(value){
