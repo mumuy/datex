@@ -3,6 +3,7 @@
 */
 import en_us from './locale/en-us.js';
 import zh_cn from './locale/zh-cn.js';
+import {isString} from './untils/type.js';
 
 export default function(datex,proto){
     let _langMap = {};
@@ -58,17 +59,19 @@ export default function(datex,proto){
     let format = proto.format;
     Object.assign(proto,{
         format(pattern = 'YYYY-MM-DD HH:mm:ss'){
-            let that = this.clone();
-            let $ = that.toObject();
-            let languageMap = datex.getLanguage()||this.getLanguage();
-            let map = {};
-            map['MMM'] = languageMap['format']['MMM'][$.month-1];
-            map['MMMM'] = languageMap['format']['MMMM'][$.month-1];
-            map['Do'] = languageMap['format']['Do'][$.day-1];
-            map['WW'] = languageMap['format']['WW'][$.week];
-            map['WWW'] = languageMap['format']['WWW'][$.week];
-            for (let key in map) {
-                pattern = pattern.replace(key,map[key]||'');
+            if(isString(pattern)){
+                let that = this.clone();
+                let $ = that.toObject();
+                let languageMap = datex.getLanguage()||this.getLanguage();
+                let map = {};
+                map['MMM'] = languageMap['format']['MMM'][$.month-1];
+                map['MMMM'] = languageMap['format']['MMMM'][$.month-1];
+                map['Do'] = languageMap['format']['Do'][$.day-1];
+                map['WW'] = languageMap['format']['WW'][$.week];
+                map['WWW'] = languageMap['format']['WWW'][$.week];
+                for (let key in map) {
+                    pattern = pattern.replace(key,map[key]||'');
+                }
             }
             return format.bind(this)(pattern);
         }

@@ -124,7 +124,7 @@ export default function(datex,proto){
                     return map[key]||map[key[0]].padStart(key.length,'0')||'';
                 });
             }else if(isFunction(pattern)){
-                return pattern(this.toObject()).toString()||'';
+                return pattern(this.toObject())||'';
             }
         }
     });
