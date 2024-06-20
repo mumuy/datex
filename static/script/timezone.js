@@ -360,7 +360,7 @@ var _data = {
 	"Europe/Rome":"意大利,罗马",
 	"Europe/Samara":"俄罗斯,萨马拉",
 	"Europe/San_Marino":"圣马力诺,圣马力诺",
-	"Europe/Sarajevo":"波斯尼亚和赫泽戈维纳,萨拉热窝",
+	"Europe/Sarajevo":"波斯尼亚和黑塞哥维那,萨拉热窝",
 	"Europe/Saratov":"俄罗斯,萨拉托夫",
 	"Europe/Simferopol":"乌克兰,辛菲罗波尔",
 	"Europe/Skopje":"北马其顿,斯科普里",
