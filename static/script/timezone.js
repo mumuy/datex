@@ -97,7 +97,7 @@ var _data = {
 	"America/Dawson_Creek":"加拿大,道森溪",
 	"America/Denver":"美国,丹佛",
 	"America/Detroit":"美国,底特律",
-	"America/Dominica":"多米尼加,多米尼加",
+	"America/Dominica":"多米尼克,多米尼克",
 	"America/Edmonton":"加拿大,埃德蒙顿",
 	"America/Eirunepe":"巴西,埃鲁内佩",
 	"America/El_Salvador":"萨尔瓦多,萨尔瓦多",
