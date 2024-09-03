@@ -309,13 +309,13 @@
                         if(index==0){
                             $tbody.append(`<tr>
                                 <td class="country" rowspan="${group[place][country].length}">${item['names'][0]}</td>
-                                <td>${item['names'][1]||'-'}</td>
+                                <td>${item['names'][1]||'-'} ${item['names'][2]||''}</td>
                                 <td class="code">${item['code']}</td>
                                 <td class="J_timezone" data-key="${item['code']}">--:--:--</td>
                             </tr>`);
                         }else{
                             $tbody.append(`<tr>
-                                <td>${item['names'][1]||'-'}</td>
+                                <td>${item['names'][1]||'-'} ${item['names'][2]||''}</td>
                                 <td class="code">${item['code']}</td>
                                 <td class="J_timezone" data-key="${item['code']}">--:--:--</td>
                             </tr>`);
