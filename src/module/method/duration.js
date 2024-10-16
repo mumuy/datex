@@ -170,7 +170,7 @@ export default function(datex,proto){
             let result = '';
             let languageMap= datex.getLanguage();
             const lang = this.getLanguageCode();
-            const rtf = new Intl.RelativeTimeFormat(lang);
+            const rtf = new Intl.RelativeTimeFormat(lang,{ numeric:'auto'});    // 输出可能使用更符合习惯的措辞，例如使用 "昨天" 而不是 "1天前"
             ['year','month','day','hour','minute','second'].forEach(function(unit){
                 let value = $[unit];
                 if(!result&&value){
