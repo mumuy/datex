@@ -95,9 +95,8 @@ export default function(datex,proto){
         },
         format(pattern = 'YYYY-MM-DD HH:mm:ss'){
             if(isString(pattern)){
-                let that = this.clone();
-                let D = that._date;
-                let $ = that.toObject();
+                let D = this._date;
+                let $ = this.toObject();
                 let match = D.toTimeString().match(/GMT([\+\-])(\d{2})(\d{2})/);
                 let map = {
                     'YYYY':(''+$.year).padStart(4,'0'),

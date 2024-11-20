@@ -10,20 +10,19 @@ export default function(datex,proto){
             return this.startOf(unit).change(unit,unit=='week'?7:1).change('millsecond',-1);
         },
         startOf(unit){
-            let $ = this.toObject();
-            let that = null;
-            let index = periodKey.indexOf(unit)+1;
-            let dateSet = this.toArray();
-            let initSet = periodValue.slice(index);
-            dateSet.splice(index,initSet.length,...initSet);
+            let that = this.clone();
             if(unit=='timestamp'){
-                that = this.clone();
+                return that;
             }else if(unit=='week'){
-                that = datex($.year,$.month,$.day-$.week,0,0,0,0);
+                let $ = that.toObject();
+                return datex($.year,$.month,$.day-$.week,0,0,0,0);
             }else{
-                that = datex(...dateSet);
+                let index = periodKey.indexOf(unit)+1;
+                let initSet = periodValue.slice(index);
+                let dateSet = that.toArray();
+                dateSet.splice(index,initSet.length,...initSet);
+                return datex(...dateSet);
             }
-            return that;
         }
     });
 };
