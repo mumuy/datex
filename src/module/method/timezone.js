@@ -15,7 +15,8 @@ export default function(datex,proto){
         supportedTimezones:(typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[]),
         switchTimezone(timeZone){
             _timezone = timeZone;
-            _offset =  convertTimeZone(_referDate,_timezone).getTime() - referDate.getTime();
+            let offset =  convertTimeZone(_referDate,_timezone).getTime() - _referDate.getTime();
+            _offset = Math.ceil(offset/60000)*60000;
             return this;
         },
         getTimezoneOffset(){
@@ -23,7 +24,7 @@ export default function(datex,proto){
         },
         getTimezone(){
             return _timezone;
-        }
+        },
     });
 
     Object.assign(proto,{
@@ -32,7 +33,8 @@ export default function(datex,proto){
         switchTimezone(timezone){
             this._timezone = timezone;
             let referDate = this._date||_referDate;
-            this._offset = convertTimeZone(referDate,this._timezone).getTime() - referDate.getTime();
+            let offset =  convertTimeZone(referDate,this._timezone).getTime() - referDate.getTime();
+            this._offset =  Math.ceil(offset/60000)*60000;
             return this;
         },
         getTimezoneOffset(){

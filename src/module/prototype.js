@@ -5,7 +5,7 @@ let taskQueue = [];
 
 export default {
     _date:null,
-    init:function(...argu){
+    parse(...argu){
         let param = argu.slice(0);
         if(param.length&&param[0]){
             if(Object.getPrototypeOf(param[0])==new.target){
@@ -50,14 +50,19 @@ export default {
         }else{
             this._date = new Date();
         }
+        return this;
+    },
+    init(...argu){
+        this.parse(...argu);
 
+        // 初始化
         let _ = this;
         taskQueue.forEach(function(task){
             task.bind(_)(...argu);
         });
         return this;
     },
-    onInit:function(callback){
+    onInit(callback){
         taskQueue.push(callback);
     }
 };
