@@ -9,13 +9,13 @@ export default function(datex,proto){
 
     const convertTimeZone = (date, timeZone) => {return new Date(date.toLocaleString('en-US', { timeZone }))};
 
-    let referDate = new Date();
+    let _referDate = new Date();
 
     Object.assign(datex,{
         supportedTimezones:(typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[]),
         switchTimezone(timeZone){
             _timezone = timeZone;
-            _offset =  convertTimeZone(referDate,_timezone).getTime() - referDate.getTime();
+            _offset =  convertTimeZone(_referDate,_timezone).getTime() - referDate.getTime();
             return this;
         },
         getTimezoneOffset(){
@@ -31,7 +31,7 @@ export default function(datex,proto){
         _offset:0,
         switchTimezone(timezone){
             this._timezone = timezone;
-            referDate = this._date||referDate;
+            let referDate = this._date||_referDate;
             this._offset = convertTimeZone(referDate,this._timezone).getTime() - referDate.getTime();
             return this;
         },
@@ -40,6 +40,12 @@ export default function(datex,proto){
         },
         getTimezone(){
             return this._timezone;
+        },
+        isDayLightSavingTime(){
+            return (
+                this.getTimezoneOffset()>this.clone().set('month',1).getTimezoneOffset()||
+                this.getTimezoneOffset()>this.clone().set('month',6).getTimezoneOffset()
+            );
         }
     });
 
@@ -57,8 +63,15 @@ export default function(datex,proto){
     });
 
     // 重写
+    let set = proto.set;
     let format = proto.format;
     Object.assign(proto,{
+        set(unit,value){
+            let that = set.bind(this)(unit,value);
+            let referDate = that._date||_referDate;
+            that._offset = convertTimeZone(referDate,that._timezone).getTime() - referDate.getTime();
+            return that;
+        },
         format(pattern = 'YYYY-MM-DD HH:mm:ss'){
             let that = this.clone();
             that._date.setTime(that._date.getTime()+that._offset);

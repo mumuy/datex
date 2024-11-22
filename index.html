@@ -165,6 +165,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="#isDayLightSavingTime">
+                                <span class="title">是否为冬令时</span>
+                                <span class="subtitle">isDayLightSavingTime()</span>
+                            </a>
+                        </li>
+                        <li>
                             <h3>全局方法</h3>
                         </li>
                         <li>
@@ -1152,6 +1158,17 @@
                                 <p>返回：74年前</p>
                             </div>
                         </div>
+                        <div id="isDayLightSavingTime" class="box">
+                            <div class="c-hd">
+                                <p class="title">是否为冬令时</p>
+                                <p class="subtitle">isDayLightSavingTime()</p>
+                            </div>
+                            <div class="c-bd">
+                                <p>运行：datex('2024-11-11 06:00:00').switchTimezone('America/New_York').isDayLightSavingTime()</p>
+                                <p>返回：true</p>
+                            </div>
+                        </div>
+                        
                         <div id="supportedTimezones" class="box">
                             <div class="c-hd">
                                 <p class="title">获取支持时区列表</p>
@@ -1184,6 +1201,9 @@
                                 <p>运行：datex.duration(2,'day')</p>
                                 <p>运行：datex.duration({'day':1,'hour':2,'minute':3})</p>
                                 <p>运行：datex.duration(10000000)</p>
+                                <br>
+                                <p>返回间隔毫秒数</p>
+                                <p>运行：datex.duration(2,'day').value</p>
                                 <br>
                                 <p>获取时长</p>
                                 <p>运行：datex.duration(2,'day').get('second')</p>
@@ -1399,6 +1419,7 @@
     </div>
     <script type="text/javascript" src="https://jquerywidget.com/public/script/jquery.min.js"></script>
     <script type="text/javascript" src="https://jquerywidget.com/code/jquery.headroom.js"></script>
+    <script type="module" src="./src/datex.js"></script>
     <script type="text/javascript">
         $('.mod-menu').headroom({ autoHide: false, scrollOffset: 10, background: 'transparent', autoFixed: false });
 

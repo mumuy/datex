@@ -7,14 +7,14 @@ import {isObject,isNumber,isString,isFunction} from './untils/type.js';
 class duration{
     #source = null;
     #target = null;
-    #timeValue = 0;
     constructor(...param){
         let _ = this;
+        _.value = 0;
         if(param.length==2){
             if(isObject(param[0])&&isObject(param[1])){
                 _.#source = param[0];
                 _.#target = param[1];
-                _.#timeValue = _.#source.getTime() - _.#target.getTime();
+                _.value = _.#source.getTime() - _.#target.getTime();
             }else if(isNumber(param[0])&&isString(param[1])){
                 _.change(param[1],param[0]);
             }
@@ -24,7 +24,7 @@ class duration{
                     _.change(unit,param[0][unit]);
                 }
             }else if(isNumber(param[0])){
-                _.#timeValue += param[0];
+                _.value += param[0];
             }
         }
     }
@@ -32,18 +32,18 @@ class duration{
         let _ = this;
         let $ = {};
         if(_.#source&&_.#target){
-            let timevalue = _.#timeValue;
+            let timevalue = _.value;
             let source = _.#source.clone();
             let target = _.#target.clone();
             keys.forEach(function(unit){
                 $[unit] = _.get(unit);
                 _.change(unit,-$[unit]);
             });
-            _.#timeValue = timevalue;
+            _.value = timevalue;
             _.#source = source;
             _.#target = target;
         }else{
-            let timevalue = _.#timeValue;
+            let timevalue = _.value;
             keys.forEach(function(unit){
                 if(periodMap[unit]){
                     $[unit] = Math.floor(timevalue/periodMap[unit])||0;
@@ -57,9 +57,9 @@ class duration{
         let _ = this;
         if(_.#source&&_.#target){
             _.#source.change(unit,value);
-            _.#timeValue = _.#source.getTime() - _.#target.getTime();
+            _.value = _.#source.getTime() - _.#target.getTime();
         }else if(periodMap[unit]){
-            _.#timeValue += periodMap[unit]*value;
+            _.value += periodMap[unit]*value;
         }
         return _;
     }
@@ -69,7 +69,7 @@ class duration{
             if(_.#source&&_.#target){
                 let source = _.#source;
                 let target = _.#target;
-                let timeValue = _.#timeValue;
+                let timeValue = _.value;
                 let value = 0;
                 if(unit=='month'){
                     let source_month = 12*(source.get('year')-1)+source.get('month');
@@ -92,18 +92,18 @@ class duration{
                 }
                 return value;
             }else if(periodMap[unit]){
-                return Math.floor(_.#timeValue/periodMap[unit])||0;
+                return Math.floor(_.value/periodMap[unit])||0;
             }else {
                 return 0;
             }
         }else{
-            return _.#timeValue;
+            return _.value;
         }
     }
     toObject(){
         let _ = this;
         return Object.assign({
-            value:_.#timeValue
+            value:_.value
         },_.#getResultByKeys(periodKey));
     }
     format(pattern = 'YYYY-MM-DD HH:mm:ss'){
