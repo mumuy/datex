@@ -64,11 +64,11 @@ export default function(datex,proto){
                 let $ = that.toObject();
                 let languageMap = datex.getLanguage()||this.getLanguage();
                 let map = {};
-                map['MMM'] = languageMap['format']['MMM'][$.month-1];
                 map['MMMM'] = languageMap['format']['MMMM'][$.month-1];
+                map['MMM'] = languageMap['format']['MMM'][$.month-1];
                 map['Do'] = languageMap['format']['Do'][$.day-1];
-                map['WW'] = languageMap['format']['WW'][$.week];
                 map['WWW'] = languageMap['format']['WWW'][$.week];
+                map['WW'] = languageMap['format']['WW'][$.week];
                 for (let key in map) {
                     pattern = pattern.replace(key,map[key]||'');
                 }

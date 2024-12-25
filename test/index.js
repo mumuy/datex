@@ -1,6 +1,6 @@
 'use strict';
-var test = require('tape');
-var datex = require('..');
+let test = require('tape');
+let datex = require('..');
 
 test('[Test]', function (t) {
     t.deepEqual(datex('2008-08-08').getTime(),1218124800000);
