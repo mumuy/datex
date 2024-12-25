@@ -247,7 +247,7 @@ var _data = {
 	"Asia/Hovd":"蒙古,霍夫德",
 	"Asia/Irkutsk":"俄罗斯,伊尔库茨克",
 	"Asia/Jakarta":"印度尼西亚,雅加达",
-	"Asia/Jayapura":"印度尼西亚,贾亚普拉",
+	"Asia/Jayapura":"印度尼西亚,查亚普拉",
 	"Asia/Jerusalem":"以色列,耶路撒冷",
 	"Asia/Kabul":"阿富汗,喀布尔",
 	"Asia/Kamchatka":"俄罗斯,堪察加",

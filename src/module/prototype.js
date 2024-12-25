@@ -8,7 +8,8 @@ export default {
     parse(...argu){
         let param = argu.slice(0);
         if(param.length&&param[0]){
-            if(Object.getPrototypeOf(param[0])==new.target){
+            if(Object.getPrototypeOf(param[0])==Object.getPrototypeOf(this)){
+                this._date = param[0].toDate();
                 return param[0];
             }else if(isDate(param[0])){
                 this._date = param[0];
