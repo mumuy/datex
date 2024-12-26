@@ -5,7 +5,7 @@ let taskQueue = [];
 
 export default {
     _date:null,
-    parse(...argu){
+    parse:function(...argu){
         let param = argu.slice(0);
         if(param.length&&param[0]){
             if(Object.getPrototypeOf(param[0])==Object.getPrototypeOf(this)){
@@ -53,7 +53,7 @@ export default {
         }
         return this;
     },
-    init(...argu){
+    init:function(...argu){
         this.parse(...argu);
 
         // 初始化
