@@ -65,20 +65,13 @@ export default function(datex,proto){
     });
 
     // 重写
-    let set = proto.set;
-    let format = proto.format;
+    let toObject = proto.toObject;
     Object.assign(proto,{
-        set(unit,value){
-            let that = set.bind(this)(unit,value);
-            let referDate = that._date||_referDate;
-            let offset = convertTimeZone(referDate,that._timezone).getTime() - referDate.getTime();
-            that._offset = Math.ceil(offset/60000)*60000;
-            return that;
-        },
-        format(pattern = 'YYYY-MM-DD HH:mm:ss'){
+        // 此方法重写 toObject,toArray,set,change,get,format 等方法的时间显示
+        toObject(){
             let that = this.clone();
             that._date.setTime(that._date.getTime()+that._offset);
-            return format.bind(that)(pattern);
+            return toObject.bind(that)();
         }
     });
 };
