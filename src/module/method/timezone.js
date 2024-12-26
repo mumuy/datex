@@ -45,8 +45,8 @@ export default function(datex,proto){
         },
         isDayLightSavingTime(){
             return (
-                this.getTimezoneOffset()>this.clone().set('month',1).getTimezoneOffset()||
-                this.getTimezoneOffset()>this.clone().set('month',6).getTimezoneOffset()
+                this.getTimezoneOffset()<this.clone().set('month',1).getTimezoneOffset()||
+                this.getTimezoneOffset()<this.clone().set('month',6).getTimezoneOffset()
             );
         }
     });
@@ -71,7 +71,8 @@ export default function(datex,proto){
         set(unit,value){
             let that = set.bind(this)(unit,value);
             let referDate = that._date||_referDate;
-            that._offset = convertTimeZone(referDate,that._timezone).getTime() - referDate.getTime();
+            let offset = convertTimeZone(referDate,that._timezone).getTime() - referDate.getTime();
+            that._offset = Math.ceil(offset/60000)*60000;
             return that;
         },
         format(pattern = 'YYYY-MM-DD HH:mm:ss'){
