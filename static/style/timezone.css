@@ -134,6 +134,12 @@ a:hover{
     line-height:32px;
     font-size:16px;
 }
+.mod-panel .hd .current .title{
+    font-size:18px;
+}
+.mod-panel .hd .current .title img,.mod-panel .hd .current .title span{
+    vertical-align:middle;
+}
 .mod-panel .hd .current .J_timezone{
     display:flex;
     margin-bottom: 20px;
@@ -240,6 +246,9 @@ a:hover{
     float:right;
     font-size:13px;
     color:#999;
+}
+.mod-panel .table-outer table .title img,.mod-panel .table-outer table .title span{
+    vertical-align:middle;
 }
 
 .mod-article{

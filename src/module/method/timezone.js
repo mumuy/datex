@@ -65,6 +65,7 @@ export default function(datex,proto){
     });
 
     // 重写
+    let set = proto.set;
     let toObject = proto.toObject;
     Object.assign(proto,{
         // 此方法重写 toObject,toArray,set,change,get,format 等方法的时间显示
@@ -72,6 +73,20 @@ export default function(datex,proto){
             let that = this.clone();
             that._date.setTime(that._date.getTime()+that._offset);
             return toObject.bind(that)();
+        },
+        set(unit,value){
+            // 设置指定时区为参照
+            let timestamp = this._date.getTime();
+            this._date.setTime(timestamp+this._offset);
+            // 基于指定时区，修改参数
+            let that = set.bind(this)(unit,value);
+            // 恢复系统时间为参照
+            let referDate = that._date||_referDate;
+            let offset = convertTimeZone(referDate,that._timezone).getTime() - referDate.getTime();
+            that._offset = Math.ceil(offset/60000)*60000;
+            timestamp = that._date.getTime();
+            that._date.setTime(timestamp-that._offset);
+            return that;
         }
     });
 };
