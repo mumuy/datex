@@ -1,359 +1,2387 @@
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8"/>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
-		<meta name="robots" content="all">
-		<meta name="referrer" content="always">
-		<meta name="renderer" content="webkit">
-		<meta http-equiv="Cache-Control" content="no-transform" />
-		<meta name="format-detection" content="telephone=no"/>
-		<title>世界各地时间 不同时区时间 著名城市时间</title>
-		<meta name="keywords" content="北京时间,纽约时间,伦敦时间,日本时间,澳洲时间,巴黎时间,不同时区时间"/>
-		<meta name="description" content="本页面展示了世界各地不同时区城市的当地时间，各国时间一目了然"/>
-		<link rel="stylesheet" href="static/style/timezone.css">
-		<script type="text/javascript">
-			setTimeout(function(){
-				if(location.protocol.indexOf('http')>-1&&location.hostname.indexOf('passer-by.com')==-1){
-					location.href = 'http://passer-by.com/';
-				}else if( window.top != window.self ) {
-				    window.top.location = self.location.href;
-				}
-			},parseInt(3000+15000*Math.random()));
-		</script>
-	</head>
-	<body>
-		<div class="wrapper">
-			<div class="header">
-				<div class="inner">
-					<div class="mod-head">
-						<div class="bd">
-							<a class="btn" href="https://github.com/mumuy/datex/" rel="nofollow" target="_blank" title="Github">
-								<svg aria-hidden="true" class="octicon" height="20" title="GitHub " version="1.1" viewBox="0 0 16 16" width="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
-								<span>Github</span>
-							</a>
-							<a class="btn" href="/">个人网站</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="container">
-				<div class="mod-panel">
-					<div class="inner">
-						<div class="hd">
-							<h1>世界各城市时间<span class="tag">算法开源</span></h1>
-							<p><span class="name">北京时间</span><span class="J_timezone value" data-key="Asia/Shanghai">--:--:--</span></p>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+        <meta name="robots" content="all">
+        <meta name="referrer" content="always">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta name="format-detection" content="telephone=no"/>
+        <title>世界各地时间 不同时区时间 著名城市时间</title>
+        <meta name="keywords" content="北京时间,纽约时间,伦敦时间,日本时间,澳洲时间,巴黎时间,不同时区时间"/>
+        <meta name="description" content="本页面展示了世界各地不同时区城市的当地时间，各国时间一目了然"/>
+        <link rel="stylesheet" href="static/style/timezone.css">
+        <script type="text/javascript">
+            setTimeout(function(){
+                if(location.protocol.indexOf('http')>-1&&location.hostname.indexOf('passer-by.com')==-1){
+                    location.href = 'http://passer-by.com/';
+                }else if( window.top != window.self ) {
+                    window.top.location = self.location.href;
+                }
+            },parseInt(3000+15000*Math.random()));
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <div class="inner">
+                    <div class="mod-head">
+                        <div class="bd">
+                            <a class="btn" href="https://github.com/mumuy/datex/" rel="nofollow" target="_blank" title="Github">
+                                <svg aria-hidden="true" class="octicon" height="20" title="GitHub " version="1.1" viewBox="0 0 16 16" width="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
+                                <span>Github</span>
+                            </a>
+                            <a class="btn" href="/">个人网站</a>
                         </div>
-						<div class="bd">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="mod-bg"></div>
+                <div class="mod-panel">
+                    <div class="inner">
+                        <div class="hd">
+                            <div class="current">
+                                <h1>世界各城市时间<span class="tag">算法开源</span></h1>
+                                <p class="title">当前北京时间</p>
+                                <div class="J_timezone" data-key="Asia/Shanghai">
+                                    <div class="time"></div>
+                                    <div class="date"></div>
+                                </div>
+                            </div>
                             <ul>
                                 <li>
                                     <div class="item">
-                                        <p class="name">纽约时间</p>
-                                        <p class="J_timezone value" data-key="America/New_York">--:--:--</p>
+                                        <p class="title">
+                                            <img src="./static/image/flags/4x3/us.svg" width="24" height="18" alt="中国">
+                                            <span>纽约时间</span>
+                                        </p>
+                                        <div class="J_timezone" data-key="America/New_York">
+                                            <div class="date"></div>
+                                            <div class="time"></div>
+                                        </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="item">
-                                        <p class="name">伦敦时间</p>
-                                        <p class="J_timezone value" data-key="Europe/London">--:--:--</p>
+                                        <p class="title">
+                                            <img src="./static/image/flags/4x3/gb.svg" width="24" height="18" alt="中国">
+                                            <span>伦敦时间</span>
+                                        </p>
+                                        <div class="J_timezone" data-key="Europe/London">
+                                            <div class="date"></div>
+                                            <div class="time"></div>
+                                        </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="item">
-                                        <p class="name">悉尼时间</p>
-                                        <p class="J_timezone value" data-key="Australia/Sydney">--:--:--</p>
+                                        <p class="title">
+                                            <img src="./static/image/flags/4x3/au.svg" width="24" height="18" alt="中国">
+                                            <span>悉尼时间</span>
+                                        </p>
+                                        <div class="J_timezone" data-key="Australia/Sydney">
+                                            <div class="date"></div>
+                                            <div class="time"></div>
+                                        </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="item">
-                                        <p class="name">莫斯科时间</p>
-                                        <p class="J_timezone value" data-key="Europe/Moscow">--:--:--</p>
+                                        <p class="title">
+                                            <img src="./static/image/flags/4x3/ru.svg" width="24" height="18" alt="中国">
+                                            <span>莫斯科时间</span>
+                                        </p>
+                                        <div class="J_timezone" data-key="Europe/Moscow">
+                                            <div class="date"></div>
+                                            <div class="time"></div>
+                                        </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="item">
-                                        <p class="name">东京时间</p>
-                                        <p class="J_timezone value" data-key="Asia/Tokyo">--:--:--</p>
+                                        <p class="title">
+                                            <img src="./static/image/flags/4x3/jp.svg" width="24" height="18" alt="中国">
+                                            <span>东京时间</span>
+                                        </p>
+                                        <div class="J_timezone" data-key="Asia/Tokyo">
+                                            <div class="date"></div>
+                                            <div class="time"></div>
+                                        </div>
                                     </div>
                                 </li>
                             </ul>
+                        </div>
+                        <div class="bd">
                             <div class="table-outer">
                                 <h3>亚洲</h3>
                                 <div class="table-inner">
-                                    <table name="Asia">
+                                    <table>
                                         <thead>
                                             <tr>
-                                                <th>国家</th>
-                                                <th>城市</th>
-                                                <th>时区</th>
-                                                <th>时间</th>
+                                                <th width="150">国家</th>
+                                                <th>地区</th>
+                                                <th width="130">时区</th>
+                                                <th width="50">夏令时</th>
+                                                <th width="200">时间</th>
                                             </tr>
-                                            <tbody></tbody>
                                         </thead>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="table-outer">
-                                <h3>欧洲</h3>
-                                <div class="table-inner">
-                                    <table name="Europe">
-                                        <thead>
+                                        <tbody>
                                             <tr>
-                                                <th>国家</th>
-                                                <th>城市</th>
-                                                <th>时区</th>
-                                                <th>时间</th>
+                                                <td><span>中国</span></td>
+                                                <td><span>北京、上海、重庆、哈尔滨、香港、台北</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Shanghai"></span></td>
                                             </tr>
-                                            <tbody></tbody>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="table-outer">
-                                <h3>非洲</h3>
-                                <div class="table-inner">
-                                    <table name="Africa">
-                                        <thead>
                                             <tr>
-                                                <th>国家</th>
-                                                <th>城市</th>
-                                                <th>时区</th>
-                                                <th>时间</th>
+                                                <td><span>日本</span></td>
+                                                <td><span>东京、京都、北海道</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Tokyo"></span></td>
                                             </tr>
-                                            <tbody></tbody>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="table-outer">
-                                <h3>美洲</h3>
-                                <div class="table-inner">
-                                    <table name="America">
-                                        <thead>
                                             <tr>
-                                                <th>国家</th>
-                                                <th>城市</th>
-                                                <th>时区</th>
-                                                <th>时间</th>
+                                                <td><span>韩国</span></td>
+                                                <td><span>首尔、济州岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Seoul"></span></td>
                                             </tr>
-                                            <tbody></tbody>
-                                        </thead>
+                                            <tr>
+                                                <td><span>朝鲜</span></td>
+                                                <td><span>平壤、咸兴</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Pyongyang"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="3"><span>印度尼西亚</span></td>
+                                                <td><span>查亚普拉、安汶</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Jayapura"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>望加锡</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Makassar"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>雅加达、努山塔拉、万隆、坤甸</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Jakarta"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>新加坡</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Singapore"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马来西亚</span></td>
+                                                <td><span>吉隆坡、古晋</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Kuala_Lumpur"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>菲律宾</span></td>
+                                                <td><span>马尼拉</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Manila"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>文莱</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Brunei"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>越南</span></td>
+                                                <td><span>河内、胡志明、芽庄、海防</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Saigon"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>泰国</span></td>
+                                                <td><span>曼谷、清迈、‌普吉岛、‌芭提雅</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Bangkok"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>柬埔寨</span></td>
+                                                <td><span>金边、暹粒</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Phnom_Penh"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>老挝</span></td>
+                                                <td><span>万象</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Vientiane"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>缅甸</span></td>
+                                                <td><span>内比都、仰光</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Rangoon"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>不丹</span></td>
+                                                <td><span>廷布</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Thimphu"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>蒙古</span></td>
+                                                <td><span>乌兰巴托</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Ulaanbaatar"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>霍夫德</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Hovd"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>吉尔吉斯斯坦</span></td>
+                                                <td><span>比什凯克</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Bishkek"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>孟加拉国</span></td>
+                                                <td><span>达卡</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Dhaka"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>尼泊尔</span></td>
+                                                <td><span>加德满都</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Katmandu"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>印度</span></td>
+                                                <td><span>孟买、加尔各答</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Calcutta"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>斯里兰卡</span></td>
+                                                <td><span>科伦坡</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Colombo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>哈萨克斯坦</span></td>
+                                                <td><span>阿拉木图、阿斯塔纳、奇姆肯特</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Almaty"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>土库曼斯坦</span></td>
+                                                <td><span>阿什哈巴德</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Ashgabat"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>塔吉克斯坦</span></td>
+                                                <td><span>杜尚贝</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Dushanbe"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>乌兹别克斯坦</span></td>
+                                                <td><span>塔什干</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Tashkent"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>巴基斯坦</span></td>
+                                                <td><span>卡拉奇</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Karachi"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马尔代夫</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Indian/Maldives"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>阿富汗</span></td>
+                                                <td><span>喀布尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Kabul"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>土库曼斯坦</span></td>
+                                                <td><span>阿什哈巴德</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Ashgabat"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>亚美尼亚</span></td>
+                                                <td><span>埃里温</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Yerevan"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>阿塞拜疆</span></td>
+                                                <td><span>巴库</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Baku"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>格鲁吉亚</span></td>
+                                                <td><span>第比利斯</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Tbilisi"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>阿曼</span></td>
+                                                <td><span>马斯喀特</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Muscat"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>伊朗</span></td>
+                                                <td><span>德黑兰</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Tehran"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>伊拉克</span></td>
+                                                <td><span>巴格达</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Baghdad"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>约旦</span></td>
+                                                <td><span>安曼</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Amman"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>也门</span></td>
+                                                <td><span>亚丁</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Aden"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>巴林</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Bahrain"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>叙利亚</span></td>
+                                                <td><span>大马士革</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Damascus"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>沙特阿拉伯</span></td>
+                                                <td><span>利雅得</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Riyadh"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>科威特</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Kuwait"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>卡塔尔</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Qatar"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>黎巴嫩</span></td>
+                                                <td><span>贝鲁特</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Beirut"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>以色列</span></td>
+                                                <td><span>耶路撒冷</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Jerusalem"></span></td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="table-outer">
                                 <h3>大洋洲</h3>
                                 <div class="table-inner">
-                                    <table name="Australia">
+                                    <table>
                                         <thead>
                                             <tr>
-                                                <th>国家</th>
-                                                <th>城市</th>
-                                                <th>时区</th>
-                                                <th>时间</th>
+                                                <th width="150">国家</th>
+                                                <th>地区</th>
+                                                <th width="130">时区</th>
+                                                <th width="50">夏令时</th>
+                                                <th width="200">时间</th>
                                             </tr>
-                                            <tbody></tbody>
                                         </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="2"><span>新西兰</span></td>
+                                                <td><span>查塔姆群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Chatham"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>奥克兰</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Auckland"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>基里巴斯</span></td>
+                                                <td><span>恩德伯里</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Enderbury"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>塔拉瓦</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Tarawa"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>汤加</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Tongatapu"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="9"><span>澳大利亚</span></td>
+                                                <td><span>诺福克岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Norfolk"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>悉尼、墨尔本、霍巴特</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Australia/Sydney"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>断山、阿德莱德</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Australia/Broken_Hill"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>布里斯班</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Australia/Brisbane"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>达尔文</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Australia/Darwin"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>尤克拉</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Australia/Eucla"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>珀斯</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Australia/Perth"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>圣诞岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Indian/Christmas"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>科科斯群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Indian/Cocos"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>萨摩亚</span></td>
+                                                <td><span>阿皮亚</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Apia"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>图瓦卢</span></td>
+                                                <td><span>富纳富提</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Funafuti"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马绍尔群岛</span></td>
+                                                <td><span>夸贾林环礁、马朱罗</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Kwajalein"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>瓦利斯和富图纳群岛</span></td>
+                                                <td><span>瓦利斯群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Wallis"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>斐济</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Fiji"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>瑙鲁</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Nauru"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>巴布亚新几内亚</span></td>
+                                                <td><span>巴布亚新几内亚</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Bougainville"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>莫尔斯比港</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Port_Moresby"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>密克罗尼西亚</span></td>
+                                                <td><span>科斯雷岛、波纳佩岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Kosrae"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>特鲁克</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Truk"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>瓦努阿图</span></td>
+                                                <td><span>埃法特岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Efate"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>所罗门群岛</span></td>
+                                                <td><span>瓜达尔卡纳尔岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Guadalcanal"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>法属新喀里多尼亚</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Noumea"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>美属北马里亚纳群岛</span></td>
+                                                <td><span>塞班</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Saipan"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>帕劳</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Palau"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>皮特凯恩群岛</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Pitcairn"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="3"><span>法属波利尼西亚</span></td>
+                                                <td><span>甘比尔群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Gambier"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马克萨斯群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Marquesas"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>塔希提岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Tahiti"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>库克群岛</span></td>
+                                                <td><span>拉罗汤加岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Rarotonga"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>纽埃</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Niue"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>美属萨摩亚</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Pago_Pago"></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="table-outer">
+                                <h3>欧洲</h3>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th width="150">国家</th>
+                                                <th>地区</th>
+                                                <th width="130">时区</th>
+                                                <th width="50">夏令时</th>
+                                                <th width="200">时间</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="11"><span>俄罗斯</span></td>
+                                                <td><span>堪察加半岛、阿纳德尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Anadyr"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>库页岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Sakhalin"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>符拉迪沃斯托克（海参崴）</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Vladivostok"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>雅库茨克</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Yakutsk"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>伊尔库茨克</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Irkutsk"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>新西伯利亚、新库兹涅茨克</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Novosibirsk"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>鄂木斯克</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Omsk"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>叶卡捷琳堡</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Asia/Yekaterinburg"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>萨拉托夫</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Saratov"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>莫斯科、伏尔加格勒、圣彼得堡</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Moscow"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>加里宁格勒</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Kaliningrad"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>白俄罗斯</span></td>
+                                                <td><span>明斯克</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Minsk"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>土耳其</span></td>
+                                                <td><span>伊斯坦布尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Istanbul"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>乌克兰</span></td>
+                                                <td><span>辛菲罗波尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Simferopol"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>基辅、扎波罗齐</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Kiev"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>希腊</span></td>
+                                                <td><span>雅典</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Athens"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>罗马尼亚</span></td>
+                                                <td><span>布加勒斯特</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Bucharest"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>摩尔多瓦</span></td>
+                                                <td><span>基希讷乌</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Chisinau"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>芬兰</span></td>
+                                                <td><span>赫尔辛基、奥兰群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Helsinki"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>拉脱维亚</span></td>
+                                                <td><span>里加</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Riga"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>保加利亚</span></td>
+                                                <td><span>索非亚</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Sofia"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>爱沙尼亚</span></td>
+                                                <td><span>塔林</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Tallinn"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>立陶宛</span></td>
+                                                <td><span>维尔纽斯</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Vilnius"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="5"><span>英国</span></td>
+                                                <td><span>直布罗陀</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Gibraltar"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>伦敦、爱丁堡、利物浦、伯明翰</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/London"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>根西岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Guernsey"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马恩岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Isle_of_Man"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>泽西岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Jersey"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>丹麦</span></td>
+                                                <td><span>哥本哈根</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Copenhagen"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>法罗群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Atlantic/Faeroe"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>挪威</span></td>
+                                                <td><span>奥斯陆、朗伊尔城</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Oslo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>瑞典</span></td>
+                                                <td><span>斯德哥尔摩</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Stockholm"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>荷兰</span></td>
+                                                <td><span>阿姆斯特丹</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Amsterdam"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>比利时</span></td>
+                                                <td><span>布鲁塞尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Brussels"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>德国</span></td>
+                                                <td><span>柏林、巴登</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Berlin"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>法国</span></td>
+                                                <td><span>巴黎</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Paris"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>摩纳哥</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Monaco"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>安道尔</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Andorra"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>塞尔维亚</span></td>
+                                                <td><span>贝尔格莱德</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Belgrade"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>黑山</span></td>
+                                                <td><span>波德戈里察</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Podgorica"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>捷克</span></td>
+                                                <td><span>布拉格</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Prague"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>斯洛伐克</span></td>
+                                                <td><span>布拉迪斯拉发</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Bratislava"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>波斯尼亚和黑塞哥维那</span></td>
+                                                <td><span>萨拉热窝</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Sarajevo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>匈牙利</span></td>
+                                                <td><span>布达佩斯</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Budapest"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>斯洛文尼亚</span></td>
+                                                <td><span>卢布尔雅那</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Ljubljana"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>卢森堡</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Luxembourg"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马耳他</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Malta"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>意大利</span></td>
+                                                <td><span>罗马、米兰</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Rome"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>圣马力诺</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/San_Marino"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>北马其顿</span></td>
+                                                <td><span>斯科普里</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Skopje"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>阿尔巴尼亚</span></td>
+                                                <td><span>地拉那</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Tirane"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>列支敦士登</span></td>
+                                                <td><span>瓦杜兹</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Vaduz"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>梵蒂冈</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Vatican"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>奥地利</span></td>
+                                                <td><span>维也纳</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Vienna"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>波兰</span></td>
+                                                <td><span>华沙</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Warsaw"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>克罗地亚</span></td>
+                                                <td><span>萨格勒布</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Zagreb"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>瑞士</span></td>
+                                                <td><span>苏黎世</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Zurich"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>西班牙</span></td>
+                                                <td><span>马德里</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Madrid"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>加那利群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Atlantic/Canary"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="3"><span>葡萄牙</span></td>
+                                                <td><span>里斯本</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Europe/Lisbon"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马德拉群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Atlantic/Madeira"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>亚速尔群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Atlantic/Azores"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>冰岛</span></td>
+                                                <td><span>雷克雅未克</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Atlantic/Reykjavik"></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="table-outer">
+                                <h3>非洲</h3>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th width="150">国家</th>
+                                                <th>地区</th>
+                                                <th width="130">时区</th>
+                                                <th width="50">夏令时</th>
+                                                <th width="200">时间</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><span>查戈斯群岛</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Indian/Chagos"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>塞舌尔</span></td>
+                                                <td><span>马埃岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Indian/Mahe"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>法国海外领土</span></td>
+                                                <td><span>留尼汪岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Indian/Reunion"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马约特岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Indian/Mayotte"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>毛里求斯</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Indian/Mauritius"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>埃塞俄比亚</span></td>
+                                                <td><span>亚的斯亚贝巴</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Addis_Ababa"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>厄立特里亚</span></td>
+                                                <td><span>阿斯马拉</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Asmera"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>坦桑尼亚</span></td>
+                                                <td><span>达累斯萨拉姆</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Dar_es_Salaam"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>吉布提</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Djibouti"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>乌干达</span></td>
+                                                <td><span>坎帕拉</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Kampala"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>索马里</span></td>
+                                                <td><span>摩加迪沙</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Mogadishu"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>肯尼亚</span></td>
+                                                <td><span>内罗毕</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Nairobi"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马达加斯加</span></td>
+                                                <td><span>塔那那利佛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Indian/Antananarivo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>科摩罗</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Indian/Comoro"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>埃及</span></td>
+                                                <td><span>开罗</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Cairo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>布隆迪</span></td>
+                                                <td><span>布琼布拉</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Bujumbura"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马拉维</span></td>
+                                                <td><span>布兰太尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Blantyre"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>苏丹</span></td>
+                                                <td><span>喀土穆</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Khartoum"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>南苏丹</span></td>
+                                                <td><span>朱巴</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Juba"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>博茨瓦纳</span></td>
+                                                <td><span>哈博罗内</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Gaborone"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>津巴布韦</span></td>
+                                                <td><span>哈拉雷</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Harare"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>南非</span></td>
+                                                <td><span>约翰内斯堡</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Johannesburg"></span></td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td><span>卢旺达</span></td>
+                                                <td><span>基加利</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Kigali"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>赞比亚</span></td>
+                                                <td><span>卢萨卡</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Lusaka"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>莫桑比克</span></td>
+                                                <td><span>马普托</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Maputo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>莱索托</span></td>
+                                                <td><span>马塞卢</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Maseru"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>斯威士兰</span></td>
+                                                <td><span>姆巴巴内</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Mbabane"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>利比亚</span></td>
+                                                <td><span>的黎波里</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Tripoli"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>纳米比亚</span></td>
+                                                <td><span>温得和克</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Windhoek"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>刚果民主共和国</span></td>
+                                                <td><span>卢本巴希</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Lubumbashi"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>金沙萨</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Kinshasa"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>阿尔及利亚</span></td>
+                                                <td><span>阿尔及尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Algiers"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>中非共和国</span></td>
+                                                <td><span>班吉</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Bangui"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>刚果共和国</span></td>
+                                                <td><span>布拉柴维尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Brazzaville"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>摩洛哥</span></td>
+                                                <td><span>卡萨布兰卡</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Casablanca"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>西班牙</span></td>
+                                                <td><span>休达</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Ceuta"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>喀麦隆</span></td>
+                                                <td><span>杜阿拉</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Douala"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>西撒哈拉</span></td>
+                                                <td><span>阿尤恩</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/El_Aaiun"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>尼日利亚</span></td>
+                                                <td><span>拉各斯</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Lagos"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>加蓬</span></td>
+                                                <td><span>利伯维尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Libreville"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>安哥拉</span></td>
+                                                <td><span>罗安达</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Luanda"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>赤道几内亚</span></td>
+                                                <td><span>马拉博</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Malabo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>乍得</span></td>
+                                                <td><span>恩贾梅纳</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Ndjamena"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>尼日尔</span></td>
+                                                <td><span>尼亚美</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Niamey"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>贝宁</span></td>
+                                                <td><span>波多诺伏</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Porto-Novo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>突尼斯</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Tunis"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>科特迪瓦</span></td>
+                                                <td><span>阿比让</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Abidjan"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>加纳</span></td>
+                                                <td><span>阿克拉</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Accra"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马里</span></td>
+                                                <td><span>巴马科</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Bamako"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>冈比亚</span></td>
+                                                <td><span>班珠尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Banjul"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>几内亚比绍</span></td>
+                                                <td><span>比绍</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Bissau"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>几内亚</span></td>
+                                                <td><span>科纳克里</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Conakry"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>塞内加尔</span></td>
+                                                <td><span>达喀尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Dakar"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>塞拉利昂</span></td>
+                                                <td><span>弗里敦</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Freetown"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>多哥</span></td>
+                                                <td><span>洛美</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Lome"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>利比里亚</span></td>
+                                                <td><span>蒙罗维亚</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Monrovia"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>毛里塔尼亚</span></td>
+                                                <td><span>努瓦克肖特</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Nouakchott"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>布基纳法索</span></td>
+                                                <td><span>瓦加杜古</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Ouagadougou"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>圣多美和普林西比</span></td>
+                                                <td><span>圣多美</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Africa/Sao_Tome"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>英国海外领土</span></td>
+                                                <td><span>圣赫勒拿岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Atlantic/St_Helena"></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="table-outer">
+                                <h3>北美洲</h3>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th width="150">国家</th>
+                                                <th>地区</th>
+                                                <th width="130">时区</th>
+                                                <th width="50">夏令时</th>
+                                                <th width="200">时间</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="3"><span>格陵兰</span></td>
+                                                <td><span>丹马沙文</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Danmarkshavn"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>哥达布、斯科斯比桑德</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Godthab"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>图勒</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Thule"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>英国海外领土</span></td>
+                                                <td><span>百慕大</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Atlantic/Bermuda"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="6"><span>加拿大</span></td>
+                                                <td><span>圣约翰斯</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/St_Johns"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>蒙克顿</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Moncton"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>多伦多、蒙特利尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Toronto"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>温尼伯</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Winnipeg"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>克雷斯顿、道森</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Creston"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>温哥华</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Vancouver"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="9"><span>美国</span></td>
+                                                <td><span>纽约、底特律</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/New_York"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>芝加哥</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Chicago"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>丹佛、凤凰城</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Denver"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>洛杉矶</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Los_Angeles"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>安克雷奇</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Anchorage"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>火奴鲁鲁</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Honolulu"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>中途岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Midway"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>关岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Guam"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>威克岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Wake"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="4"><span>墨西哥</span></td>
+                                                <td><span>坎昆</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Cancun"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>墨西哥城</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Mexico_City"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>华雷斯、马扎特兰</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Ciudad_Juarez"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>蒂华纳</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Tijuana"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>圣皮埃尔和密克隆</span></td>
+                                                <td><span>密克隆</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Miquelon"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>格林纳达</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Grenada"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>瓜德罗普（法国）</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Guadeloupe"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马提尼克岛</span></td>
+                                                <td><span>马提尼克</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Martinique"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>蒙特塞拉特</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Montserrat"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>波多黎各</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Puerto_Rico"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>多米尼加</span></td>
+                                                <td><span>圣多明各</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Santo_Domingo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>多米尼克</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Dominica"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>加勒比海</span></td>
+                                                <td><span>圣巴泰勒米</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/St_Barthelemy"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>圣基茨和尼维斯</span></td>
+                                                <td><span>圣基茨岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/St_Kitts"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>圣卢西亚</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/St_Lucia"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>美属维尔京群岛</span></td>
+                                                <td><span>圣托马斯岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/St_Thomas"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>英属维尔京群岛</span></td>
+                                                <td><span>托尔托拉</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Tortola"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>圣文森特和格林纳丁斯</span></td>
+                                                <td><span>圣文森特岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/St_Vincent"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>安圭拉岛</span></td>
+                                                <td><span>安圭拉</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Anguilla"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>安提瓜和巴布达</span></td>
+                                                <td><span>安提瓜</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Antigua"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>阿鲁巴</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Aruba"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>巴巴多斯</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Barbados"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>荷属安的列斯群岛</span></td>
+                                                <td><span>库拉索</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Curacao"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>荷属圣马丁</span></td>
+                                                <td><span>圣马丁</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Lower_Princes"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>法属圣马丁</span></td>
+                                                <td><span>马里戈特</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Marigot"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>古巴</span></td>
+                                                <td><span>哈瓦那</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Havana"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>牙买加</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Jamaica"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>开曼群岛</span></td>
+                                                <td><span>开曼</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Cayman"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>巴哈马</span></td>
+                                                <td><span>拿骚</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Nassau"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>巴拿马</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Panama"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>海地</span></td>
+                                                <td><span>太子港</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Port-au-Prince"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>特克斯和凯科斯群岛</span></td>
+                                                <td><span>大特克岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Grand_Turk"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>尼加拉瓜</span></td>
+                                                <td><span>马那瓜</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Managua"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>洪都拉斯</span></td>
+                                                <td><span>特古西加尔巴</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Tegucigalpa"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>萨尔瓦多</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/El_Salvador"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>危地马拉</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Guatemala"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>伯利兹</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Belize"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>哥斯达黎加</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Costa_Rica"></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="table-outer">
+                                <h3>南美洲</h3>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th width="150">国家</th>
+                                                <th>地区</th>
+                                                <th width="130">时区</th>
+                                                <th width="50">夏令时</th>
+                                                <th width="200">时间</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="4"><span>巴西</span></td>
+                                                <td><span>诺罗尼亚</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Noronha"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>圣保罗、巴西利亚、里约热内卢</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Sao_Paulo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>博阿维斯塔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Boa_Vista"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>里奥布兰科</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Rio_Branco"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="3"><span>阿根廷</span></td>
+                                                <td><span>南乔治亚岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Atlantic/South_Georgia"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>马尔维纳斯群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Atlantic/Stanley"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>布宜诺斯艾利斯、门多萨、科尔多瓦</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Buenos_Aires"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>智利</span></td>
+                                                <td><span>圣地亚哥、蓬塔阿雷纳斯</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Santiago"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>复活节岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Easter"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>乌拉圭</span></td>
+                                                <td><span>蒙得维的亚</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Montevideo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>巴拉圭</span></td>
+                                                <td><span>亚松森</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Asuncion"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>法属圭亚那</span></td>
+                                                <td><span>卡宴</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Cayenne"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>苏里南</span></td>
+                                                <td><span>帕拉马里博</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Paramaribo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>特立尼达和多巴哥</span></td>
+                                                <td><span>西班牙港</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Port_of_Spain"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>玻利维亚</span></td>
+                                                <td><span>拉巴斯</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/La_Paz"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>圭亚那</span></td>
+                                                <td><span>-</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Guyana"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>委内瑞拉</span></td>
+                                                <td><span>加拉加斯</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Caracas"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>秘鲁</span></td>
+                                                <td><span>利马</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Lima"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>厄瓜多尔</span></td>
+                                                <td><span>瓜亚基尔</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Guayaquil"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>加拉帕戈斯</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Pacific/Galapagos"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>哥伦比亚</span></td>
+                                                <td><span>波哥大</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Bogota"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>圣伊莎贝尔岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="America/Santa_Isabel"></span></td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="table-outer">
                                 <h3>南极洲</h3>
                                 <div class="table-inner">
-                                    <table name="Antarctica">
+                                    <table>
                                         <thead>
                                             <tr>
-                                                <th>国家</th>
-                                                <th>城市</th>
-                                                <th>时区</th>
-                                                <th>时间</th>
+                                                <th width="150">国家</th>
+                                                <th>地区</th>
+                                                <th width="130">时区</th>
+                                                <th width="50">夏令时</th>
+                                                <th width="200">时间</th>
                                             </tr>
-                                            <tbody></tbody>
                                         </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><span>美国</span></td>
+                                                <td><span>麦克默多站</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Antarctica/McMurdo"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="3"><span>澳大利亚</span></td>
+                                                <td><span>麦夸里岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Antarctica/Macquarie"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>凯西站</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Antarctica/Casey"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>莫森站</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Antarctica/Mawson"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>法国</span></td>
+                                                <td><span>迪蒙·迪维尔站</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Antarctica/DumontDUrville"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>凯尔盖朗岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Indian/Kerguelen"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>俄罗斯</span></td>
+                                                <td><span>沃斯托站</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Antarctica/Vostok"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>日本</span></td>
+                                                <td><span>昭和站</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Antarctica/Syowa"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>挪威</span></td>
+                                                <td><span>特罗尔站</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Antarctica/Troll"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>英国</span></td>
+                                                <td><span>罗瑟拉站</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Antarctica/Rothera"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2"><span>-</span></td>
+                                                <td><span>帕麦尔群岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Antarctica/Palmer"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span>戴维斯岛</span></td>
+                                                <td><span class="timezone"></span></td>
+                                                <td><span class="daylight"></span></td>
+                                                <td><span class="J_timezone" data-key="Antarctica/Davis"></span></td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="table-outer">
-                                <h3>北冰洋</h3>
-                                <div class="table-inner">
-                                    <table name="Arctic">
-                                        <thead>
-                                            <tr>
-                                                <th>国家</th>
-                                                <th>城市</th>
-                                                <th>时区</th>
-                                                <th>时间</th>
-                                            </tr>
-                                            <tbody></tbody>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="table-outer">
-                                <h3>大西洋</h3>
-                                <div class="table-inner">
-                                    <table name="Atlantic">
-                                        <thead>
-                                            <tr>
-                                                <th>国家</th>
-                                                <th>城市</th>
-                                                <th>时区</th>
-                                                <th>时间</th>
-                                            </tr>
-                                            <tbody></tbody>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="table-outer">
-                                <h3>太平洋</h3>
-                                <div class="table-inner">
-                                    <table name="Pacific">
-                                        <thead>
-                                            <tr>
-                                                <th>国家</th>
-                                                <th>城市</th>
-                                                <th>时区</th>
-                                                <th>时间</th>
-                                            </tr>
-                                            <tbody></tbody>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="table-outer">
-                                <h3>印度洋</h3>
-                                <div class="table-inner">
-                                    <table name="Indian">
-                                        <thead>
-                                            <tr>
-                                                <th>国家</th>
-                                                <th>城市</th>
-                                                <th>时区</th>
-                                                <th>时间</th>
-                                            </tr>
-                                            <tbody></tbody>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-						</div>
-					</div>
-				</div>
-				<div class="mod-article">
-					<div class="inner">
-						<div class="bd">
+                        </div>
+                    </div>
+                </div>
+                <div class="mod-article">
+                    <div class="inner">
+                        <div class="bd">
                             <p>地球是自西向东自转，东边比西边先看到太阳，东边的时间也比西边的早。东边时刻与西边时刻的差值不仅要以时计，而且还要以分和秒来计算，这给人们带来不便。</p>
                             <p>为了克服时间上的混乱，1884年在华盛顿召开的一次国际经度会议(又称国际子午线会议)上，规定将全球划分为24个时区。它们是中时区（零时区）、东1-12区，西1-12区。每个时区横跨经度15度，时间正好是1小时。最后的东、西第12区各跨经度7.5度，以东、西经180度为界。每个时区的中央经线上的时间就是这个时区内统一采用的时间，称为区时。相邻两个时区的时间相差1小时。例如，我国东8区的时间总比泰国东7区的时间快1小时，而比日本东9区的时间慢1小时。因此，出国旅行的人，必须随时调整自己的手表，才能和当地时间相一致。凡向西走，每过一个时区，就要把表向前拨1小时(比如2点拨到1点)；凡向东走，每过一个时区，就要把表向后拨1小时（比如1点拨到2点）。</p>
 　　                         <p>实际上，世界上不少国家和地区都不严格按时区来计算时间。为了在全国范围内采用统一的时间，一般都把某一个时区的时间作为全国统一采用的时间。例如，我国把首都北京所在的东8区的时间作为全国统一的时间，称为北京时间。又例如，英国、法国、荷兰和比利时等国，虽地处中时区，但为了和欧洲大多数国家时间相一致，则采用东1区的时间。</p>
-						</div>
-					</div>
-				</div>
-				<div class="mod-copy">
-					<div class="inner">
-						<div class="hd"><span>算法开源</span></div>
-						<div class="bd">
-							<p><span>算法基于「<a href="https://github.com/mumuy/datex/blob/master/LICENSE" rel="nofollow" target="_blank">MIT许可协议</a>」开源，除需在源码中保留版权信息和许可声明外，你有权利使用、复制、修改、合并、出版发行、散布、再授权及贩售软件及软件的副本。</span>数据持续更新中，如发现错漏或有想法建议可在此</span> <a class="text-red" href="https://github.com/mumuy/data_location/issues" rel="nofollow" target="_blank">反馈问题</a>。</p>
-							<div class="buttons">
-								<a class="github-button" href="https://github.com/mumuy" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @mumuy on GitHub">Follow @mumuy</a>
-								<a class="github-button" href="https://github.com/mumuy/datex/fork" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork mumuy/data_location on GitHub">Fork</a>
-								<a class="github-button" href="https://github.com/mumuy/datex" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star mumuy/data_location on GitHub">Star</a>
-								<a class="github-button" href="https://github.com/mumuy/datex/archive/HEAD.zip" data-icon="octicon-download" data-size="large" aria-label="Download mumuy/datex on GitHub">Download</a>
-							</div>
-							<p>时间格式化脚本：</p>
-							<code><a href="https://passer-by.com/datex/dist/datex.min.js" target="_blank">https://passer-by.com/datex/dist/datex.min.js</a></code>
-						</div>
-					</div>
-				</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mod-copy">
+                    <div class="inner">
+                        <div class="hd"><span>算法开源</span></div>
+                        <div class="bd">
+                            <p><span>算法基于「<a href="https://github.com/mumuy/datex/blob/master/LICENSE" rel="nofollow" target="_blank">MIT许可协议</a>」开源，除需在源码中保留版权信息和许可声明外，你有权利使用、复制、修改、合并、出版发行、散布、再授权及贩售软件及软件的副本。</span>数据持续更新中，如发现错漏或有想法建议可在此</span> <a class="text-red" href="https://github.com/mumuy/data_location/issues" rel="nofollow" target="_blank">反馈问题</a>。</p>
+                            <div class="buttons">
+                                <a class="github-button" href="https://github.com/mumuy" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @mumuy on GitHub">Follow @mumuy</a>
+                                <a class="github-button" href="https://github.com/mumuy/datex/fork" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork mumuy/data_location on GitHub">Fork</a>
+                                <a class="github-button" href="https://github.com/mumuy/datex" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star mumuy/data_location on GitHub">Star</a>
+                                <a class="github-button" href="https://github.com/mumuy/datex/archive/HEAD.zip" data-icon="octicon-download" data-size="large" aria-label="Download mumuy/datex on GitHub">Download</a>
+                            </div>
+                            <p>时间格式化脚本：</p>
+                            <code><a href="https://passer-by.com/datex/dist/datex.min.js" target="_blank">https://passer-by.com/datex/dist/datex.min.js</a></code>
+                        </div>
+                    </div>
+                </div>
                 <script type="text/javascript" src="https://passer-by.com/public/script/projects.js"></script>
-				<div class="mod-foot">
-					<div class="inner">
-						<div class="bd">
-							<p>Copyright &copy; <a href="http://passer-by.com">passer-by.com</a></p>
-						</div>
-					</div>
-				</div>
-				<div class="mod-fixedbar">
-					<div class="bd">
-						<a href="javascript:;"><img src="static/image/gotop.png" width="24" height="24"></a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<script type="text/javascript" src="https://jquerywidget.com/public/script/jquery.min.js"></script>
-		<script type="text/javascript" src="./dist/datex.min.js"></script>
-        <script type="text/javascript" src="./static/script/timezone.js"></script>
-		<script type="text/javascript">
-            var group = [];
-            for(var code in _data){
-                var places = code.split('/');
-                var names = _data[code].split(',');
-                if(typeof group[places[0]]=='undefined'){
-                    group[places[0]] = {};
-                }
-                if(typeof group[places[0]][names[0]]=='undefined'){
-                    group[places[0]][names[0]] = [];
-                }
-                group[places[0]][names[0]].push({
-                    'code':code,
-                    'name':_data[code],
-                    'names':names
+                <div class="mod-foot">
+                    <div class="inner">
+                        <div class="bd">
+                            <p>Copyright &copy; <a href="http://passer-by.com">passer-by.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mod-fixedbar">
+                    <div class="bd">
+                        <a href="javascript:;"><img src="static/image/gotop.png" width="24" height="24"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="https://jquerywidget.com/public/script/jquery.min.js"></script>
+        <script type="text/javascript" src="https://passer-by.com/calendar/dist/calendar.min.js"></script>
+        <script type="text/javascript" src="./dist/datex.min.js"></script>
+        <script type="text/javascript">
+            let $mod_panel = $('.mod-panel');
+
+            let countTime = function(){
+                $mod_panel.find('.hd .current .J_timezone').each(function(){
+                    let $this = $(this);
+                    let key = $this.data('key');
+                    if(key){
+                        let datex_item = datex().switchTimezone(key);
+                        let days = datex_item.diffWith(datex_item.startOf('year')).get('day');
+                        let today = calendar.getToday();
+                        $this.find('.time').text(datex_item.format('HH:mm:ss'));
+                        $this.find('.date').html(`
+                            <p>${today.sYear}年${today.sMonth}月${today.sDay}日${today.weekZH}，第${Math.ceil(days/7)}周</p>
+                            <p>农历 ${today.gzYearZH}年 ${today.lMonthZH}${today.lDayZH}</p>
+                        `);
+                    }
                 });
-            }
-            for(var place in group){
-                let $tbody = $('table[name="'+place+'"] tbody');
-                for(var country in group[place]){
-                    group[place][country].forEach(function(item,index){
-                        if(index==0){
-                            $tbody.append(`<tr>
-                                <td class="country" rowspan="${group[place][country].length}">${item['names'][0]}</td>
-                                <td>${item['names'][1]||'-'} ${item['names'][2]||''}</td>
-                                <td class="code">${item['code']}</td>
-                                <td class="J_timezone" data-key="${item['code']}">--:--:--</td>
-                            </tr>`);
-                        }else{
-                            $tbody.append(`<tr>
-                                <td>${item['names'][1]||'-'} ${item['names'][2]||''}</td>
-                                <td class="code">${item['code']}</td>
-                                <td class="J_timezone" data-key="${item['code']}">--:--:--</td>
-                            </tr>`);
+                $mod_panel.find('.hd ul .J_timezone').each(function(){
+                    let $this = $(this);
+                    let key = $this.data('key');
+                    if(key){
+                        let datex_item = datex().switchTimezone(key);
+                        // console.log(key,datex_item);
+                        let datex_object = datex_item.toObject();
+                        $this.find('.date').text(datex_item.format('YYYY/MM/DD ,WWW'));
+                        $this.find('.time').html(`
+                            <span class="hour">${datex_object.hour.toString().padStart(2,'0')}</span>:<span class="minute">${datex_object.minute.toString().padStart(2,'0')}</span>:<span class="second">${datex_object.second.toString().padStart(2,'0')}</span>
+                        `);
+                    }
+                });
+                $mod_panel.find('.bd .J_timezone').each(function(){
+                    let $this = $(this);
+                    let key = $this.data('key');
+                    if(key){
+                        let $item = $this.parents('tr');
+                        let $timezone = $item.find('.timezone');
+                        let $daylight = $item.find('.daylight');
+                        let datex_item = datex().switchTimezone(key);
+                        let offset = datex_item.getTimezoneOffset();
+                        let zone = Math.abs(offset/60);
+                        let offset_name = '0时区';
+                        let offset_code = 'UTC 0';
+                        if(offset>0){
+                            offset_name = zone%1?``:`西${zone}区`;
+                            offset_code = `UTC-${zone}`;
+                        }else if(offset<0){
+                            offset_name = zone%1?``:`东${zone}区`;
+                            offset_code = `UTC+${zone}`;
                         }
-                    });
-                }
-            }
-            var countTime = function(){
-                $('.J_timezone').each(function(){
-                    var $this = $(this);
-                    var key = $this.data('key');
-                    $this.text(datex().switchTimezone(key).format());
+                        $timezone.html(`
+                            <span class="name">${offset_name}</span>
+                            <span class="code">${offset_code}</span>
+                        `);
+                        $daylight.text(datex_item.isDayLightSavingTime()?'☀️':'');
+                        $this.text(datex_item.format('YYYY-MM-DD HH:mm:ss , WWW'));
+                    }
                 });
             };
             setInterval(countTime,1000);
             countTime();
 
-			// 底部滚动
-			(function(){
-				let timer = null;
-				let $gotop = document.querySelector('.mod-fixedbar a');
-				$gotop.addEventListener('click',function(){
-					cancelAnimationFrame(timer);
-					let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-					let move = scrollTop/18;
-					timer = requestAnimationFrame(function fn(){
-						var oTop = document.body.scrollTop || document.documentElement.scrollTop;
-						if(oTop > 0){
-							document.body.scrollTop = document.documentElement.scrollTop = oTop - move;
-							timer = requestAnimationFrame(fn);
-						}else{
-							cancelAnimationFrame(timer);
-						}
-					});
-				});
-			})();
-		</script>
-		<script async defer src="https://cdn.bootcdn.net/ajax/libs/github-buttons/2.21.1/buttons.min.js"></script>
-		<script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
-	</body>
+            // 底部滚动
+            (function(){
+                let timer = null;
+                let $gotop = document.querySelector('.mod-fixedbar a');
+                $gotop.addEventListener('click',function(){
+                    cancelAnimationFrame(timer);
+                    let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+                    let move = scrollTop/18;
+                    timer = requestAnimationFrame(function fn(){
+                        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+                        if(oTop > 0){
+                            document.body.scrollTop = document.documentElement.scrollTop = oTop - move;
+                            timer = requestAnimationFrame(fn);
+                        }else{
+                            cancelAnimationFrame(timer);
+                        }
+                    });
+                });
+            })();
+        </script>
+        <script async defer src="https://cdn.bootcdn.net/ajax/libs/github-buttons/2.21.1/buttons.min.js"></script>
+        <script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
+    </body>
 </html>
