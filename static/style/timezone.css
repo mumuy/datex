@@ -204,6 +204,59 @@ a:hover{
     background:#ddd;
     background:linear-gradient(to bottom, #eee, #fff);
 }
+.mod-panel .buttons{
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 6px;
+    line-height: 32px;
+    text-align: center;
+}
+.mod-panel .btn {
+    display: inline-block;
+    height: 44px;
+    min-width: 120px;
+    padding:0 20px;
+    margin: 0 5px;
+    background: #2095f2;
+    border: medium none;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+    line-height: 42px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    border-radius: 21px;
+    text-decoration: none;
+}
+.mod-panel .btn img,.mod-panel .btn span{
+    vertical-align: middle;
+}
+.mod-panel .btn:hover{
+	background: #1b85da;
+}
+.mod-panel .btn-green{
+	background: #4bae4f;
+	color: #fff;
+}
+.mod-panel .btn-green:hover{
+	background: #47a04b;
+}
+.mod-panel .bd .btn-red{
+	background: #f56954;
+	color: #fff;
+}
+.mod-panel .btn-red:hover{
+	background: #f4543c;;
+}
+.mod-panel .btn-orange{
+	background: #ff9000;
+	color: #fff;
+}
+.mod-panel .btn-orange:hover{
+	background: #e18309;
+}
 .mod-panel .table-outer{
     position:relative;
     margin-bottom:20px;
@@ -212,8 +265,8 @@ a:hover{
     position:sticky;
     top:0;
     z-index:9;
-    background:#fafafa;
-    border:1px solid #e2e2e2;
+    background:#fcfcfc;
+    border:1px solid #ecedef;
     margin-bottom:-1px;
     line-height:36px;
     text-align:center;
@@ -232,12 +285,13 @@ a:hover{
 .mod-panel .table-outer table thead{
     position:sticky;
     top:37px;
-    background:#f5f5f5;
+    background:#f6f8fa;
+    box-shadow: 0 1px 0 #ecedefcc;
 }
 .mod-panel .table-outer table th,.mod-panel .table-outer table td{
-    padding:6px 12px;
-    border:1px solid #e2e2e2;
-    line-height:22px;
+    padding:8px 12px;
+    border:1px solid #ecedef;
+    line-height:24px;
 }
 .mod-panel .table-outer table th.th,.mod-panel .table-outer table td.th{
     background:#f5f5f5;
@@ -478,6 +532,21 @@ a:hover{
     .mod-panel .hd .item .time span{
         padding:0 2px;
         line-height:24px;
+    }
+    .mod-panel .buttons{
+        margin-bottom: 10px;
+        padding: 10px 0;
+    }
+    .mod-panel .btn{
+        min-width: 64px;
+        margin: 2px 1px;
+        padding: 0 15px;
+        height: 36px;
+        line-height: 35px;
+        font-size: 14px;
+    }
+    .mod-panel .btn img{
+        display: none;
     }
     .mod-panel .table-outer .table-inner{
         overflow-x:auto;
