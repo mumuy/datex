@@ -7,7 +7,27 @@ export default function(datex,proto){
     let _timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let _offset = 0;
 
-    const convertTimeZone = (date, timeZone) => {return new Date(date.toLocaleString('en-US', { timeZone }))};
+    const convertTimeZone = (date, timeZone) => {return new Date(date.toLocaleString('en-US', { timeZone }));};
+    const getTimezoneOffset = function(referDate,timezone){
+        let match = timezone.replace(/\s/g,'').match(/(GMT|UTC)(\+|\-)?(\d{1,2})(\.|:)(\d{1,2})/);
+        if(match){
+            let [all,code,symbol,value,separator,subValue] = match;
+            let offset = 0;
+            if(separator==':'){
+                offset = Number(value)*60+Number(subValue);
+            }else{
+                offset = Number(value+separator+subValue)*60;
+            }
+            if(symbol=='+'||!symbol){
+                offset = -offset;
+            }
+            return (referDate.getTimezoneOffset()-offset)*60000;
+        }else{
+            let offset =  convertTimeZone(referDate,timezone).getTime() - referDate.getTime();
+            offset = Math.ceil(offset/60000)*60000;
+            return offset;
+        }
+    };
 
     let _referDate = new Date();
 
@@ -15,8 +35,7 @@ export default function(datex,proto){
         supportedTimezones:(typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[]),
         switchTimezone(timeZone){
             _timezone = timeZone;
-            let offset =  convertTimeZone(_referDate,_timezone).getTime() - _referDate.getTime();
-            _offset = Math.ceil(offset/60000)*60000;
+            _offset = getTimezoneOffset(_referDate,_timezone);
             return this;
         },
         getTimezoneOffset(){
@@ -33,8 +52,7 @@ export default function(datex,proto){
         switchTimezone(timezone){
             this._timezone = timezone;
             let referDate = this._date||_referDate;
-            let offset =  convertTimeZone(referDate,this._timezone).getTime() - referDate.getTime();
-            this._offset =  Math.ceil(offset/60000)*60000;
+            this._offset = getTimezoneOffset(referDate,this._timezone);
             return this;
         },
         getTimezoneOffset(){
@@ -82,8 +100,7 @@ export default function(datex,proto){
             let that = set.bind(this)(unit,value);
             // 恢复系统时间为参照
             let referDate = that._date||_referDate;
-            let offset = convertTimeZone(referDate,that._timezone).getTime() - referDate.getTime();
-            that._offset = Math.ceil(offset/60000)*60000;
+            that._offset = getTimezoneOffset(referDate,that._timezone);
             timestamp = that._date.getTime();
             that._date.setTime(timestamp-that._offset);
             return that;
