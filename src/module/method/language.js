@@ -60,8 +60,8 @@ export default function(datex,proto){
     Object.assign(proto,{
         format(pattern = 'YYYY-MM-DD HH:mm:ss'){
             if(isString(pattern)){
-                let that = this.clone();
-                let $ = that.toObject();
+                let _ = this;
+                let $ = this.toObject();
                 let languageMap = datex.getLanguage()||this.getLanguage();
                 let map = {};
                 map['MMMM'] = languageMap['format']['MMMM'][$.month-1];
@@ -69,9 +69,13 @@ export default function(datex,proto){
                 map['Do'] = languageMap['format']['Do'][$.day-1];
                 map['WWW'] = languageMap['format']['WWW'][$.week];
                 map['WW'] = languageMap['format']['WW'][$.week];
-                for (let key in map) {
-                    pattern = pattern.replace(key,map[key]||'');
-                }
+                return pattern.replace(/Y+|M+|Do|D+|H+|h+|m+|s+|S+|Z+|A|a|X|x|Q|W+/g,function(key){
+                    if(map[key]){
+                        return map[key];
+                    }else{
+                        return format.bind(_)(key);
+                    }
+                });
             }
             return format.bind(this)(pattern);
         }
