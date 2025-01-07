@@ -23,7 +23,7 @@ export default function(datex,proto){
             return this;
         },
         getLanguage(){
-            return _langMap[_lang];
+            return _langMap[_lang]||_langMap['en-us'];
         },
         getLanguageCode(){
             return _lang;
