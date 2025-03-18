@@ -7,7 +7,60 @@ export default function(datex,proto){
     let _timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let _offset = 0;
 
-    const convertTimeZone = (date, timeZone) => {return new Date(date.toLocaleString('en-US', { timeZone }));};
+    // 时区支持
+    const supportedTimezones = (typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[]);
+    // 实现 PHP7.4 时区代码向 Javascript 时区代码兼容
+    // 时区标准化映射: 非标准->标准
+    const timezoneStrictMap = {
+        'Africa/Asmara':'Africa/Nairobi',
+        'America/Buenos_Aires':'America/Argentina/Buenos_Aires',
+        'America/Argentina/ComodRivadavia':'America/Argentina/Catamarca',
+        'America/Catamarca':'America/Argentina/Catamarca',
+        'America/Cordoba':'America/Argentina/Cordoba',
+        'America/Jujuy':'America/Argentina/Jujuy',
+        'America/Mendoza':'America/Argentina/Mendoza',
+        'America/Atikokan':'America/Panama',
+        'America/Nipigon':'America/Toronto',
+        'America/Pangnirtung':'America/Iqaluit',
+        'America/Rainy_River':'America/Winnipeg',
+        'America/Thunder_Bay':'America/Toronto',
+        'America/Yellowknife':'America/Edmonton',
+        'Asia/Choibalsan':'Asia/Ulaanbaatar',
+        'Australia/Currie':'Australia/Hobart',
+        'Europe/Kiev':'Europe/Kyiv',
+        'Europe/Uzhgorod':'Europe/Kyiv',
+        'Europe/Zaporozhye':'Europe/Kyiv',
+        'Pacific/Chuuk':'Pacific/Port_Moresby',
+        'Pacific/Pohnpei':'Pacific/Guadalcanal',
+    };
+    // 时区兼容性映射: 标准->环境兼容
+    const timezoneCompatibleMap = {
+        'America/Argentina/Buenos_Aires':'America/Buenos_Aires',
+        'America/Argentina/Catamarca':'America/Catamarca',
+        'America/Argentina/Cordoba':'America/Cordoba',
+        'America/Argentina/Jujuy':'America/Jujuy',
+        'America/Argentina/Mendoza':'America/Mendoza',
+        'America/Indiana/Indianapolis':'America/Indianapolis',
+        'America/Kentucky/Louisville':'America/Louisville',
+        'Asia/Ho_Chi_Minh':'Asia/Saigon',
+        'Asia/Kathmandu':'Asia/Katmandu',
+        'Asia/Kolkata':'Asia/Calcutta',
+        'Asia/Yangon':'Asia/Rangoon',
+        'Atlantic/Faroe':'Atlantic/Faeroe',
+        'Europe/Kyiv':'Europe/Kiev'
+    };
+
+    const convertTimeZone = (date, timeZone) => {
+        if(timezoneStrictMap[timeZone]){
+            timeZone = timezoneStrictMap[timeZone];
+        }
+        if(!supportedTimezones.includes(timeZone)){
+            if(timezoneCompatibleMap[timeZone]){
+                timeZone = timezoneCompatibleMap[timeZone];
+            }
+        }
+        return new Date(date.toLocaleString('en-US', { timeZone }));
+    };
     const getTimezoneOffset = function(referDate,timezone){
         let match = timezone.replace(/\s/g,'').match(/(GMT|UTC)(\+|\-)?(\d{1,2})(\.|:)(\d{1,2})/);
         if(match){
@@ -32,7 +85,7 @@ export default function(datex,proto){
     let _referDate = new Date();
 
     Object.assign(datex,{
-        supportedTimezones:(typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[]),
+        supportedTimezones,
         switchTimezone(timeZone){
             _timezone = timeZone;
             _offset = getTimezoneOffset(_referDate,_timezone);
