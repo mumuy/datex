@@ -11,6 +11,9 @@ export default function(datex,proto){
         _langMap[item['name']] = item;
     });
     let _lang = globalThis?.navigator?.language.toLowerCase()||'en-us';
+    if(_lang=='zh'){
+        _lang = 'zh-cn';
+    }
 
     Object.assign(datex,{
         setLanguage(lang,data={}){
