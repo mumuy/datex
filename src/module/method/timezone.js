@@ -24,6 +24,9 @@ export default function(datex,proto){
         'America/Argentina/Cordoba':'America/Argentina/Buenos_Aires',
         'America/Argentina/Jujuy':'America/Argentina/Buenos_Aires',
         'America/Argentina/Mendoza':'America/Argentina/Buenos_Aires',
+        'America/Creston':'America/Dawson_Creek',
+        'America/Lower_Princes':'America/St_Thomas',
+        'Pacific/Truk':'Pacific/Chuuk',
         'America/Fort_Wayne':'America/Indiana/Indianapolis',    // 时区层级标准化（2006年）
         'America/Coral_Harbour':'America/Atikokan',             // 加拿大时区合并（2010年）
         'America/Godthab':'America/Nuuk',                       // 格陵兰地名更新（2018年）
@@ -76,7 +79,7 @@ export default function(datex,proto){
                 try{
                     new Intl.DateTimeFormat('en-US', {
                         timeZone: timezone
-                    }).resolvedOptions().timeZone;
+                    });
                     return true;
                 }catch(e){
                     errorTimezone.push(timezone);
