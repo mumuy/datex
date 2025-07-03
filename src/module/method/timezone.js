@@ -1,6 +1,7 @@
 /*
  * 时区设置
 */
+import allTimezones from './data/timezone.js';
 import {isNumber,isDate} from './untils/type.js';
 
 export default function(datex,proto){
@@ -10,73 +11,38 @@ export default function(datex,proto){
     // 时区支持
     const supportedTimezones = (typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[]);
     // 实现 PHP7.4 时区代码向 Javascript 时区代码兼容
-    // 时区标准化映射: 新标准关联（Javascript未提供但可关联）
-    const timezoneLinkMap = {
-        'Africa/Asmara':'Africa/Nairobi',
-        'America/Atikokan':'America/Cancun',        // 2015年
-        'America/Yellowknife':'America/Phoenix',    // 2015年11月
-        'Asia/Choibalsan':'Asia/Ulaanbaatar',       // 2015年
-        'Pacific/Chuuk':'Pacific/Guam',
-    };
     // 时区标准化映射: 旧标准->新标准
-    const timezoneStrictMap = Object.assign({},{
+    const timezoneStrictMap = {
+        'Africa/Asmera':'Africa/Asmara',        // 拼写标准化（2005年）
         'America/Buenos_Aires':'America/Argentina/Buenos_Aires',
-        'America/Argentina/ComodRivadavia':'America/Argentina/Catamarca',
-        'America/Catamarca':'America/Argentina/Catamarca',
-        'America/Cordoba':'America/Argentina/Cordoba',
-        'America/Jujuy':'America/Argentina/Jujuy',
-        'America/Mendoza':'America/Argentina/Mendoza',
-        'America/Nipigon':'America/Toronto',
-        'America/Pangnirtung':'America/Iqaluit',
-        'America/Rainy_River':'America/Winnipeg',
-        'America/Thunder_Bay':'America/Toronto',
-        'America/Godthab':'America/Nuuk',
-        'America/Indianapolis':'America/Indiana/Indianapolis',
-        'America/Louisville':'America/Kentucky/Louisville',
-        'Asia/Chongqing':'Asia/Shanghai',
-        'Asia/Chungking':'Asia/Shanghai',
-        'Asia/Harbin':'Asia/Shanghai',
-        'Asia/Saigon':'Asia/Ho_Chi_Minh',
-        'Asia/Katmandu':'Asia/Kathmandu',
-        'Asia/Calcutta':'Asia/Kolkata',
+        'America/Argentina/ComodRivadavia':'America/Argentina/Buenos_Aires',
+        'America/Catamarca':'America/Argentina/Buenos_Aires',
+        'America/Cordoba':'America/Argentina/Buenos_Aires',
+        'America/Jujuy':'America/Argentina/Buenos_Aires',
+        'America/Mendoza':'America/Argentina/Buenos_Aires',
+        'America/Argentina/Catamarca':'America/Argentina/Buenos_Aires',
+        'America/Argentina/Cordoba':'America/Argentina/Buenos_Aires',
+        'America/Argentina/Jujuy':'America/Argentina/Buenos_Aires',
+        'America/Argentina/Mendoza':'America/Argentina/Buenos_Aires',
+        'America/Fort_Wayne':'America/Indiana/Indianapolis',    // 时区层级标准化（2006年）
+        'America/Coral_Harbour':'America/Atikokan',             // 加拿大时区合并（2010年）
+        'America/Godthab':'America/Nuuk',                       // 格陵兰地名更新（2018年）
+        'America/Indianapolis':'America/Indiana/Indianapolis',  // 时区层级标准化（2006年）
+        'America/Louisville':'America/Kentucky/Louisville',     // 时区层级标准化（2006年）
+        'America/Virgin':'America/Port_of_Spain',               // 加勒比时区合并（2015年）
+        'Asia/Saigon':'Asia/Ho_Chi_Minh',                       // 越南城市名更新（1975年）
+        'Asia/Katmandu':'Asia/Kathmandu',                       // 尼泊尔首都拼写标准化（2005年）
+        'Asia/Calcutta':'Asia/Kolkata',                         // 印度城市名标准化（2001年）
         'Asia/Rangoon':'Asia/Yangon',
         'Atlantic/Faeroe':'Atlantic/Faroe',
-        'Australia/Currie':'Australia/Hobart',
-        'Europe/Kiev':'Europe/Kyiv',
-        'Europe/Uzhgorod':'Europe/Kyiv',
-        'Europe/Zaporozhye':'Europe/Kyiv',
-        'Pacific/Truk':'Pacific/Guam',          // 2000
-        'Pacific/Ponape':'Pacific/Pohnpei',     // 1990
-        'Pacific/Enderbury':'Pacific/Kanton'    // 1995
-    },timezoneLinkMap);
-    // 时区兼容性映射: 新标准->环境兼容
-    const timezoneCompatibleMap = {
-        'America/Argentina/Buenos_Aires':'America/Buenos_Aires',
-        'America/Argentina/Catamarca':'America/Catamarca',
-        'America/Argentina/Cordoba':'America/Cordoba',
-        'America/Argentina/Jujuy':'America/Jujuy',
-        'America/Argentina/Mendoza':'America/Mendoza',
-        'America/Indiana/Indianapolis':'America/Indianapolis',
-        'America/Kentucky/Louisville':'America/Louisville',
-        'America/Nuuk':'America/Godthab',
-        'Asia/Ho_Chi_Minh':'Asia/Saigon',
-        'Asia/Kathmandu':'Asia/Katmandu',
-        'Asia/Kolkata':'Asia/Calcutta',
-        'Asia/Yangon':'Asia/Rangoon',
-        'Atlantic/Faroe':'Atlantic/Faeroe',
-        'Europe/Kyiv':'Europe/Kiev',
-        'Pacific/Kanton':'Pacific/Enderbury',
-        'Pacific/Pohnpei':'Pacific/Ponape',
+        'Europe/Kiev':'Europe/Kyiv',                            // 乌克兰官方拼写标准
+        'Pacific/Ponape':'Pacific/Pohnpei',                     // 密克罗尼西亚拼写标准化（2005年）
+        'Pacific/Enderbury':'Pacific/Kanton',                   // 基里巴斯时区更新（2017年）
     };
 
     const convertTimeZone = (date, timeZone) => {
         if(timezoneStrictMap[timeZone]){
             timeZone = timezoneStrictMap[timeZone];
-        }
-        if(!supportedTimezones.includes(timeZone)){
-            if(timezoneCompatibleMap[timeZone]){
-                timeZone = timezoneCompatibleMap[timeZone];
-            }
         }
         return new Date(date.toLocaleString('en-US', { timeZone }));
     };
@@ -104,13 +70,30 @@ export default function(datex,proto){
     let _referDate = new Date();
 
     Object.assign(datex,{
-        getSupportedTimezones:function(isStrict = false,isMore = false){
-            return supportedTimezones.map(function(timezone){
-                if(isStrict&&timezoneStrictMap[timezone]){
-                    return timezoneStrictMap[timezone];
+        getSupportedTimezones:function(isStrict = false,isAll = false){
+            const errorTimezone = [];
+            const timezones = (isAll||!supportedTimezones.length?allTimezones:supportedTimezones).filter(function(timezone){
+                try{
+                    new Intl.DateTimeFormat('en-US', {
+                        timeZone: timezone
+                    }).resolvedOptions().timeZone;
+                    return true;
+                }catch(e){
+                    errorTimezone.push(timezone);
+                    return false;
+                }
+            }).map(function(timezone){
+                if(isStrict){
+                    timezone = new Intl.DateTimeFormat('en-US', {
+                        timeZone: timezone
+                    }).resolvedOptions().timeZone;
+                    if(timezoneStrictMap[timezone]&&!errorTimezone.includes(timezoneStrictMap[timezone])){
+                        timezone = timezoneStrictMap[timezone];
+                    }
                 }
                 return timezone;
-            }).concat(isMore?Object.keys(timezoneLinkMap):[]);
+            });
+            return [...new Set(timezones)];
         },
         switchTimezone(timeZone){
             _timezone = timeZone;
