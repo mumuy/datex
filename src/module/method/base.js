@@ -3,6 +3,7 @@
 */
 import {periodKey,periodMap} from './config/period.js';
 import {isString,isFunction,isNumber} from './untils/type.js';
+import structuredClone from './runtime/structuredClone.js';
 
 export default function(datex,proto){
 

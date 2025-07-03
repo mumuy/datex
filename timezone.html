@@ -3115,7 +3115,6 @@
                     let key = $this.data('key');
                     if(key){
                         let datex_item = datex().switchTimezone(key);
-                        // console.log(key,datex_item);
                         let datex_object = datex_item.toObject();
                         $this.find('.date').text(datex_item.format('YYYY/MM/DD ,WWW'));
                         $this.find('.time').html(`

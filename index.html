@@ -180,9 +180,15 @@
                             <h3>全局方法</h3>
                         </li>
                         <li>
-                            <a href="#supportedTimezones">
+                            <a href="#getSupportedTimezones">
                                 <span class="title">获取支持时区列表</span>
-                                <span class="subtitle">supportedTimezones</span>
+                                <span class="subtitle">getSupportedTimezones()</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="isSupportedTimezone">
+                                <span class="title">判断是否支持时区</span>
+                                <span class="subtitle">isSupportedTimezone()</span>
                             </a>
                         </li>
                         <li>
@@ -1189,16 +1195,31 @@
                             </div>
                         </div>
                         
-                        <div id="supportedTimezones" class="box">
+                        <div id="getSupportedTimezones" class="box">
                             <div class="c-hd">
                                 <p class="title">获取支持时区列表</p>
-                                <p class="subtitle">supportedTimezones</p>
+                                <p class="subtitle">getSupportedTimezones(isStrict)</p>
                             </div>
                             <div class="c-bd">
-                                <p>支持的时区</p>
-                                <p>运行：datex.supportedTimezones</p>
+                                <p>支持的时区(JavaScript默认时区代码)</p>
+                                <p>运行：datex.getSupportedTimezones()</p>
                                 <p>返回：['Africa/Abidjan', 'Africa/Accra', 'Africa/Addis_Ababa', 'Africa/Algiers',
                                     'Africa/Asmera', 'Africa/Bamako',...]</p>
+                                <br>
+                                <p>支持的时区(最新IANA时区代码)</p>
+                                <p>运行：datex.getSupportedTimezones(true)</p>
+                                <p>返回：['Africa/Abidjan', 'Africa/Accra', 'Africa/Addis_Ababa', 'Africa/Algiers',
+                                    'Africa/Asmera', 'Africa/Bamako',...]</p>
+                            </div>
+                        </div>
+                        <div id="isSupportedTimezone" class="box">
+                            <div class="c-hd">
+                                <p class="title">判断是否支持时区</p>
+                                <p class="subtitle">isSupportedTimezone(timezone)</p>
+                            </div>
+                            <div class="c-bd">
+                                <p>运行：datex.isSupportedTimezone('Africa/Abidjan')</p>
+                                <p>返回：true</p>
                             </div>
                         </div>
                         <div id="now" class="box">
