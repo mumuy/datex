@@ -77,18 +77,17 @@ export default function(datex,proto){
         }
     };
     // 获取最新支持的时区
-    const getLatestTimezone = function(timezone){
+    const getStrictTimezone = function(timezone){
         try{
             timezone = new Intl.DateTimeFormat('en-US', {
                 timeZone: timezone
             }).resolvedOptions().timeZone;
-            if(timezoneStrictMap[timezone]){
-                timezone = timezoneStrictMap[timezone];
-            }
-            return timezone;
         }catch(e){
-            return timezone;
         }
+        if(timezoneStrictMap[timezone]){
+            timezone = timezoneStrictMap[timezone];
+        }
+        return timezone;
     };
     // 检测时区是否被环境支持
     const isSupportedTimezone = function(timezone){
@@ -114,10 +113,7 @@ export default function(datex,proto){
         },
         getSupportedTimezones:function(isStrict = false,isAll = false){
             const timezones = (isAll||!supportedTimezones.length?allTimezones:supportedTimezones).map(function(timezone){
-                if(isStrict){
-                    return getLatestTimezone(timezone);
-                }
-                return timezone;
+                return isStrict?getStrictTimezone(timezone):timezone;
             });
             return [...new Set(timezones)];
         },
