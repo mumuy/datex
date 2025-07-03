@@ -28,7 +28,7 @@ export default function(datex,proto){
         'America/Lower_Princes':'America/St_Thomas',
         'Pacific/Truk':'Pacific/Chuuk',
         'America/Fort_Wayne':'America/Indiana/Indianapolis',    // 时区层级标准化（2006年）
-        'America/Coral_Harbour':'America/Atikokan',             // 加拿大时区合并（2010年）
+        'America/Coral_Harbour':'America/Panama',               // 加拿大时区合并（2010年）
         'America/Godthab':'America/Nuuk',                       // 格陵兰地名更新（2018年）
         'America/Indianapolis':'America/Indiana/Indianapolis',  // 时区层级标准化（2006年）
         'America/Louisville':'America/Kentucky/Louisville',     // 时区层级标准化（2006年）
@@ -42,12 +42,19 @@ export default function(datex,proto){
         'Pacific/Ponape':'Pacific/Pohnpei',                     // 密克罗尼西亚拼写标准化（2005年）
         'Pacific/Enderbury':'Pacific/Kanton',                   // 基里巴斯时区更新（2017年）
     };
+    // 新标准 -> 旧标准
+    const timezoneOldMap = {};
+    Object.entries(timezoneStrictMap).forEach(function([oldKey,newKey]){
+        timezoneOldMap[newKey] = oldKey;
+    });
 
-    const convertTimeZone = (date, timeZone) => {
-        if(timezoneStrictMap[timeZone]){
-            timeZone = timezoneStrictMap[timeZone];
+    const convertTimeZone = (date, timezone) => {
+        if(!isSupportedTimezone(timezone)){
+            if(timezoneOldMap[timezone]){
+                timezone = timezoneOldMap[timezone];
+            }
         }
-        return new Date(date.toLocaleString('en-US', { timeZone }));
+        return new Date(date.toLocaleString('en-US', { timeZone:timezone }));
     };
     const getTimezoneOffset = function(referDate,timezone){
         let match = timezone.replace(/\s/g,'').match(/(GMT|UTC)(\+|\-)?(\d{1,2})(\.|:)(\d{1,2})/);
@@ -69,30 +76,46 @@ export default function(datex,proto){
             return offset;
         }
     };
+    // 获取最新支持的时区
+    const getLatestTimezone = function(timezone){
+        try{
+            timezone = new Intl.DateTimeFormat('en-US', {
+                timeZone: timezone
+            }).resolvedOptions().timeZone;
+            if(timezoneStrictMap[timezone]){
+                timezone = timezoneStrictMap[timezone];
+            }
+            return timezone;
+        }catch(e){
+            return timezone;
+        }
+    };
+    // 检测时区是否被环境支持
+    const isSupportedTimezone = function(timezone){
+        try{
+            new Intl.DateTimeFormat('en-US', {
+                timeZone: timezone
+            });
+            return true;
+        }catch(e){
+            return false;
+        }
+    };
 
     let _referDate = new Date();
 
     Object.assign(datex,{
+        isSupportedTimezone:function(timezone){
+            let isSupported = isSupportedTimezone(timezone);
+            if(!isSupported){
+                return timezoneOldMap[timezone]?true:false;
+            }
+            return isSupported;
+        },
         getSupportedTimezones:function(isStrict = false,isAll = false){
-            const errorTimezone = [];
-            const timezones = (isAll||!supportedTimezones.length?allTimezones:supportedTimezones).filter(function(timezone){
-                try{
-                    new Intl.DateTimeFormat('en-US', {
-                        timeZone: timezone
-                    });
-                    return true;
-                }catch(e){
-                    errorTimezone.push(timezone);
-                    return false;
-                }
-            }).map(function(timezone){
+            const timezones = (isAll||!supportedTimezones.length?allTimezones:supportedTimezones).map(function(timezone){
                 if(isStrict){
-                    timezone = new Intl.DateTimeFormat('en-US', {
-                        timeZone: timezone
-                    }).resolvedOptions().timeZone;
-                    if(timezoneStrictMap[timezone]&&!errorTimezone.includes(timezoneStrictMap[timezone])){
-                        timezone = timezoneStrictMap[timezone];
-                    }
+                    return getLatestTimezone(timezone);
                 }
                 return timezone;
             });
