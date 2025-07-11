@@ -2,7 +2,7 @@
  * 时区设置
 */
 import allTimezones from './data/timezone.js';
-import {isNumber,isDate} from './untils/type.js';
+import {isNumber,isDate} from './utils/type.js';
 
 export default function(datex,proto){
     let _timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;

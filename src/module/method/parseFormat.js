@@ -2,7 +2,7 @@
  * 自定义初始化格式字符串
 */
 import {periodKey,sign2key} from './config/period.js';
-import {isString} from './untils/type.js';
+import {isString} from './utils/type.js';
 
 export default function(datex,proto){
 

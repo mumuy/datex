@@ -2,7 +2,7 @@
  * 时长间隔相关方法
 */ 
 import {periodKey,periodMap,sign2key} from './config/period.js';
-import {isObject,isNumber,isString,isFunction} from './untils/type.js';
+import {isObject,isNumber,isString,isFunction} from './utils/type.js';
 
 class duration{
     #source = null;

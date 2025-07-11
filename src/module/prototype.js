@@ -1,5 +1,5 @@
 import {periodKey,periodValue} from './method/config/period.js';
-import {isObject,isNumber,isString,isArray,isDate} from './method/untils/type.js';
+import {isObject,isNumber,isString,isArray,isDate} from './method/utils/type.js';
 
 let taskQueue = [];
 
