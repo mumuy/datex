@@ -26,7 +26,6 @@ export default function(datex,proto){
         'America/Argentina/Mendoza':'America/Argentina/Buenos_Aires',
         'America/Creston':'America/Dawson_Creek',
         'America/Lower_Princes':'America/St_Thomas',
-        'Pacific/Truk':'Pacific/Chuuk',
         'America/Fort_Wayne':'America/Indiana/Indianapolis',    // 时区层级标准化（2006年）
         'America/Coral_Harbour':'America/Panama',               // 加拿大时区合并（2010年）
         'America/Godthab':'America/Nuuk',                       // 格陵兰地名更新（2018年）
@@ -39,6 +38,8 @@ export default function(datex,proto){
         'Asia/Rangoon':'Asia/Yangon',
         'Atlantic/Faeroe':'Atlantic/Faroe',
         'Europe/Kiev':'Europe/Kyiv',                            // 乌克兰官方拼写标准
+        'Pacific/Truk':'Pacific/Chuuk',
+        'Pacific/Easter':'America/Rapa_Nui',                    // 复活节岛代码调整（2018年）
         'Pacific/Ponape':'Pacific/Pohnpei',                     // 密克罗尼西亚拼写标准化（2005年）
         'Pacific/Enderbury':'Pacific/Kanton',                   // 基里巴斯时区更新（2017年）
     };
