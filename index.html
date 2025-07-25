@@ -1459,7 +1459,7 @@
             </div>
             <div class="mod-fixedbar">
                 <div class="bd">
-                    <a href="javascript:;"><img src="static/image/gotop.png" width="24" height="24"></a>
+                    <a class="gotop" href="javascript:;" rel="nofollow"><img src="static/image/gotop.png" width="24" height="24"></a>
                 </div>
             </div>
         </div>
@@ -1471,7 +1471,7 @@
         // 底部滚动
         (function () {
             let timer = null;
-            let $gotop = document.querySelector('.mod-fixedbar a');
+            let $gotop = document.querySelector('.mod-fixedbar .gotop');
             $gotop.addEventListener('click', function () {
                 cancelAnimationFrame(timer);
                 let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
