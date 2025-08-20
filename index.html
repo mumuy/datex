@@ -177,6 +177,18 @@
                             </a>
                         </li>
                         <li>
+                            <a href="#countdown">
+                                <span class="title">倒计时</span>
+                                <span class="subtitle">countdown()</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#getList">
+                                <span class="title">获取时间序列</span>
+                                <span class="subtitle">getList()</span>
+                            </a>
+                        </li>
+                        <li>
                             <h3>全局方法</h3>
                         </li>
                         <li>
@@ -1194,7 +1206,26 @@
                                 <p>返回：true</p>
                             </div>
                         </div>
-                        
+                        <div id="countdown" class="box">
+                            <div class="c-hd">
+                                <p class="title">倒计时</p>
+                                <p class="subtitle">countdown()</p>
+                            </div>
+                            <div class="c-bd">
+                                <p>运行：datex('2030-11-11 06:00:00').countdown(function(){console.log('[计时]',Date.now())},1000)</p>
+                                <p>返回：Promise</p>
+                            </div>
+                        </div>
+                        <div id="getList" class="box">
+                            <div class="c-hd">
+                                <p class="title">获取时间序列</p>
+                                <p class="subtitle">getList()</p>
+                            </div>
+                            <div class="c-bd">
+                                <p>运行：datex('2025-11-11 06:00:00').getList({'day':1},30)</p>
+                                <p>返回：datex数组</p>
+                            </div>
+                        </div>
                         <div id="getSupportedTimezones" class="box">
                             <div class="c-hd">
                                 <p class="title">获取支持时区列表</p>
@@ -1256,6 +1287,9 @@
                                 <p>格式化时长</p>
                                 <p>运行：datex.duration(2,'day').format('HH:mm:ss')</p>
                                 <p>运行：datex.duration(2,'day').format(function(toObject){...})</p>
+                                <br>
+                                <p>倒计时</p>
+                                <p>运行：datex.duration(2,'day').countdown(function(){console.log('[计时]',Date.now());},1000)</p>
                                 <table>
                                     <thead>
                                         <tr>
