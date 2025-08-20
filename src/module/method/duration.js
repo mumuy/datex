@@ -140,6 +140,26 @@ class duration{
             return pattern(this.toObject()).toString()||'';
         }
     }
+    countdown(callback = function(){},interval=1000){
+        let time = this.toObject().value;
+        let lasttime = Date.now();
+        return new Promise((resolve, reject) => {
+            const doTask = () => {
+                const timestamp = +(Math.floor(Date.now()/interval) * interval).toFixed(0);
+                if(lasttime !== timestamp){
+                    lasttime = timestamp;
+                    time -= interval;
+                    if(time>0){
+                        callback();
+                    }else{
+                        resolve();
+                    }
+                }
+                requestAnimationFrame(doTask);
+            }
+            doTask();
+        });
+    }
 }
 
 export default function(datex,proto){
@@ -183,6 +203,36 @@ export default function(datex,proto){
                 }else{
                     result = languageMap['duration']['now'];
                 } 
+            }
+            return result;
+        },
+        countdown(callback = function(){},inverval=1000){
+            const period = new duration(inverval).toObject().value;
+            const target = this.getTime();
+            let lasttime = Date.now();
+            return new Promise((resolve, reject) => {
+                const doTask = () => {
+                    const timestamp = +(Math.floor(Date.now()/period) * period).toFixed(0);
+                    if(lasttime !== timestamp){
+                        lasttime = timestamp;
+                        if(target-timestamp>0){
+                            callback();
+                        }else{              
+                            resolve();
+                        }
+                    }
+                    requestAnimationFrame(doTask);
+                };
+                doTask();
+            });
+        },
+        getList(interval=1000,count){
+            const period = new duration(interval).toObject().value;
+            let time = 0;
+            const result = [];
+            for(let i=0;i<count;i++){
+                result.push(this.clone().change('millsecond',time));
+                time += period;
             }
             return result;
         }
