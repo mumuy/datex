@@ -25,6 +25,16 @@ class duration{
                 }
             }else if(isNumber(param[0])){
                 _.value += param[0];
+            }else if(isString(param[0])){
+                const [value,sign='+',hour=0,minute=0,second=0] = param[0].match(/([+-])?(\d{1,2}):(\d{1,2}):?(\d{1,2})?/);
+                const item = {hour,minute,second};
+                for(let unit in item){
+                    if(sign=='-'){
+                        _.value -= periodMap[unit]*item[unit];
+                    }else{
+                        _.value += periodMap[unit]*item[unit];
+                    }
+                }
             }
         }
     }
