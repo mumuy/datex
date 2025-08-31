@@ -6,7 +6,7 @@ npm install datex.js
 
 【接口文档】[https://passer-by.com/datex/](https://passer-by.com/datex/)
 
-【世界时-中文】[https://passer-by.com/datex/timezone.html](https://passer-by.com/datex/timezone.html)
+【世界时-中文】[https://jidianzhong.com](https://jidianzhong.com)
 
 【世界时-英文】[https://thedate.today/](https://thedate.today/)
 
