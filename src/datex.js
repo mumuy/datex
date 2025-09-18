@@ -5,7 +5,7 @@ import compareLoader from './module/method/compare.js';
 import durationLoader from './module/method/duration.js';
 import languageLoader from './module/method/language.js';
 import timezoneLoader from './module/method/timezone.js';
-import parseFormat from './module/method/parseFormat.js';
+import parseLoader from './module/method/parse.js';
 
 // 功能加载
 [
@@ -15,7 +15,7 @@ import parseFormat from './module/method/parseFormat.js';
     durationLoader,
     languageLoader,
     timezoneLoader,
-    parseFormat,
+    parseLoader,
 ].forEach(datex.extend);
 
 export default datex;

@@ -24,6 +24,7 @@ export default function(datex,proto){
         'America/Argentina/Cordoba':'America/Argentina/Buenos_Aires',
         'America/Argentina/Jujuy':'America/Argentina/Buenos_Aires',
         'America/Argentina/Mendoza':'America/Argentina/Buenos_Aires',
+        'America/Argentina/Rosario':'America/Argentina/Buenos_Aires',
         'America/Creston':'America/Dawson_Creek',
         'America/Lower_Princes':'America/St_Thomas',
         'America/Fort_Wayne':'America/Indiana/Indianapolis',    // 时区层级标准化（2006年）
@@ -41,6 +42,7 @@ export default function(datex,proto){
         'Pacific/Truk':'Pacific/Chuuk',
         'Pacific/Easter':'America/Rapa_Nui',                    // 复活节岛代码调整（2018年）
         'Pacific/Ponape':'Pacific/Pohnpei',                     // 密克罗尼西亚拼写标准化（2005年）
+        'Pacific/Kosrae':'Pacific/Pohnpei',
         'Pacific/Enderbury':'Pacific/Kanton',                   // 基里巴斯时区更新（2017年）
     };
     // 新标准 -> 旧标准
@@ -128,7 +130,7 @@ export default function(datex,proto){
         },
         getTimezone(){
             return _timezone;
-        },
+        }
     });
 
     Object.assign(proto,{
@@ -177,12 +179,12 @@ export default function(datex,proto){
             that._date.setTime(that._date.getTime()+that._offset);
             return toObject.bind(that)();
         },
-        set(unit,value){
+        set(...argu){
             // 设置指定时区为参照
             let timestamp = this._date.getTime();
             this._date.setTime(timestamp+this._offset);
             // 基于指定时区，修改参数
-            let that = set.bind(this)(unit,value);
+            let that = set.bind(this)(...argu);
             // 恢复系统时间为参照
             let referDate = that._date||_referDate;
             that._offset = getTimezoneOffset(referDate,that._timezone);
