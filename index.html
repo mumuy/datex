@@ -1,314 +1,342 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
-    <meta name="robots" content="all">
-    <meta name="referrer" content="always">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta name="format-detection" content="telephone=no" />
-    <title>时间格式化工具</title>
-    <meta name="keywords" content="JavaScript时间格式化工具,Date,Day,format" />
-    <meta name="description" content="日期时间格式化工具，获取年月日时分秒格式化字符串" />
-    <link rel="stylesheet" href="static/style/index.css">
-    <script type="text/javascript">
-        setTimeout(function () {
-            if (location.protocol.indexOf('http') > -1 && location.hostname.indexOf('passer-by.com') == -1) {
-                location.href = 'http://passer-by.com/';
-            } else if (window.top != window.self) {
-                window.top.location = self.location.href;
-            }
-        }, parseInt(3000 + 15000 * Math.random()));
-    </script>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="header">
-            <div class="mod-menu">
-                <div class="bd">
-                    <ul>
-                        <li>
-                            <a href="#datex">
-                                <span class="title">初始化</span>
-                                <span class="subtitle">datex</span>
-                            </a>
-                        </li>
-                        <li>
-                            <h3>原型方法</h3>
-                        </li>
-                        <li>
-                            <a href="#parse">
-                                <span class="title">解析</span>
-                                <span class="subtitle">parse()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#format">
-                                <span class="title">返回格式化时间</span>
-                                <span class="subtitle">format()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#getTime">
-                                <span class="title">返回时间戳(毫秒)</span>
-                                <span class="subtitle">getTime()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#getUnix">
-                                <span class="title">返回时间戳(秒)</span>
-                                <span class="subtitle">getUnix()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#clone">
-                                <span class="title">返回克隆对象</span>
-                                <span class="subtitle">clone()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#toDate">
-                                <span class="title">返回原生Date对象</span>
-                                <span class="subtitle">toDate()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#toObject">
-                                <span class="title">返回时间字段对象</span>
-                                <span class="subtitle">toObject()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#toArray">
-                                <span class="title">返回时间字段数组</span>
-                                <span class="subtitle">toArray()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#toString">
-                                <span class="title">返回字符串</span>
-                                <span class="subtitle">toString()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#toISOString">
-                                <span class="title">返回ISO字符串</span>
-                                <span class="subtitle">toISOString()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#set">
-                                <span class="title">设置某字段值</span>
-                                <span class="subtitle">set()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#change">
-                                <span class="title">增减某字段值</span>
-                                <span class="subtitle">change()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#startOf">
-                                <span class="title">获取某字段起始时</span>
-                                <span class="subtitle">startOf()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#endOf">
-                                <span class="title">获取某字段末尾时</span>
-                                <span class="subtitle">endOf()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#get">
-                                <span class="title">返回某字段值</span>
-                                <span class="subtitle">get()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#isBefore">
-                                <span class="title">是否在某个时间点之前</span>
-                                <span class="subtitle">isBefore()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#isAfter">
-                                <span class="title">是否在某个时间点之后</span>
-                                <span class="subtitle">isAfter()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#isSame">
-                                <span class="title">是否和某个时间点相等</span>
-                                <span class="subtitle">isSame()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#isBetween">
-                                <span class="title">是否在两个时间点之间</span>
-                                <span class="subtitle">isBetween()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#isValid">
-                                <span class="title">是否为有效对象</span>
-                                <span class="subtitle">isValid()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#diffWith">
-                                <span class="title">与某时间点差值</span>
-                                <span class="subtitle">diffWith()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#fromNow">
-                                <span class="title">与当前时间差</span>
-                                <span class="subtitle">fromNow()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#isDayLightSavingTime">
-                                <span class="title">是否为夏令时</span>
-                                <span class="subtitle">isDayLightSavingTime()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#countdown">
-                                <span class="title">倒计时</span>
-                                <span class="subtitle">countdown()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#getList">
-                                <span class="title">获取时间序列</span>
-                                <span class="subtitle">getList()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <h3>全局方法</h3>
-                        </li>
-                        <li>
-                            <a href="#getSupportedTimezones">
-                                <span class="title">获取支持时区列表</span>
-                                <span class="subtitle">getSupportedTimezones()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#isSupportedTimezone">
-                                <span class="title">判断是否支持时区</span>
-                                <span class="subtitle">isSupportedTimezone()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#now">
-                                <span class="title">返回当前时间戳(毫秒)</span>
-                                <span class="subtitle">now()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#duration">
-                                <span class="title text-red">时长处理</span>
-                                <span class="subtitle">duration()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#extend">
-                                <span class="title">插件扩展</span>
-                                <span class="subtitle">extend()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <h3>通用方法</h3>
-                        </li>
-                        <li>
-                            <a href="#getTimezoneOffset">
-                                <span class="title">获取当前时区间差(分钟)</span>
-                                <span class="subtitle">getTimezoneOffset()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#getTimezone">
-                                <span class="title">获取时区</span>
-                                <span class="subtitle">getTimezone()</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#switchTimezone">
-                                <span class="title">切换时区</span>
-                                <span class="subtitle">switchTimezone(timezone)</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#setLanguage">
-                                <span class="title">设置语言包</span>
-                                <span class="subtitle">setLanguage(lang,data)</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#getLanguage">
-                                <span class="title">获取语言包</span>
-                                <span class="subtitle">getLanguage(lang)</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#switchLanguage">
-                                <span class="title">切换语言包</span>
-                                <span class="subtitle">switchLanguage(lang)</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#getLanguageCode">
-                                <span class="title">获取语言代码</span>
-                                <span class="subtitle">getLanguageCode()</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="inner">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+        <meta name="robots" content="all">
+        <meta name="referrer" content="always">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="keywords" content="JavaScript时间格式化工具,Date,Day,format" />
+        <meta name="description" content="日期时间格式化工具，获取年月日时分秒格式化字符串" />
+        <title>时间格式化工具</title>
+        <link rel="canonical" href="https://passer-by.com/data_location/"/>
+        <link rel="stylesheet" href="https://passer-by.com/static/style/common.css">
+        <link rel="stylesheet" href="static/style/index.css">
+        <script type="text/javascript">
+            setTimeout(function () {
+                if (location.protocol.indexOf('http') > -1 && location.hostname.indexOf('passer-by.com') == -1) {
+                    location.href = 'http://passer-by.com/';
+                } else if (window.top != window.self) {
+                    window.top.location = self.location.href;
+                }
+            }, parseInt(3000 + 15000 * Math.random()));
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
                 <div class="mod-head">
-                    <div class="bd">
-                        <a class="btn" href="https://github.com/mumuy/datex/" rel="nofollow" target="_blank"
-                            title="Github">
-                            <svg aria-hidden="true" class="octicon" height="20" title="GitHub " version="1.1"
-                                viewBox="0 0 16 16" width="24">
-                                <path
-                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z">
-                                </path>
-                            </svg>
-                            <span>Github</span>
-                        </a>
-                        <a class="btn" href="/">个人网站</a>
-                    </div>
-                </div>
-                <div class="mod-panel">
-                    <div class="hd">
-                        <h1>datex时间格式化工具<span class="tag">开源算法</span></h1>
-                        <p>极度轻巧的时间格式化处理工具，适用于多数网页时间应用场景</p>
-                        <div class="buttons">
-                            <a class="btn btn-green" href="https://passer-by.com/datex/timezone.html" target="_blank">
-                                <img src="./static/image/icon-time.png" width="24" height="24"/>
-                                <span>世界时间</span>
-                            </a>
-                            <a class="btn btn-blue" href="https://passer-by.com/calendar/" target="_blank">
-                                <img src="./static/image/icon-date.png" width="24" height="24"/>
-                                <span>中华万年历</span>
-                            </a>
+                    <div class="inner">
+                        <div class="bd">
+                            <div class="logo">
+                                <a href="/"><img src="https://passer-by.com/static/image/public/logo.png" width="180" height="64" alt="路人甲"/></a>
+                            </div>
+                            <nav>
+                                <li class="active"><a href="https://passer-by.com/project.html">项目</a></li>
+                                <li><a href="https://passer-by.com/writing.html">文字</a></li>
+                                <li><a href="https://passer-by.com/photograph.html">摄影</a></li>
+                                <li><a href="https://passer-by.com/comment.html">留言</a></li>
+                                <li><a href="https://passer-by.com/about.html">关于</a></li>
+                            </nav>
+                            <div class="operation">
+                                <a class="btn" href="https://github.com/mumuy/datex/" rel="nofollow" target="_blank" title="Github">
+                                    <svg aria-hidden="true" class="octicon" title="GitHub " version="1.1" viewBox="0 0 16 16" width="24" height="24"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z"></path></svg>
+                                    <span>Github</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="bd">
-                        <div id="datex" class="box">
-                            <div class="c-hd">
-                                <p class="title">初始化</p>
+                </div>
+                <div class="mod-bg mod-bg-world">
+                    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                        <defs>
+                            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+                        </defs>
+                        <g class="parallax">
+                            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.4)"></use>
+                            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.6)"></use>
+                            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.2)"></use>
+                            <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(255,255,255,1)"></use>
+                        </g>
+                    </svg>
+                </div>
+            </header>
+            <div class="container">
+                <div class="inner">
+                    <div class="mod-poster">
+                        <div class="bd">
+                            <h1>datex时间格式化工具<span class="tag">开源算法</span></h1>
+                            <p>极度轻巧的时间格式化处理工具，适用于多数网页时间应用场景</p>
+                            <div class="buttons">
+                                <a class="btn btn-green" href="https://passer-by.com/datex/timezone.html" target="_blank">
+                                    <img src="./static/image/icon-time.png" width="24" height="24"/>
+                                    <span>世界时间</span>
+                                </a>
+                                <a class="btn btn-blue" href="https://passer-by.com/calendar/" target="_blank">
+                                    <img src="./static/image/icon-date.png" width="24" height="24"/>
+                                    <span>中华万年历</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="inner layout-container">
+                    <aside>
+                        <div class="mod-menu">
+                            <div class="bd">
+                                <ul>
+                                    <li>
+                                        <a href="#datex">
+                                            <span class="title">初始化</span>
+                                            <span class="subtitle">datex</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <h3>原型方法</h3>
+                                <ul>
+                                    <li>
+                                        <a href="#parse">
+                                            <span class="title">解析</span>
+                                            <span class="subtitle">parse()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#format">
+                                            <span class="title">返回格式化时间</span>
+                                            <span class="subtitle">format()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#getTime">
+                                            <span class="title">返回时间戳(毫秒)</span>
+                                            <span class="subtitle">getTime()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#getUnix">
+                                            <span class="title">返回时间戳(秒)</span>
+                                            <span class="subtitle">getUnix()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#clone">
+                                            <span class="title">返回克隆对象</span>
+                                            <span class="subtitle">clone()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#toDate">
+                                            <span class="title">返回原生Date对象</span>
+                                            <span class="subtitle">toDate()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#toObject">
+                                            <span class="title">返回时间字段对象</span>
+                                            <span class="subtitle">toObject()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#toArray">
+                                            <span class="title">返回时间字段数组</span>
+                                            <span class="subtitle">toArray()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#toString">
+                                            <span class="title">返回字符串</span>
+                                            <span class="subtitle">toString()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#toISOString">
+                                            <span class="title">返回ISO字符串</span>
+                                            <span class="subtitle">toISOString()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#set">
+                                            <span class="title">设置某字段值</span>
+                                            <span class="subtitle">set()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#change">
+                                            <span class="title">增减某字段值</span>
+                                            <span class="subtitle">change()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#startOf">
+                                            <span class="title">获取某字段起始时</span>
+                                            <span class="subtitle">startOf()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#endOf">
+                                            <span class="title">获取某字段末尾时</span>
+                                            <span class="subtitle">endOf()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#get">
+                                            <span class="title">返回某字段值</span>
+                                            <span class="subtitle">get()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#isBefore">
+                                            <span class="title">是否在某个时间点之前</span>
+                                            <span class="subtitle">isBefore()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#isAfter">
+                                            <span class="title">是否在某个时间点之后</span>
+                                            <span class="subtitle">isAfter()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#isSame">
+                                            <span class="title">是否和某个时间点相等</span>
+                                            <span class="subtitle">isSame()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#isBetween">
+                                            <span class="title">是否在两个时间点之间</span>
+                                            <span class="subtitle">isBetween()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#isValid">
+                                            <span class="title">是否为有效对象</span>
+                                            <span class="subtitle">isValid()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#diffWith">
+                                            <span class="title">与某时间点差值</span>
+                                            <span class="subtitle">diffWith()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#fromNow">
+                                            <span class="title">与当前时间差</span>
+                                            <span class="subtitle">fromNow()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#isDayLightSavingTime">
+                                            <span class="title">是否为夏令时</span>
+                                            <span class="subtitle">isDayLightSavingTime()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#countdown">
+                                            <span class="title">倒计时</span>
+                                            <span class="subtitle">countdown()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#getList">
+                                            <span class="title">获取时间序列</span>
+                                            <span class="subtitle">getList()</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <h3>全局方法</h3>
+                                <ul>
+                                    <li>
+                                        <a href="#getSupportedTimezones">
+                                            <span class="title">获取支持时区列表</span>
+                                            <span class="subtitle">getSupportedTimezones()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#isSupportedTimezone">
+                                            <span class="title">判断是否支持时区</span>
+                                            <span class="subtitle">isSupportedTimezone()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#now">
+                                            <span class="title">返回当前时间戳(毫秒)</span>
+                                            <span class="subtitle">now()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#duration">
+                                            <span class="title text-red">时长处理</span>
+                                            <span class="subtitle">duration()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#extend">
+                                            <span class="title">插件扩展</span>
+                                            <span class="subtitle">extend()</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <h3>通用方法</h3>
+                                <ul>
+                                    <li>
+                                        <a href="#getTimezoneOffset">
+                                            <span class="title">获取当前时区间差(分钟)</span>
+                                            <span class="subtitle">getTimezoneOffset()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#getTimezone">
+                                            <span class="title">获取时区</span>
+                                            <span class="subtitle">getTimezone()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#switchTimezone">
+                                            <span class="title">切换时区</span>
+                                            <span class="subtitle">switchTimezone(timezone)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#setLanguage">
+                                            <span class="title">设置语言包</span>
+                                            <span class="subtitle">setLanguage(lang,data)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#getLanguage">
+                                            <span class="title">获取语言包</span>
+                                            <span class="subtitle">getLanguage(lang)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#switchLanguage">
+                                            <span class="title">切换语言包</span>
+                                            <span class="subtitle">switchLanguage(lang)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#getLanguageCode">
+                                            <span class="title">获取语言代码</span>
+                                            <span class="subtitle">getLanguageCode()</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                    <main>
+                        <section id="datex" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">初始化</h3>
                                 <p class="subtitle">datex(dateStr|Array|Object|)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>通过多个参数初始化</p>
                                 <p>运行：datex(2018,8,8)</p>
                                 <br>
@@ -335,940 +363,962 @@
                                 <p>无参数初始化</p>
                                 <p>运行：datex()</p>
                             </div>
-                        </div>
-                        <div id="parse" class="box">
-                            <div class="c-hd">
-                                <p class="title">解析</p>
+                        </section>
+                        <section id="parse" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">解析</h3>
                                 <p class="subtitle">parse()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>日期解析方法，和工厂函数datex()调用方式保持一致，可用于切换时区后初始化</p>
                                 <p>运行：datex().switchTimezone('America/New_York').parse('2018-10-10 12:00:00')</p>
                             </div>
-                        </div>
-                        <div id="format" class="box">
-                            <div class="c-hd">
-                                <p class="title">返回格式化时间</p>
+                        </section>
+                        <section id="format" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回格式化时间</h3>
                                 <p class="subtitle">format(pattern)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex(2022,10,1).format('YYYY-MM-DD HH:mm:ss')</p>
                                 <p>返回：2022-10-01 00:00:00 </p>
-                                <br>
+                                <br/>
                                 <p>运行：datex(1671761818503).format('YYYY/MM/DD')</p>
                                 <p>返回：2022/12/23</p>
                                 <p>运行：datex(1671761818503).format(function(toObject){...})</p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>输入</th>
-                                            <th>示例</th>
-                                            <th>描述</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>YY</td>
-                                            <td>18</td>
-                                            <td>两位数的年份</td>
-                                        </tr>
-                                        <tr>
-                                            <td>YYYY</td>
-                                            <td>2018</td>
-                                            <td>四位数的年份</td>
-                                        </tr>
-                                        <tr>
-                                            <td>M</td>
-                                            <td>1-12</td>
-                                            <td>月份，从 1 开始</td>
-                                        </tr>
-                                        <tr>
-                                            <td>MM</td>
-                                            <td>01-12</td>
-                                            <td>月份，两位数</td>
-                                        </tr>
-                                        <tr>
-                                            <td>MMM</td>
-                                            <td>1月-12月/Jan-Dec</td>
-                                            <td>缩写的月份名称</td>
-                                        </tr>
-                                        <tr>
-                                            <td>MMMM</td>
-                                            <td>一月-十二月/January-December</td>
-                                            <td>完整的月份名称</td>
-                                        </tr>
-                                        <tr>
-                                            <td>D</td>
-                                            <td>1-31</td>
-                                            <td>月份里的一天</td>
-                                        </tr>
-                                        <tr>
-                                            <td>DD</td>
-                                            <td>01-31</td>
-                                            <td>月份里的一天，两位数</td>
-                                        </tr>
-                                        <tr>
-                                            <td>H</td>
-                                            <td>0-23</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>HH</td>
-                                            <td>00-23</td>
-                                            <td>小时，两位数</td>
-                                        </tr>
-                                        <tr>
-                                            <td>h</td>
-                                            <td>1-12</td>
-                                            <td>小时, 12 小时制</td>
-                                        </tr>
-                                        <tr>
-                                            <td>hh</td>
-                                            <td>01-12</td>
-                                            <td>小时, 12 小时制, 两位数</td>
-                                        </tr>
-                                        <tr>
-                                            <td>m</td>
-                                            <td>0-59</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>mm</td>
-                                            <td>00-59</td>
-                                            <td>分钟，两位数</td>
-                                        </tr>
-                                        <tr>
-                                            <td>s</td>
-                                            <td>0-59</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ss</td>
-                                            <td>00-59</td>
-                                            <td>秒，两位数</td>
-                                        </tr>
-                                        <tr>
-                                            <td>S</td>
-                                            <td>0-9</td>
-                                            <td>毫秒，一位数</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SS</td>
-                                            <td>00-99</td>
-                                            <td>毫秒，两位数</td>
-                                        </tr>
-                                        <tr>
-                                            <td>SSS</td>
-                                            <td>000-999</td>
-                                            <td>毫秒，三位数</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Z</td>
-                                            <td>-05:00</td>
-                                            <td>UTC 的偏移量</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ZZ</td>
-                                            <td>-0500</td>
-                                            <td>UTC 的偏移量，两位数</td>
-                                        </tr>
-                                        <tr>
-                                            <td>A</td>
-                                            <td>AM / PM</td>
-                                            <td>上午 下午 大写</td>
-                                        </tr>
-                                        <tr>
-                                            <td>a</td>
-                                            <td>am / pm</td>
-                                            <td>上午 下午 小写</td>
-                                        </tr>
-                                        <tr>
-                                            <td>W</td>
-                                            <td>0</td>
-                                            <td>0-6，分别表示星期日-星期六 </td>
-                                        </tr>
-                                        <tr>
-                                            <td>WW</td>
-                                            <td>周一</td>
-                                            <td>周x</td>
-                                        </tr>
-                                        <tr>
-                                            <td>WWW</td>
-                                            <td>星期日</td>
-                                            <td>星期x</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Do</td>
-                                            <td>1st... 31st</td>
-                                            <td>带序数词的月份里的一天</td>
-                                        </tr>
-                                        <tr>
-                                            <td>x</td>
-                                            <td>1410715640</td>
-                                            <td>Unix时间戳(秒)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>X</td>
-                                            <td>1410715640579</td>
-                                            <td>Unix时间戳(毫秒)</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>输入</th>
+                                                <th>示例</th>
+                                                <th>描述</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>YY</td>
+                                                <td>18</td>
+                                                <td>两位数的年份</td>
+                                            </tr>
+                                            <tr>
+                                                <td>YYYY</td>
+                                                <td>2018</td>
+                                                <td>四位数的年份</td>
+                                            </tr>
+                                            <tr>
+                                                <td>M</td>
+                                                <td>1-12</td>
+                                                <td>月份，从 1 开始</td>
+                                            </tr>
+                                            <tr>
+                                                <td>MM</td>
+                                                <td>01-12</td>
+                                                <td>月份，两位数</td>
+                                            </tr>
+                                            <tr>
+                                                <td>MMM</td>
+                                                <td>1月-12月/Jan-Dec</td>
+                                                <td>缩写的月份名称</td>
+                                            </tr>
+                                            <tr>
+                                                <td>MMMM</td>
+                                                <td>一月-十二月/January-December</td>
+                                                <td>完整的月份名称</td>
+                                            </tr>
+                                            <tr>
+                                                <td>D</td>
+                                                <td>1-31</td>
+                                                <td>月份里的一天</td>
+                                            </tr>
+                                            <tr>
+                                                <td>DD</td>
+                                                <td>01-31</td>
+                                                <td>月份里的一天，两位数</td>
+                                            </tr>
+                                            <tr>
+                                                <td>H</td>
+                                                <td>0-23</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>HH</td>
+                                                <td>00-23</td>
+                                                <td>小时，两位数</td>
+                                            </tr>
+                                            <tr>
+                                                <td>h</td>
+                                                <td>1-12</td>
+                                                <td>小时, 12 小时制</td>
+                                            </tr>
+                                            <tr>
+                                                <td>hh</td>
+                                                <td>01-12</td>
+                                                <td>小时, 12 小时制, 两位数</td>
+                                            </tr>
+                                            <tr>
+                                                <td>m</td>
+                                                <td>0-59</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>mm</td>
+                                                <td>00-59</td>
+                                                <td>分钟，两位数</td>
+                                            </tr>
+                                            <tr>
+                                                <td>s</td>
+                                                <td>0-59</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ss</td>
+                                                <td>00-59</td>
+                                                <td>秒，两位数</td>
+                                            </tr>
+                                            <tr>
+                                                <td>S</td>
+                                                <td>0-9</td>
+                                                <td>毫秒，一位数</td>
+                                            </tr>
+                                            <tr>
+                                                <td>SS</td>
+                                                <td>00-99</td>
+                                                <td>毫秒，两位数</td>
+                                            </tr>
+                                            <tr>
+                                                <td>SSS</td>
+                                                <td>000-999</td>
+                                                <td>毫秒，三位数</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Z</td>
+                                                <td>-05:00</td>
+                                                <td>UTC 的偏移量</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ZZ</td>
+                                                <td>-0500</td>
+                                                <td>UTC 的偏移量，两位数</td>
+                                            </tr>
+                                            <tr>
+                                                <td>A</td>
+                                                <td>AM / PM</td>
+                                                <td>上午 下午 大写</td>
+                                            </tr>
+                                            <tr>
+                                                <td>a</td>
+                                                <td>am / pm</td>
+                                                <td>上午 下午 小写</td>
+                                            </tr>
+                                            <tr>
+                                                <td>W</td>
+                                                <td>0</td>
+                                                <td>0-6，分别表示星期日-星期六 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>WW</td>
+                                                <td>周一</td>
+                                                <td>周x</td>
+                                            </tr>
+                                            <tr>
+                                                <td>WWW</td>
+                                                <td>星期日</td>
+                                                <td>星期x</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Do</td>
+                                                <td>1st... 31st</td>
+                                                <td>带序数词的月份里的一天</td>
+                                            </tr>
+                                            <tr>
+                                                <td>x</td>
+                                                <td>1410715640</td>
+                                                <td>Unix时间戳(秒)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>X</td>
+                                                <td>1410715640579</td>
+                                                <td>Unix时间戳(毫秒)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="getTime" class="box">
-                            <div class="c-hd">
-                                <p class="title">返回时间戳(毫秒)</p>
+                        </section>
+                        <section id="getTime" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回时间戳(毫秒)</h3>
                                 <p class="subtitle">getTime()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex().getTime()</p>
                                 <p>返回：1670768193313</p>
                             </div>
-                        </div>
-                        <div id="getUnix" class="box">
-                            <div class="c-hd">
-                                <p class="title">返回时间戳(秒)</p>
+                        </section>
+                        <section id="getUnix" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回时间戳(秒)</h3>
                                 <p class="subtitle">getUnix()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex().getUnix()</p>
                                 <p>返回：1670768193</p>
                             </div>
-                        </div>
-                        <div id="clone" class="box">
-                            <div class="c-hd">
-                                <p class="title">返回克隆对象</p>
+                        </section>
+                        <section id="clone" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回克隆对象</h3>
                                 <p class="subtitle">clone()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex().clone()</p>
                             </div>
-                        </div>
-                        <div id="toDate" class="box">
-                            <div class="c-hd">
-                                <p class="title">返回原生Date对象</p>
+                        </section>
+                        <section id="toDate" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回原生Date对象</h3>
                                 <p class="subtitle">toDate()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex().toDate()</p>
                                 <p>返回：Sun Dec 11 2022 22:20:20 GMT+0800 (中国标准时间)</p>
                             </div>
-                        </div>
-                        <div id="toObject" class="box">
-                            <div class="c-hd">
-                                <p class="title">返回时间字段对象</p>
+                        </section>
+                        <section id="toObject" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回时间字段对象</h3>
                                 <p class="subtitle">toObject()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex().toObject()</p>
-                                <p>返回： <code></code></p>
+                                <p>返回： </p>
                                 <pre><code>{
-	year:2022,
-	month:12,
-	day:11,
-	hour:22,
-	minute:23,
-	second: 14,
-	millsecond:612,
-	timestamp:1670768594612,
-	week:0
-}
-</code></pre>
+    year:2022,
+    month:12,
+    day:11,
+    hour:22,
+    minute:23,
+    second: 14,
+    millsecond:612,
+    timestamp:1670768594612,
+    week:0
+    }
+    </code></pre>
                                 <p></p>
                             </div>
-                        </div>
-                        <div id="toArray" class="box">
-                            <div class="c-hd">
-                                <p class="title">返回时间字段数组</p>
+                        </section>
+                        <section id="toArray" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回时间字段数组</h3>
                                 <p class="subtitle">toArray()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex().toArray()</p>
                                 <p>返回：[2022,12,11,22,23,14,612]</p>
                             </div>
-                        </div>
-                        <div id="toString" class="box">
-                            <div class="c-hd">
-                                <p class="title">返回字符串</p>
+                        </section>
+                        <section id="toString" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回字符串</h3>
                                 <p class="subtitle">toString()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex().toString()</p>
                                 <p>返回：Wed Apr 12 2023 15:19:41 GMT+0800 (中国标准时间)</p>
                             </div>
-                        </div>
-                        <div id="toISOString" class="box">
-                            <div class="c-hd">
-                                <p class="title">返回ISO字符串</p>
+                        </section>
+                        <section id="toISOString" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回ISO字符串</h3>
                                 <p class="subtitle">toISOString()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex().toISOString()</p>
                                 <p>返回：2023-04-12T07:20:23.363Z</p>
                             </div>
-                        </div>
-                        <div id="set" class="box">
-                            <div class="c-hd">
-                                <p class="title">设置某字段值</p>
+                        </section>
+                        <section id="set" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">设置某字段值</h3>
                                 <p class="subtitle">set(name,value)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex(2022,10,1).set('year',2020).format()</p>
                                 <p>返回：2020-10-01 00:00:00 </p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>单位</th>
-                                            <th>说明</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>year</td>
-                                            <td>年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>month</td>
-                                            <td>月</td>
-                                        </tr>
-                                        <tr>
-                                            <td>day</td>
-                                            <td>日</td>
-                                        </tr>
-                                        <tr>
-                                            <td>hour</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>minute</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>second</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>millsecond</td>
-                                            <td>毫秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>timestamp</td>
-                                            <td>时间戳</td>
-                                        </tr>
-                                        <tr>
-                                            <td>week</td>
-                                            <td>周几</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>单位</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>year</td>
+                                                <td>年</td>
+                                            </tr>
+                                            <tr>
+                                                <td>month</td>
+                                                <td>月</td>
+                                            </tr>
+                                            <tr>
+                                                <td>day</td>
+                                                <td>日</td>
+                                            </tr>
+                                            <tr>
+                                                <td>hour</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>minute</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>second</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>millsecond</td>
+                                                <td>毫秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>timestamp</td>
+                                                <td>时间戳</td>
+                                            </tr>
+                                            <tr>
+                                                <td>week</td>
+                                                <td>周几</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="change" class="box">
-                            <div class="c-hd">
-                                <p class="title">增减某字段值</p>
+                        </section>
+                        <section id="change" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">增减某字段值</h3>
                                 <p class="subtitle">change(name,value)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex(2022,10,1).change('year',1).format()</p>
                                 <p>返回：2022-10-01 00:00:00 </p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>单位</th>
-                                            <th>说明</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>year</td>
-                                            <td>年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>month</td>
-                                            <td>月</td>
-                                        </tr>
-                                        <tr>
-                                            <td>day</td>
-                                            <td>日</td>
-                                        </tr>
-                                        <tr>
-                                            <td>hour</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>minute</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>second</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>millsecond</td>
-                                            <td>毫秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>timestamp</td>
-                                            <td>时间戳</td>
-                                        </tr>
-                                        <tr>
-                                            <td>week</td>
-                                            <td>周几</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>单位</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>year</td>
+                                                <td>年</td>
+                                            </tr>
+                                            <tr>
+                                                <td>month</td>
+                                                <td>月</td>
+                                            </tr>
+                                            <tr>
+                                                <td>day</td>
+                                                <td>日</td>
+                                            </tr>
+                                            <tr>
+                                                <td>hour</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>minute</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>second</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>millsecond</td>
+                                                <td>毫秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>timestamp</td>
+                                                <td>时间戳</td>
+                                            </tr>
+                                            <tr>
+                                                <td>week</td>
+                                                <td>周几</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="startOf" class="box">
-                            <div class="c-hd">
-                                <p class="title">获取某字段起始时</p>
+                        </section>
+                        <section id="startOf" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">获取某字段起始时</h3>
                                 <p class="subtitle">startOf(name)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex(2022,10,10).startOf('month').format()</p>
                                 <p>返回：2022-10-01 00:00:00 </p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>单位</th>
-                                            <th>说明</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>year</td>
-                                            <td>年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>month</td>
-                                            <td>月</td>
-                                        </tr>
-                                        <tr>
-                                            <td>day</td>
-                                            <td>日</td>
-                                        </tr>
-                                        <tr>
-                                            <td>hour</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>minute</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>second</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>millsecond</td>
-                                            <td>毫秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>timestamp</td>
-                                            <td>时间戳</td>
-                                        </tr>
-                                        <tr>
-                                            <td>week</td>
-                                            <td>周几</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>单位</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>year</td>
+                                                <td>年</td>
+                                            </tr>
+                                            <tr>
+                                                <td>month</td>
+                                                <td>月</td>
+                                            </tr>
+                                            <tr>
+                                                <td>day</td>
+                                                <td>日</td>
+                                            </tr>
+                                            <tr>
+                                                <td>hour</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>minute</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>second</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>millsecond</td>
+                                                <td>毫秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>timestamp</td>
+                                                <td>时间戳</td>
+                                            </tr>
+                                            <tr>
+                                                <td>week</td>
+                                                <td>周几</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="endOf" class="box">
-                            <div class="c-hd">
-                                <p class="title">获取某字段末尾时</p>
+                        </section>
+                        <section id="endOf" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">获取某字段末尾时</h3>
                                 <p class="subtitle">endOf(name)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex(2022,10,10).endOf('month').format()</p>
                                 <p>返回：2022-10-31 23:59:59</p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>单位</th>
-                                            <th>说明</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>year</td>
-                                            <td>年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>month</td>
-                                            <td>月</td>
-                                        </tr>
-                                        <tr>
-                                            <td>day</td>
-                                            <td>日</td>
-                                        </tr>
-                                        <tr>
-                                            <td>hour</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>minute</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>second</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>millsecond</td>
-                                            <td>毫秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>timestamp</td>
-                                            <td>时间戳</td>
-                                        </tr>
-                                        <tr>
-                                            <td>week</td>
-                                            <td>周几</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>单位</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>year</td>
+                                                <td>年</td>
+                                            </tr>
+                                            <tr>
+                                                <td>month</td>
+                                                <td>月</td>
+                                            </tr>
+                                            <tr>
+                                                <td>day</td>
+                                                <td>日</td>
+                                            </tr>
+                                            <tr>
+                                                <td>hour</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>minute</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>second</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>millsecond</td>
+                                                <td>毫秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>timestamp</td>
+                                                <td>时间戳</td>
+                                            </tr>
+                                            <tr>
+                                                <td>week</td>
+                                                <td>周几</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="get" class="box">
-                            <div class="c-hd">
-                                <p class="title">返回某字段值</p>
+                        </section>
+                        <section id="get" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回某字段值</h3>
                                 <p class="subtitle">get(name)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex(2022,10,1).get('year')</p>
                                 <p>返回：2020</p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>单位</th>
-                                            <th>说明</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>year</td>
-                                            <td>年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>month</td>
-                                            <td>月</td>
-                                        </tr>
-                                        <tr>
-                                            <td>day</td>
-                                            <td>日</td>
-                                        </tr>
-                                        <tr>
-                                            <td>hour</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>minute</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>second</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>millsecond</td>
-                                            <td>毫秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>timestamp</td>
-                                            <td>时间戳</td>
-                                        </tr>
-                                        <tr>
-                                            <td>week</td>
-                                            <td>周几</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>单位</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>year</td>
+                                                <td>年</td>
+                                            </tr>
+                                            <tr>
+                                                <td>month</td>
+                                                <td>月</td>
+                                            </tr>
+                                            <tr>
+                                                <td>day</td>
+                                                <td>日</td>
+                                            </tr>
+                                            <tr>
+                                                <td>hour</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>minute</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>second</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>millsecond</td>
+                                                <td>毫秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>timestamp</td>
+                                                <td>时间戳</td>
+                                            </tr>
+                                            <tr>
+                                                <td>week</td>
+                                                <td>周几</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="isBefore" class="box">
-                            <div class="c-hd">
-                                <p class="title">是否在某个时间点之前</p>
+                        </section>
+                        <section id="isBefore" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">是否在某个时间点之前</h3>
                                 <p class="subtitle">isBefore(dateStr|datex,name)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex('2008-08-08').isBefore('2022-02-02')</p>
                                 <p>返回：true</p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>单位</th>
-                                            <th>说明</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>year</td>
-                                            <td>年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>month</td>
-                                            <td>月</td>
-                                        </tr>
-                                        <tr>
-                                            <td>day</td>
-                                            <td>日</td>
-                                        </tr>
-                                        <tr>
-                                            <td>hour</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>minute</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>second</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>millsecond</td>
-                                            <td>毫秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>timestamp</td>
-                                            <td>时间戳</td>
-                                        </tr>
-                                        <tr>
-                                            <td>week</td>
-                                            <td>周几</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>单位</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>year</td>
+                                                <td>年</td>
+                                            </tr>
+                                            <tr>
+                                                <td>month</td>
+                                                <td>月</td>
+                                            </tr>
+                                            <tr>
+                                                <td>day</td>
+                                                <td>日</td>
+                                            </tr>
+                                            <tr>
+                                                <td>hour</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>minute</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>second</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>millsecond</td>
+                                                <td>毫秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>timestamp</td>
+                                                <td>时间戳</td>
+                                            </tr>
+                                            <tr>
+                                                <td>week</td>
+                                                <td>周几</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="isAfter" class="box">
-                            <div class="c-hd">
-                                <p class="title">是否在某个时间点之后</p>
+                        </section>
+                        <section id="isAfter" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">是否在某个时间点之后</h3>
                                 <p class="subtitle">isAfter(dateStr|datex,name)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex('2008-08-08').isAfter('2022-02-02')</p>
                                 <p>返回：false</p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>单位</th>
-                                            <th>说明</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>year</td>
-                                            <td>年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>month</td>
-                                            <td>月</td>
-                                        </tr>
-                                        <tr>
-                                            <td>day</td>
-                                            <td>日</td>
-                                        </tr>
-                                        <tr>
-                                            <td>hour</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>minute</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>second</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>millsecond</td>
-                                            <td>毫秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>timestamp</td>
-                                            <td>时间戳</td>
-                                        </tr>
-                                        <tr>
-                                            <td>week</td>
-                                            <td>周几</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>单位</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>year</td>
+                                                <td>年</td>
+                                            </tr>
+                                            <tr>
+                                                <td>month</td>
+                                                <td>月</td>
+                                            </tr>
+                                            <tr>
+                                                <td>day</td>
+                                                <td>日</td>
+                                            </tr>
+                                            <tr>
+                                                <td>hour</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>minute</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>second</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>millsecond</td>
+                                                <td>毫秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>timestamp</td>
+                                                <td>时间戳</td>
+                                            </tr>
+                                            <tr>
+                                                <td>week</td>
+                                                <td>周几</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="isSame" class="box">
-                            <div class="c-hd">
-                                <p class="title">是否和某个时间点相等</p>
+                        </section>
+                        <section id="isSame" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">是否和某个时间点相等</h3>
                                 <p class="subtitle">isSame(dateStr|datex,name)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex('2008-08-08').isSame('2022-02-02')</p>
                                 <p>返回：false</p>
-                                <br>
+                                <br/>
                                 <p>运行：datex('2008-08-08').isSame('2018-02-02','year')</p>
                                 <p>返回：true</p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>单位</th>
-                                            <th>说明</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>year</td>
-                                            <td>年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>month</td>
-                                            <td>月</td>
-                                        </tr>
-                                        <tr>
-                                            <td>day</td>
-                                            <td>日</td>
-                                        </tr>
-                                        <tr>
-                                            <td>hour</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>minute</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>second</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>millsecond</td>
-                                            <td>毫秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>timestamp</td>
-                                            <td>时间戳</td>
-                                        </tr>
-                                        <tr>
-                                            <td>week</td>
-                                            <td>周几</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>单位</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>year</td>
+                                                <td>年</td>
+                                            </tr>
+                                            <tr>
+                                                <td>month</td>
+                                                <td>月</td>
+                                            </tr>
+                                            <tr>
+                                                <td>day</td>
+                                                <td>日</td>
+                                            </tr>
+                                            <tr>
+                                                <td>hour</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>minute</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>second</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>millsecond</td>
+                                                <td>毫秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>timestamp</td>
+                                                <td>时间戳</td>
+                                            </tr>
+                                            <tr>
+                                                <td>week</td>
+                                                <td>周几</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="isBetween" class="box">
-                            <div class="c-hd">
-                                <p class="title">是否在两个时间点之间</p>
+                        </section>
+                        <section id="isBetween" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">是否在两个时间点之间</h3>
                                 <p class="subtitle">isBetween(dateStr|datex,dateStr|datex,name)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex('2008-08-08').isBetween('2003-07-13','2022-02-02')</p>
                                 <p>返回：true</p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>单位</th>
-                                            <th>说明</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>year</td>
-                                            <td>年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>month</td>
-                                            <td>月</td>
-                                        </tr>
-                                        <tr>
-                                            <td>day</td>
-                                            <td>日</td>
-                                        </tr>
-                                        <tr>
-                                            <td>hour</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>minute</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>second</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>millsecond</td>
-                                            <td>毫秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>timestamp</td>
-                                            <td>时间戳</td>
-                                        </tr>
-                                        <tr>
-                                            <td>week</td>
-                                            <td>周几</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>单位</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>year</td>
+                                                <td>年</td>
+                                            </tr>
+                                            <tr>
+                                                <td>month</td>
+                                                <td>月</td>
+                                            </tr>
+                                            <tr>
+                                                <td>day</td>
+                                                <td>日</td>
+                                            </tr>
+                                            <tr>
+                                                <td>hour</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>minute</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>second</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>millsecond</td>
+                                                <td>毫秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>timestamp</td>
+                                                <td>时间戳</td>
+                                            </tr>
+                                            <tr>
+                                                <td>week</td>
+                                                <td>周几</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="isValid" class="box">
-                            <div class="c-hd">
-                                <p class="title">是否为有效对象</p>
+                        </section>
+                        <section id="isValid" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">是否为有效对象</h3>
                                 <p class="subtitle">isValid()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex('2008-13-12').isValid()</p>
                                 <p>返回：false</p>
                             </div>
-                        </div>
-                        <div id="diffWith" class="box">
-                            <div class="c-hd">
-                                <p class="title">与某时间点差值</p>
+                        </section>
+                        <section id="diffWith" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">与某时间点差值</h3>
                                 <p class="subtitle">diffWith(dateStr|datex,name)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex('1949-10-01').diffWith()</p>
                                 <p>返回：<span class="text-blue">【时长对象】</span></p>
                                 <p>运行：datex('1949-10-01').diffWith('2022-12-01')</p>
                                 <p>返回：<span class="text-blue">【时长对象】</span></p>
-                                <br>
+                                <br/>
                                 <p>运行：datex('1949-10-01').diffWith('2022-12-01','month')</p>
                                 <p>返回：-878</p>
                                 <br>
                                 <p>运行：datex('1949-10-01').diffWith('2022-12-01').toObject()</p>
                                 <p>返回：{"year":-73,"month":-2,"day":0,"hour":0,"minute":0,"second":0,"millsecond":0,"value":
                                     -2308953600000}</p>
-                                <br>
+                                <br/>
                                 <p>运行：datex('1997-07-01').diffWith('1949-10-01').format('Y年M个月D天')</p>
                                 <p>返回：'47年9个月0天'</p>
                                 <p>运行：datex('1997-07-01').diffWith('1949-10-01').format(function(toObject){...})</p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>单位</th>
-                                            <th>说明</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>year</td>
-                                            <td>年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>month</td>
-                                            <td>月</td>
-                                        </tr>
-                                        <tr>
-                                            <td>day</td>
-                                            <td>日</td>
-                                        </tr>
-                                        <tr>
-                                            <td>hour</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>minute</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>second</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>millsecond</td>
-                                            <td>毫秒</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>单位</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>year</td>
+                                                <td>年</td>
+                                            </tr>
+                                            <tr>
+                                                <td>month</td>
+                                                <td>月</td>
+                                            </tr>
+                                            <tr>
+                                                <td>day</td>
+                                                <td>日</td>
+                                            </tr>
+                                            <tr>
+                                                <td>hour</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>minute</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>second</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>millsecond</td>
+                                                <td>毫秒</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="fromNow" class="box">
-                            <div class="c-hd">
-                                <p class="title">与当前时间差</p>
+                        </section>
+                        <section id="fromNow" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">与当前时间差</h3>
                                 <p class="subtitle">fromNow()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex('1949-10-01').fromNow()</p>
                                 <p>返回：74年前</p>
                             </div>
-                        </div>
-                        <div id="isDayLightSavingTime" class="box">
-                            <div class="c-hd">
-                                <p class="title">是否为夏令时</p>
+                        </section>
+                        <section id="isDayLightSavingTime" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">是否为夏令时</h3>
                                 <p class="subtitle">isDayLightSavingTime()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex('2024-11-11 06:00:00').switchTimezone('America/New_York').isDayLightSavingTime()</p>
                                 <p>返回：true</p>
                             </div>
-                        </div>
-                        <div id="countdown" class="box">
-                            <div class="c-hd">
-                                <p class="title">倒计时</p>
+                        </section>
+                        <section id="countdown" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">倒计时</h3>
                                 <p class="subtitle">countdown()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex('2030-11-11 06:00:00').countdown(function(){console.log('[计时]',Date.now())},1000)</p>
                                 <p>返回：Promise</p>
                             </div>
-                        </div>
-                        <div id="getList" class="box">
-                            <div class="c-hd">
-                                <p class="title">获取时间序列</p>
+                        </section>
+                        <section id="getList" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">获取时间序列</h3>
                                 <p class="subtitle">getList()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex('2025-11-11 06:00:00').getList({'day':1},30)</p>
                                 <p>返回：datex数组</p>
                             </div>
-                        </div>
-                        <div id="getSupportedTimezones" class="box">
-                            <div class="c-hd">
-                                <p class="title">获取支持时区列表</p>
+                        </section>
+                        <section id="getSupportedTimezones" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">获取支持时区列表</h3>
                                 <p class="subtitle">getSupportedTimezones(isStrict)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>支持的时区(JavaScript默认时区代码)</p>
                                 <p>运行：datex.getSupportedTimezones()</p>
                                 <p>返回：['Africa/Abidjan', 'Africa/Accra', 'Africa/Addis_Ababa', 'Africa/Algiers',
                                     'Africa/Asmera', 'Africa/Bamako',...]</p>
-                                <br>
+                                <br/>
                                 <p>支持的时区(最新IANA时区代码)</p>
                                 <p>运行：datex.getSupportedTimezones(true)</p>
                                 <p>返回：['Africa/Abidjan', 'Africa/Accra', 'Africa/Addis_Ababa', 'Africa/Algiers',
                                     'Africa/Asmera', 'Africa/Bamako',...]</p>
                             </div>
-                        </div>
-                        <div id="isSupportedTimezone" class="box">
-                            <div class="c-hd">
-                                <p class="title">判断是否支持时区</p>
+                        </section>
+                        <section id="isSupportedTimezone" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">判断是否支持时区</h3>
                                 <p class="subtitle">isSupportedTimezone(timezone)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>运行：datex.isSupportedTimezone('Africa/Abidjan')</p>
                                 <p>返回：true</p>
                             </div>
-                        </div>
-                        <div id="now" class="box">
-                            <div class="c-hd">
-                                <p class="title">返回当前时间戳(毫秒)</p>
+                        </section>
+                        <section id="now" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回当前时间戳(毫秒)</h3>
                                 <p class="subtitle">now()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>全局设置</p>
                                 <p>运行：datex.now()</p>
                             </div>
-                        </div>
-                        <div id="duration" class="box">
-                            <div class="c-hd">
+                        </section>
+                        <section id="duration" class="mod-panel">
+                            <div class="hd">
                                 <p class="title text-red">时长处理</p>
                                 <p class="subtitle">duration()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>初始化，返回<span class="text-blue">【时长对象】</span></p>
                                 <p>运行：datex.duration(2,'day')</p>
                                 <p>运行：datex.duration({'day':1,'hour':2,'minute':3})</p>
@@ -1290,240 +1340,267 @@
                                 <br>
                                 <p>倒计时</p>
                                 <p>运行：datex.duration(2,'day').countdown(function(){console.log('[计时]',Date.now());},1000)</p>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>输入</th>
-                                            <th>示例</th>
-                                            <th>描述</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Y+</td>
-                                            <td>0-99</td>
-                                            <td>年</td>
-                                        </tr>
-                                        <tr>
-                                            <td>M+</td>
-                                            <td>0-99</td>
-                                            <td>月</td>
-                                        </tr>
-                                        <tr>
-                                            <td>D+</td>
-                                            <td>0-99</td>
-                                            <td>天</td>
-                                        </tr>
-                                        <tr>
-                                            <td>H+</td>
-                                            <td>0-99</td>
-                                            <td>小时</td>
-                                        </tr>
-                                        <tr>
-                                            <td>m+</td>
-                                            <td>0-99</td>
-                                            <td>分钟</td>
-                                        </tr>
-                                        <tr>
-                                            <td>s+</td>
-                                            <td>0-99</td>
-                                            <td>秒</td>
-                                        </tr>
-                                        <tr>
-                                            <td>S+</td>
-                                            <td>0-999</td>
-                                            <td>毫秒</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-inner">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>输入</th>
+                                                <th>示例</th>
+                                                <th>描述</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Y+</td>
+                                                <td>0-99</td>
+                                                <td>年</td>
+                                            </tr>
+                                            <tr>
+                                                <td>M+</td>
+                                                <td>0-99</td>
+                                                <td>月</td>
+                                            </tr>
+                                            <tr>
+                                                <td>D+</td>
+                                                <td>0-99</td>
+                                                <td>天</td>
+                                            </tr>
+                                            <tr>
+                                                <td>H+</td>
+                                                <td>0-99</td>
+                                                <td>小时</td>
+                                            </tr>
+                                            <tr>
+                                                <td>m+</td>
+                                                <td>0-99</td>
+                                                <td>分钟</td>
+                                            </tr>
+                                            <tr>
+                                                <td>s+</td>
+                                                <td>0-99</td>
+                                                <td>秒</td>
+                                            </tr>
+                                            <tr>
+                                                <td>S+</td>
+                                                <td>0-999</td>
+                                                <td>毫秒</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="extend" class="box">
-                            <div class="c-hd">
+                        </section>
+                        <section id="extend" class="mod-panel">
+                            <div class="hd">
                                 <p class="title">插件扩展</p>
                                 <p class="subtitle">extend()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>全局设置</p>
                                 <p>运行：datex.extend(pluginsLoader)</p>
                             </div>
-                        </div>
-                        <div id="getTimezoneOffset" class="box">
-                            <div class="c-hd">
+                        </section>
+                        <section id="getTimezoneOffset" class="mod-panel">
+                            <div class="hd">
                                 <p class="title">获取当前时区与UTC的时间差(分钟)</p>
                                 <p class="subtitle">getTimezoneOffset()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>全局设置</p>
                                 <p>运行：datex.switchTimezone("Europe/Berlin").getTimezoneOffset()</p>
                                 <p>返回：-60</p>
-                                <br>
+                                <br/>
                                 <p>实例设置</p>
                                 <p>运行：datex().switchTimezone("Europe/Berlin").getTimezoneOffset()</p>
                                 <p>返回：-60</p>
                             </div>
-                        </div>
-                        <div id="getTimezone" class="box">
-                            <div class="c-hd">
+                        </section>
+                        <section id="getTimezone" class="mod-panel">
+                            <div class="hd">
                                 <p class="title">获取时区</p>
                                 <p class="subtitle">getTimezone()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>全局获取</p>
                                 <p>运行：datex.getTimezone()</p>
                                 <p>返回：'Asia/Shanghai'</p>
-                                <br>
+                                <br/>
                                 <p>实例获取</p>
                                 <p>运行：datex().getTimezone()</p>
                                 <p>返回：'Asia/Shanghai'</p>
                             </div>
-                        </div>
-                        <div id="switchTimezone" class="box">
-                            <div class="c-hd">
-                                <p class="title">切换时区</p>
+                        </section>
+                        <section id="switchTimezone" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">切换时区</h3>
                                 <p class="subtitle">switchTimezone(timezone)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p class="text-red">* 时区切换只改变时间字符串显示，即format方法及初始化过程，时间戳不会相应改变</p>
-                                <br>
+                                <br/>
                                 <p>时区格式</p>
                                 <p>'Asia/Tokyo'或'UTC+09:00'</p>
-                                <br>
+                                <br/>
                                 <p>全局设置</p>
                                 <p>运行：datex.switchTimezone('Asia/Tokyo')</p>
-                                <br>
+                                <br/>
                                 <p>实例设置</p>
                                 <p>运行：datex().switchTimezone('Asia/Tokyo')</p>
                             </div>
-                        </div>
-                        <div id="setLanguage" class="box">
-                            <div class="c-hd">
-                                <p class="title">设置语言包</p>
+                        </section>
+                        <section id="setLanguage" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">设置语言包</h3>
                                 <p class="subtitle">setLanguage(lang,data)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>全局设置</p>
                                 <p>运行：datex.setLanguage('zh-CN',{'format':{'w':['周日','周一','周二','周三','周四','周五','周六']}})
                                 </p>
-                                <br>
+                                <br/>
                                 <p>实例设置</p>
                                 <p>运行：datex().setLanguage('zh-CN',{'format':{'w':['周日','周一','周二','周三','周四','周五','周六']}})
                                 </p>
                             </div>
-                        </div>
-                        <div id="getLanguage" class="box">
-                            <div class="c-hd">
-                                <p class="title">获取语言包</p>
+                        </section>
+                        <section id="getLanguage" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">获取语言包</h3>
                                 <p class="subtitle">getLanguage(lang)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>全局设置</p>
                                 <p>运行：datex.getLanguage('en-US')</p>
-                                <br>
+                                <br/>
                                 <p>实例设置</p>
                                 <p>运行：datex().getLanguage('en-US')</p>
                             </div>
-                        </div>
-                        <div id="switchLanguage" class="box">
-                            <div class="c-hd">
-                                <p class="title">切换语言包</p>
+                        </section>
+                        <section id="switchLanguage" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">切换语言包</h3>
                                 <p class="subtitle">switchLanguage(lang)</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>全局设置</p>
                                 <p>运行：datex.switchLanguage('en-US')</p>
-                                <br>
+                                <br/>
                                 <p>实例设置</p>
                                 <p>运行：datex().switchLanguage('en-US')</p>
                             </div>
-                        </div>
-                        <div id="getLanguageCode" class="box">
-                            <div class="c-hd">
-                                <p class="title">获取语言代码</p>
+                        </section>
+                        <section id="getLanguageCode" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">获取语言代码</h3>
                                 <p class="subtitle">getLanguageCode()</p>
                             </div>
-                            <div class="c-bd">
+                            <div class="bd">
                                 <p>全局设置</p>
                                 <p>运行：datex.getLanguageCode()</p>
-                                <br>
+                                <br/>
                                 <p>实例设置</p>
                                 <p>运行：datex().getLanguageCode()</p>
                             </div>
+                        </section>
+                    </main>
+                </div>
+                <section class="module mod-copy">
+                    <div class="inner">
+                        <div class="hd"><span>算法开源</span></div>
+                        <div class="bd">
+                            <p><span>算法基于「<a href="https://github.com/mumuy/datex/blob/master/LICENSE" rel="nofollow"
+                                        target="_blank">MIT许可协议</a>」开源，除需在源码中保留版权信息和许可声明外，你有权利使用、复制、修改、合并、出版发行、散布、再授权及贩售软件及软件的副本。</span>数据持续更新中，如发现错漏或有想法建议可在此</span>
+                                <a class="text-red" href="https://github.com/mumuy/datex/issues" rel="nofollow"
+                                    target="_blank">反馈问题</a>。
+                            </p>
+                            <div class="buttons">
+                                <a class="github-button" href="https://github.com/mumuy"
+                                    data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large"
+                                    aria-label="Follow @mumuy on GitHub">Follow @mumuy</a>
+                                <a class="github-button" href="https://github.com/mumuy/datex/fork"
+                                    data-color-scheme="no-preference: light; light: light; dark: dark;"
+                                    data-icon="octicon-repo-forked" data-size="large" data-show-count="true"
+                                    aria-label="Fork mumuy/datex on GitHub">Fork</a>
+                                <a class="github-button" href="https://github.com/mumuy/datex"
+                                    data-color-scheme="no-preference: light; light: light; dark: dark;"
+                                    data-icon="octicon-star" data-size="large" data-show-count="true"
+                                    aria-label="Star mumuy/datex on GitHub">Star</a>
+                                <a class="github-button" href="https://github.com/mumuy/datex/archive/HEAD.zip"
+                                    data-icon="octicon-download" data-size="large"
+                                    aria-label="Download mumuy/datex on GitHub">Download</a>
+                            </div>
+                            <br>
+                                <p>时间格式化脚本：</p>
+                                <code><a href="https://passer-by.com/datex/dist/datex.min.js" target="_blank" rel="nofollow">https://passer-by.com/datex/dist/datex.min.js</a></code>
                         </div>
                     </div>
+                </section>
+                <div class="inner">
+                    <script type="text/javascript" src="https://passer-by.com/static/script/projects.js"></script>
                 </div>
             </div>
-            <div class="mod-copy">
-                <div class="inner">
-                    <div class="hd"><span>算法开源</span></div>
+            <footer>
+                <div class="mod-fixedbar">
                     <div class="bd">
-                        <p><span>算法基于「<a href="https://github.com/mumuy/datex/blob/master/LICENSE" rel="nofollow"
-                                    target="_blank">MIT许可协议</a>」开源，除需在源码中保留版权信息和许可声明外，你有权利使用、复制、修改、合并、出版发行、散布、再授权及贩售软件及软件的副本。</span>数据持续更新中，如发现错漏或有想法建议可在此</span>
-                            <a class="text-red" href="https://github.com/mumuy/datex/issues" rel="nofollow"
-                                target="_blank">反馈问题</a>。
+                        <ul>
+                            <li>
+                                <a class="gotop" href="javascript:;" rel="nofollow">
+                                    <img src="https://www.passer-by.com/static/image/public/icon-gotop.png" width="24" height="24" alt="回到顶部">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mod-foot">
+                    <div class="bd">
+                        <p>
+                            <span>Copyright &copy; 2025</span>
+                            <a href="/">路人甲</a>
+                            <span>版权所有</span>
                         </p>
-                        <div class="buttons">
-                            <a class="github-button" href="https://github.com/mumuy"
-                                data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large"
-                                aria-label="Follow @mumuy on GitHub">Follow @mumuy</a>
-                            <a class="github-button" href="https://github.com/mumuy/datex/fork"
-                                data-color-scheme="no-preference: light; light: light; dark: dark;"
-                                data-icon="octicon-repo-forked" data-size="large" data-show-count="true"
-                                aria-label="Fork mumuy/datex on GitHub">Fork</a>
-                            <a class="github-button" href="https://github.com/mumuy/datex"
-                                data-color-scheme="no-preference: light; light: light; dark: dark;"
-                                data-icon="octicon-star" data-size="large" data-show-count="true"
-                                aria-label="Star mumuy/datex on GitHub">Star</a>
-                            <a class="github-button" href="https://github.com/mumuy/datex/archive/HEAD.zip"
-                                data-icon="octicon-download" data-size="large"
-                                aria-label="Download mumuy/datex on GitHub">Download</a>
-                        </div>
-                        <br>
-                            <p>时间格式化脚本：</p>
-                            <code><a href="https://passer-by.com/datex/dist/datex.min.js" target="_blank" rel="nofollow">https://passer-by.com/datex/dist/datex.min.js</a></code>
                     </div>
                 </div>
-            </div>
-            <script type="text/javascript" src="https://passer-by.com/public/script/projects.js"></script>
-            <div class="mod-foot">
-                <div class="inner">
-                    <div class="bd">
-                        <p>Copyright &copy; <a href="http://passer-by.com">passer-by.com</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="mod-fixedbar">
-                <div class="bd">
-                    <a class="gotop" href="javascript:;" rel="nofollow"><img src="static/image/gotop.png" width="24" height="24"></a>
-                </div>
-            </div>
+            </footer>
         </div>
-    </div>
-    <script type="text/javascript" src="https://jquerywidget.com/public/script/jquery.min.js"></script>
-    <script type="text/javascript" src="https://jquerywidget.com/code/jquery.headroom.js"></script>
-    <script type="text/javascript">
-        $('.mod-menu').headroom({ autoHide: false, scrollOffset: 10, background: 'transparent', autoFixed: false });
-        // 底部滚动
-        (function () {
-            let timer = null;
-            let $gotop = document.querySelector('.mod-fixedbar .gotop');
-            $gotop.addEventListener('click', function () {
-                cancelAnimationFrame(timer);
-                let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-                let move = scrollTop / 18;
-                timer = requestAnimationFrame(function fn() {
-                    var oTop = document.body.scrollTop || document.documentElement.scrollTop;
-                    if (oTop > 0) {
-                        document.body.scrollTop = document.documentElement.scrollTop = oTop - move;
-                        timer = requestAnimationFrame(fn);
-                    } else {
-                        cancelAnimationFrame(timer);
+        <script type="text/javascript" src="https://jquerywidget.com/public/script/jquery.min.js"></script>
+        <script type="text/javascript">
+            const $window = $(window);
+            const $mod_menu = $('.mod-menu');
+            const $mod_panel = $('.mod-panel');
+            const $scrollElement = $('html,body');
+            $mod_menu.on('click','a',function(){
+                const $this = $(this);
+                const hash = $this.attr('href');
+                $mod_menu.find('a').removeClass('active');
+                $this.addClass('active');
+                const top = $(hash).offset().top - 80;
+                $scrollElement.animate({
+                    scrollTop: top
+                }, 500);
+                return false;
+            });
+            const formatScroll = function(){
+                if($scrollElement.is(':animated')){
+                    return false;
+                }
+                const scrollTop = $window.scrollTop();
+                let hash = '';
+                $mod_panel.each(function(){
+                    const $this = $(this);
+                    const top = $this.offset().top - 80;
+                    if(scrollTop>=top){
+                        hash = $this.attr('id');
                     }
                 });
-            });
-        })();
-    </script>
-    <script async defer src="https://cdn.bootcdn.net/ajax/libs/github-buttons/2.21.1/buttons.min.js"></script>
-    <script type="text/javascript" src="https://passer-by.com/public/script/stat.js"></script>
-</body>
+                $mod_menu.find('a').removeClass('active');
+                if(hash){
+                    $mod_menu.find('a').filter(`[href="#${hash}"]`).addClass('active');
+                }
+            };
+            $window.on('scroll',formatScroll);
+        </script>
+        <script async defer src="https://cdn.bootcdn.net/ajax/libs/github-buttons/2.21.1/buttons.min.js"></script>
+        <script type="text/javascript" src="https://passer-by.com/static/script/common.js"></script>
+        <script type="text/javascript" src="https://passer-by.com/static/script/stat.js"></script>
+    </body>
 </html>
