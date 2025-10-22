@@ -169,8 +169,10 @@
     word-break: break-all;
     word-wrap: break-word;
 }
+.mod-panel .bd .table-outer{
+    margin-bottom: 15px;
+}
 .mod-panel .bd .table-inner{
-    margin: 15px 0;
     overflow-x: auto;
 }
 .mod-panel .bd table{
@@ -188,7 +190,6 @@
     padding: 6px 12px;
     border: 1px solid #e1e6ea;
     line-height: 24px;
-    white-space: nowrap;
 }
 .mod-panel .bd td.th{
     background: #f6f8fa;
@@ -523,6 +524,9 @@
 
     .mod-panel .bd{
         padding: 15px 10px;
+    }
+    .mod-panel .bd th,.mod-panel .bd td{
+        white-space: nowrap;
     }
     .mod-panel .bd input[type="text"]{
         width: 200px;
