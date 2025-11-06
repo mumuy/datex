@@ -95,6 +95,7 @@ export default [
     "America/Cayman",
     "America/Chicago",
     "America/Chihuahua",
+    "America/Ciudad_Juarez",
     "America/Coral_Harbour",
     "America/Cordoba",
     "America/Costa_Rica",
