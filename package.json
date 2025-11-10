@@ -1,6 +1,6 @@
 {
     "name": "datex.js",
-    "version": "1.0.24",
+    "version": "1.0.26",
     "description": "a datetime format library",
     "author": "HaoLe Zheng",
     "license": "MIT",
@@ -49,5 +49,7 @@
     "homepage": "https://passer-by.com/datex/",
     "directories": {
         "test": "test"
+    },
+    "dependencies": {
     }
 }

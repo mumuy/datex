@@ -85,9 +85,9 @@ class duration{
                     let source_month = 12*(source.get('year')-1)+source.get('month');
                     let target_month = 12*(target.get('year')-1)+target.get('month');
                     value = source_month - target_month;
-                    if(value<0&&source.get('day')>target.get('day')){
+                    if(value<0&&(source.get('day')>target.get('day')||source.get('day')==target.get('day')&&source.get('hour')>target.get('hour'))){
                         value+=1;
-                    }else if(value>0&&source.get('day')<target.get('day')){
+                    }else if(value>0&&(source.get('day')<target.get('day')||source.get('day')==target.get('day')&&source.get('hour')<target.get('hour'))){
                         value-=1;
                     }
                 }else if(unit=='year'){
