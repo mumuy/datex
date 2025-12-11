@@ -46,7 +46,19 @@ export default function(datex,proto){
         'Pacific/Enderbury':'Pacific/Kanton',                   // 基里巴斯时区更新（2017年）
     };
     // 新标准 -> 旧标准
-    const timezoneOldMap = {};
+    const timezoneOldMap = {
+        'America/Coyhaique':'America/Santiago',                 // 地理标识拆分（2025年）
+        'Arctic/Longyearbyen':'Europe/Oslo',                    // 独立标识北极（2024年）
+        'Asia/Pontianak':'Asia/Jakarta',                        // 原共享时区，因地理行政需求独立标识（2023年）
+        'Africa/Juba':'Africa/Khartoum',                        // 南苏丹独立（2022年）
+        'America/St_Barthelemy':'America/Puerto_Rico',          // 独立标识加勒比小众地区（2021年）
+        'Europe/Kaliningrad':'Europe/Moscow',                   // 加里宁格勒时区规则调整（2020年）
+        'Asia/Yangon':'Asia/Rangoon',                           // 恢复独立条目（曾合并至Asia/Rangoon）（2019年）
+        'America/Marigot':'America/Guadeloupe',                 // 独立标识（2018年）
+        'Asia/Qostana':'Asia/Novosibirsk',                      // 适配哈萨克斯坦时区调整（UTC+5 无夏令时）(2017年)
+        'Africa/El_Aaiun':'Africa/Casablanca',                  // 独立标识（2016年）
+        'America/Rankin_Inlet':'America/Winnipeg',              // 拆分，适配加拿大北部时区微调（2015年）
+    };
     Object.entries(timezoneStrictMap).forEach(function([oldKey,newKey]){
         timezoneOldMap[newKey] = oldKey;
     });
