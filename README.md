@@ -8,7 +8,7 @@ npm install datex.js
 
 【世界时-中文】[https://jidianzhong.com](https://jidianzhong.com)
 
-【世界时-英文】[https://timezonelist.com/](https://timezonelist.com/)
+【世界时-英文】[https://timezonelist.com](https://timezonelist.com)
 
 # datex方法说明
 
