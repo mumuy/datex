@@ -3,7 +3,7 @@
 */
 import en_us from './locale/en-us.js';
 import zh_cn from './locale/zh-cn.js';
-import zh_hk from './locale/zh-cn.js';
+import zh_hk from './locale/zh-hk.js';
 import {isString} from './utils/type.js';
 
 export default function(datex,proto){
