@@ -1,4 +1,4 @@
-import globalThis from "./glocalThis.js";
+import globalThis from "./globalThis.js";
 
 if (!globalThis.structuredClone) {
     globalThis.structuredClone = function (value, options = {}) {
