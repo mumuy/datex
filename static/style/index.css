@@ -109,6 +109,12 @@
 .mod-poster .btn-orange:hover{
 	background: #e18309;
 }
+.mod-poster .btn-purple{
+    background: #5c79fa;
+}
+.mod-poster .btn-purple:hover{
+    background: #5268c7;
+}
 
 .mod-panel{
     margin-bottom: 25px;
