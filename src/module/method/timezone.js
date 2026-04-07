@@ -5,7 +5,8 @@ import allTimezones from './data/timezone.js';
 import {isNumber,isDate} from './utils/type.js';
 
 export default function(datex,proto){
-    let _timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const _local_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    let _timezone = _local_timezone;
     let _offset = 0;
 
     // 时区支持
@@ -137,6 +138,12 @@ export default function(datex,proto){
             _offset = getTimezoneOffset(_referDate,_timezone);
             return this;
         },
+        utc(...param){
+            return datex().switchTimezone('UTC').parse(...param);
+        },
+        local(){
+            return this.switchTimezone(_local_timezone);
+        },
         getTimezoneOffset(){
             return (new Date).getTimezoneOffset() - _offset/60000;
         },
@@ -153,6 +160,12 @@ export default function(datex,proto){
             let referDate = this._date||_referDate;
             this._offset = getTimezoneOffset(referDate,this._timezone);
             return this;
+        },
+        utc(...param){
+            return datex().switchTimezone('UTC').parse(...param);
+        },
+        local(){
+            return this.switchTimezone(_local_timezone);
         },
         getTimezoneOffset(){
             return this._date.getTimezoneOffset() - this._offset/60000;

@@ -302,25 +302,37 @@
                                     <li>
                                         <a href="#switchTimezone">
                                             <span class="title">切换时区</span>
-                                            <span class="subtitle">switchTimezone(timezone)</span>
+                                            <span class="subtitle">switchTimezone()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#utc">
+                                            <span class="title">切换UTC时区</span>
+                                            <span class="subtitle">utc()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#local">
+                                            <span class="title">切换本地时区</span>
+                                            <span class="subtitle">local()</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#setLanguage">
                                             <span class="title">设置语言包</span>
-                                            <span class="subtitle">setLanguage(lang,data)</span>
+                                            <span class="subtitle">setLanguage()</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#getLanguage">
                                             <span class="title">获取语言包</span>
-                                            <span class="subtitle">getLanguage(lang)</span>
+                                            <span class="subtitle">getLanguage()</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#switchLanguage">
                                             <span class="title">切换语言包</span>
-                                            <span class="subtitle">switchLanguage(lang)</span>
+                                            <span class="subtitle">switchLanguage()</span>
                                         </a>
                                     </li>
                                     <li>
@@ -370,7 +382,7 @@
                         <section id="parse" class="mod-panel">
                             <div class="hd">
                                 <h3 class="title">解析</h3>
-                                <p class="subtitle">parse()</p>
+                                <p class="subtitle">parse(timeStr)</p>
                             </div>
                             <div class="bd">
                                 <p>日期解析方法，和工厂函数datex()调用方式保持一致，可用于切换时区后初始化</p>
@@ -1485,6 +1497,32 @@
                                 <br/>
                                 <p>实例设置</p>
                                 <p>运行：datex().switchTimezone('Asia/Tokyo')</p>
+                            </div>
+                        </section>
+                        <section id="utc" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">切换UTC时区</h3>
+                                <p class="subtitle">utc(timeStr)</p>
+                            </div>
+                            <div class="bd">
+                                <p>全局设置</p>
+                                <p>运行：datex.utc('2025-10-01 00:00')</p>
+                                <br/>
+                                <p>实例设置</p>
+                                <p>运行：datex().utc('2025-10-01 00:00')</p>
+                            </div>
+                        </section>
+                        <section id="local" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">切换本地时区</h3>
+                                <p class="subtitle">local</p>
+                            </div>
+                            <div class="bd">
+                                <p>全局设置</p>
+                                <p>运行：datex.utc('2025-10-01 00:00').local().format()</p>
+                                <br/>
+                                <p>实例设置</p>
+                                <p>运行：datex().utc('2025-10-01 00:00').local().format()</p>
                             </div>
                         </section>
                         <section id="setLanguage" class="mod-panel">
