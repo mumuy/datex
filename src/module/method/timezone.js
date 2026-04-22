@@ -2,12 +2,13 @@
  * 时区设置
 */
 import allTimezones from './data/timezone.js';
-import {isNumber,isDate} from './utils/type.js';
+import {isString,isZonedDateTime} from './utils/type.js';
 
 export default function(datex,proto){
     const _local_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let _timezone = _local_timezone;
     let _offset = 0;
+    const isSupportTemporal = typeof Temporal !== 'undefined';
 
     // 时区支持
     const supportedTimezones = (typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[]);
@@ -64,15 +65,16 @@ export default function(datex,proto){
         timezoneOldMap[newKey] = oldKey;
     });
 
-    const convertTimeZone = (date, timezone) => {
+    // 获取时区时间差
+    const getTimezoneOffset = function(timezone){
+        const now = new Date();
+        // 时区名称映射
         if(!isSupportedTimezone(timezone)){
             if(timezoneOldMap[timezone]){
                 timezone = timezoneOldMap[timezone];
             }
         }
-        return new Date(date.toLocaleString('en-US', { timeZone:timezone }));
-    };
-    const getTimezoneOffset = function(referDate,timezone){
+        // 兼容 UTC+8:00 时区表示
         let match = timezone.replace(/\s/g,'').match(/(GMT|UTC)(\+|\-)?(\d{1,2})(\.|:)(\d{1,2})/);
         if(match){
             let [all,code,symbol,value,separator,subValue] = match;
@@ -85,9 +87,13 @@ export default function(datex,proto){
             if(symbol=='+'||!symbol){
                 offset = -offset;
             }
-            return (referDate.getTimezoneOffset()-offset)*60000;
-        }else{
-            let offset =  convertTimeZone(referDate,timezone).getTime() - referDate.getTime();
+            return (now.getTimezoneOffset()-offset)*60000;
+        }else if(isSupportTemporal&&Temporal?.ZonedDateTime){       // Temportal 时区切换
+            const zonedDateTime = Temporal.Now.zonedDateTimeISO();
+            return (zonedDateTime.withTimeZone(timezone).offsetNanoseconds - zonedDateTime.offsetNanoseconds)/1000000;
+        }else{                                   // toLocaleString 时区切换
+            const reffer = new Date(now.toLocaleString('en-US', { timeZone:timezone }));
+            let offset =  reffer.getTime() - now.getTime();
             offset = Math.ceil(offset/60000)*60000;
             return offset;
         }
@@ -117,8 +123,6 @@ export default function(datex,proto){
         }
     };
 
-    let _referDate = new Date();
-
     Object.assign(datex,{
         isSupportedTimezone:function(timezone){
             let isSupported = isSupportedTimezone(timezone);
@@ -135,7 +139,7 @@ export default function(datex,proto){
         },
         switchTimezone(timeZone){
             _timezone = timeZone;
-            _offset = getTimezoneOffset(_referDate,_timezone);
+            _offset = getTimezoneOffset(_timezone);
             return this;
         },
         utc(...param){
@@ -157,8 +161,7 @@ export default function(datex,proto){
         _offset:0,
         switchTimezone(timezone){
             this._timezone = timezone;
-            let referDate = this._date||_referDate;
-            this._offset = getTimezoneOffset(referDate,this._timezone);
+            this._offset = getTimezoneOffset(this._timezone);
             return this;
         },
         utc(...param){
@@ -178,17 +181,39 @@ export default function(datex,proto){
                 this.getTimezoneOffset()<this.clone().set('month',1).getTimezoneOffset()||
                 this.getTimezoneOffset()<this.clone().set('month',6).getTimezoneOffset()
             );
+        },
+        toZonedDateTime(){
+            return isSupportTemporal?new Temporal.ZonedDateTime(BigInt(this.getTime()*1000000), this._timezone):null;
         }
     });
 
     proto.onInit(function(...argu){
         this._timezone = _timezone;
         this._offset = _offset;
-        if(argu.length&&argu[0]){
-            if(isDate(argu[0])){
-            }else if(argu[0] instanceof datex){
-            }else if(argu.length==1&&isNumber(argu[0])){
-            }else if(_offset){
+        let param = argu.slice(0);
+        if(param.length&&param[0]){
+            if(param.length==1&&isSupportTemporal ){
+                const now = Temporal.Now.zonedDateTimeISO();
+                if(isString(param[0])){
+                    let matchs = param[0].match(/(\d{1,4})[\-\/](\d{1,2})[\-\/](\d{1,2})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,9}))?)?([+-]\d{2}:\d{2})\[[a-zA-Z\-\/_]+\]/);
+                    if(matchs&&Temporal?.ZonedDateTime){
+                        const zonedDateTime = Temporal.ZonedDateTime.from(param[0]);
+                        this._date = new Date(zonedDateTime.epochMilliseconds);
+                        this._timezone = zonedDateTime.timeZoneId;
+                        this._offset = (zonedDateTime.offsetNanoseconds - now.offsetNanoseconds)/1000000;
+                        return this;
+                    }                   
+                }else if(isZonedDateTime(param[0])){
+                    const zonedDateTime = param[0];
+                    this._date = new Date(zonedDateTime.epochMilliseconds);
+                    this._timezone = zonedDateTime.timeZoneId;
+                    this._offset = (zonedDateTime.offsetNanoseconds - now.offsetNanoseconds)/1000000;
+                    return this;
+                }
+            }
+        }
+        if(this.isValid()){
+            if(_offset){
                 this._date.setTime(this._date.getTime()-_offset);
             }
         }
@@ -211,8 +236,7 @@ export default function(datex,proto){
             // 基于指定时区，修改参数
             let that = set.bind(this)(...argu);
             // 恢复系统时间为参照
-            let referDate = that._date||_referDate;
-            that._offset = getTimezoneOffset(referDate,that._timezone);
+            that._offset = getTimezoneOffset(that._timezone);
             timestamp = that._date.getTime();
             that._date.setTime(timestamp-that._offset);
             return that;

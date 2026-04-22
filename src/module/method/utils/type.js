@@ -21,3 +21,7 @@ export function isFunction(value){
 export function isDate(value){
     return (value instanceof Date);
 }
+
+export function isZonedDateTime(value){
+    return value instanceof Temporal.ZonedDateTime;
+}

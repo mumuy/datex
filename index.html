@@ -138,6 +138,12 @@
                                         </a>
                                     </li>
                                     <li>
+                                        <a href="#toZonedDateTime">
+                                            <span class="title">返回原生ZonedDateTime对象</span>
+                                            <span class="subtitle">toZonedDateTime()</span>
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="#toObject">
                                             <span class="title">返回时间字段对象</span>
                                             <span class="subtitle">toObject()</span>
@@ -359,6 +365,7 @@
                                 <p>运行：datex('2018-08-08')</p>
                                 <p>运行：datex('20180808')</p>
                                 <p>运行：datex('2018-04-04T16:00:00.000Z')</p>
+                                <p>运行：datex('2026-04-23T00:00:00.000+09:00[Asia/Tokyo]')</p>
                                 <br>
                                 <p>通过自定义格式初始化</p>
                                 <p>运行：datex('2018年4月3号','YYYY年MM月DD号')</p>
@@ -601,6 +608,16 @@
                             <div class="bd">
                                 <p>运行：datex().toDate()</p>
                                 <p>返回：Sun Dec 11 2022 22:20:20 GMT+0800 (中国标准时间)</p>
+                            </div>
+                        </section>
+                        <section id="toZonedDateTime" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回原生ZonedDateTime对象</h3>
+                                <p class="subtitle">toZonedDateTime()</p>
+                            </div>
+                            <div class="bd">
+                                <p>运行：datex().toZonedDateTime()</p>
+                                <p>返回：ZonedDateTime{imeZoneId: 'Asia/Shanghai', calendarId: 'iso8601'...}</p>
                             </div>
                         </section>
                         <section id="toObject" class="mod-panel">

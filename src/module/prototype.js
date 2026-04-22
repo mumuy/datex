@@ -6,6 +6,7 @@ let taskQueue = [];
 export default {
     _date:null,
     _offset:0,
+    _timezone:'',
     parse:function(...argu){
         let param = argu.slice(0);
         if(param.length&&param[0]){
