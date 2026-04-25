@@ -14,6 +14,6 @@ test('[Test]', function (t) {
     t.deepEqual(datex(2008,8,8,23,45,45).get('hour'),23);
     t.deepEqual(datex('1949-10-01').diffWith('2022-12-01','month'),-878);
     t.deepEqual(datex.duration({'day':1,'hour':2,'minute':3}).format('HH:mm:ss'),'26:03:00');
-    t.deepEqual(datex().switchTimezone('Asia/Tokyo').parse('2026-01-1 00:00:00').switchTimezone('America/New_York').format(),'2025-12-31 10:00:00');
+    t.deepEqual(datex().switchTimezone('Asia/Tokyo').parse('2026-01-01 00:00:00').switchTimezone('America/New_York').format(),'2025-12-31 10:00:00');
     t.end();
 });
