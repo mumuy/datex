@@ -2,7 +2,7 @@
  * 时区设置
 */
 import allTimezones from './data/timezone.js';
-import {isString,isZonedDateTime} from './utils/type.js';
+import {isObject,isString,isZonedDateTime} from './utils/type.js';
 
 export default function(datex,proto){
     const _local_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -192,30 +192,38 @@ export default function(datex,proto){
     proto.onInit(function(...argu){
         this._timezone = _timezone;
         this._offset = _offset;
-        let param = argu.slice(0);
-        if(param.length&&param[0]){
-            if(param.length==1&&isSupportTemporal ){
-                if(isString(param[0])){
-                    let matchs = param[0].match(/(\d{1,4})[\-\/](\d{1,2})[\-\/](\d{1,2})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,9}))?)?([+-]\d{2}:\d{2})\[[a-zA-Z\-\/_]+\]/);
-                    if(matchs&&Temporal?.ZonedDateTime){
-                        const zonedDateTime = Temporal.ZonedDateTime.from(param[0]);
+        let params = argu.slice(0);
+        if(params.length&&params[0]){
+            if(params.length==1){
+                if(isSupportTemporal){
+                    if(isString(params[0])){
+                        let matchs = params[0].match(/(\d{1,4})[\-\/](\d{1,2})[\-\/](\d{1,2})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,9}))?)?([+-]\d{2}:\d{2})\[[a-zA-Z\-\/_]+\]/);
+                        if(matchs&&Temporal?.ZonedDateTime){
+                            const zonedDateTime = Temporal.ZonedDateTime.from(params[0]);
+                            this._date = new Date(zonedDateTime.epochMilliseconds);
+                            this._timezone = zonedDateTime.timeZoneId;
+                            this._offset = (zonedDateTime.offsetNanoseconds - zonedDateTime.withTimeZone(_local_timezone).offsetNanoseconds)/1000000;
+                            return this;
+                        }
+                    }else if(isZonedDateTime(params[0])){
+                        const zonedDateTime = params[0];
                         this._date = new Date(zonedDateTime.epochMilliseconds);
                         this._timezone = zonedDateTime.timeZoneId;
                         this._offset = (zonedDateTime.offsetNanoseconds - zonedDateTime.withTimeZone(_local_timezone).offsetNanoseconds)/1000000;
                         return this;
-                    }                   
-                }else if(isZonedDateTime(param[0])){
-                    const zonedDateTime = param[0];
-                    this._date = new Date(zonedDateTime.epochMilliseconds);
-                    this._timezone = zonedDateTime.timeZoneId;
-                    this._offset = (zonedDateTime.offsetNanoseconds - zonedDateTime.withTimeZone(_local_timezone).offsetNanoseconds)/1000000;
-                    return this;
+                    }
+                }
+                if(isObject(params[0])){
+                    if(params[0].timezone){
+                        this._timezone = params[0].timezone;
+                        this._offset = getTimezoneOffset(_referDate,this._timezone);
+                    }
                 }
             }
         }
         if(this.isValid()){
-            if(_offset){
-                this._date.setTime(this._date.getTime()-_offset);
+            if(this._offset){
+                this._date.setTime(this._date.getTime()-this._offset);
             }
         }
     });
@@ -227,8 +235,12 @@ export default function(datex,proto){
         // 此方法重写 toObject,toArray,set,change,get,format 等方法的时间显示
         toObject(){
             let that = this.clone();
+            const timestamp = that.getTime();
             that._date.setTime(that._date.getTime()+that._offset);
-            return toObject.bind(that)();
+            const temp = toObject.bind(that)();
+            temp['timezone'] = this._timezone;
+            temp['timestamp'] = timestamp;
+            return temp;
         },
         set(...argu){
             // 设置指定时区为参照
