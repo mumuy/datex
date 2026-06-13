@@ -66,8 +66,12 @@ class duration{
     change(unit,value){
         let _ = this;
         if(_.#source&&_.#target){
-            _.#source.change(unit,value);
-            _.value = _.#source.getTime() - _.#target.getTime();
+            let source = _.#source.clone();
+            let target = _.#target.clone();
+            source = source.change(unit,value);
+            _.value = source.getTime() - target.getTime();
+            _.#source = source;
+            _.#target = target;
         }else if(periodMap[unit]){
             _.value += periodMap[unit]*value;
         }
