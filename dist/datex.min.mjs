@@ -1,5 +1,5 @@
 /*!
- * datex.js v1.0.31
+ * datex.js v1.0.32
  * a datetime format library
  * https://passer-by.com/datex/
  *
