@@ -234,24 +234,27 @@ export default function(datex,proto){
     Object.assign(proto,{
         // 此方法重写 toObject,toArray,set,change,get,format 等方法的时间显示
         toObject(){
+            const timestamp = this.getTime();
             let that = this.clone();
-            const timestamp = that.getTime();
-            that._date.setTime(that._date.getTime()+that._offset);
+            that._date.setTime(timestamp+that._offset);
             const temp = toObject.bind(that)();
             temp['timezone'] = this._timezone;
             temp['timestamp'] = timestamp;
             return temp;
         },
-        set(...argu){
-            // 设置指定时区为参照
-            let timestamp = this._date.getTime();
-            this._date.setTime(timestamp+this._offset);
-            // 基于指定时区，修改参数
-            let that = set.bind(this)(...argu);
-            const referDate = that._date||_referDate;
-            that._offset = getTimezoneOffset(referDate,that._timezone);
-            timestamp = that._date.getTime();
-            that._date.setTime(timestamp-that._offset);
+        set(unit,value){
+            const timestamp = this.getTime();
+            let that = this.clone();
+            if(unit!='timestamp'){   // 只计算设过程中的差异量
+                const that_timestamp = timestamp+this._offset;
+                that._date.setTime(that_timestamp);
+                that = set.bind(that)(unit,value);
+                const duration = that.getTime() - that_timestamp;
+                that._date.setTime(timestamp + duration);
+            }else{
+                that = set.bind(that)(unit,value);
+            }
+            that._offset = getTimezoneOffset(that._date,that._timezone);
             return that;
         }
     });
