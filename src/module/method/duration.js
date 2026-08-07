@@ -46,8 +46,15 @@ class duration{
             let source = _.#source.clone();
             let target = _.#target.clone();
             keys.forEach(function(unit){
+                const value = _.value;
                 $[unit] = _.get(unit);
                 _.change(unit,-$[unit]);
+                if(_.value<0){ // 如果不够减，恢复
+                    $[unit] = 0;
+                    _.value = value;
+                    _.#source = source;
+                    _.#target = target;
+                }
             });
             _.value = timevalue;
             _.#source = source;
