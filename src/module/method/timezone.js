@@ -8,7 +8,6 @@ export default function(datex,proto){
     const _local_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let _timezone = _local_timezone;
     let _offset = 0;
-    let _referDate = new Date();
     const isSupportTemporal = typeof Temporal !== 'undefined';
 
     // 时区支持
@@ -139,7 +138,7 @@ export default function(datex,proto){
         },
         switchTimezone(timeZone){
             _timezone = timeZone;
-            _offset = getTimezoneOffset(_referDate,_timezone);
+            _offset = getTimezoneOffset(new Date(),_timezone);
             return this;
         },
         utc(...param){
@@ -162,7 +161,7 @@ export default function(datex,proto){
         switchTimezone(timezone){
             this._timezone = timezone;
             // 恢复系统时间为参照
-            let referDate = this._date||_referDate;
+            let referDate = this._date||new Date();
             this._offset = getTimezoneOffset(referDate,this._timezone);
             return this;
         },
@@ -185,7 +184,7 @@ export default function(datex,proto){
             );
         },
         toZonedDateTime(){
-            return isSupportTemporal?new Temporal.ZonedDateTime(BigInt(this.getTime()*1000000), this._timezone):null;
+            return isSupportTemporal?new Temporal.ZonedDateTime(BigInt(this.getTime()*1000000n), this._timezone):null;
         }
     });
 
@@ -216,7 +215,7 @@ export default function(datex,proto){
                 if(isObject(params[0])){
                     if(params[0].timezone){
                         this._timezone = params[0].timezone;
-                        this._offset = getTimezoneOffset(_referDate,this._timezone);
+                        this._offset = getTimezoneOffset(new Date(),this._timezone);
                     }
                 }
             }

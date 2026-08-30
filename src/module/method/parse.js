@@ -6,9 +6,8 @@ import {isString} from './utils/type.js';
 
 export default function(datex,proto){
 
-    let languageMap= datex.getLanguage();
-
     let customParseFormat = function(formatStr,pattern){
+        let languageMap= datex.getLanguage();
         let keyList = [];
         let patternStr = pattern.replace(/Y+|M+|Do|D+|H+|h+|m+|s+|S+|Z+|A|a|X|x|Q|W+/g,function(sign,index){
             if(languageMap['format'][sign]){
@@ -42,10 +41,10 @@ export default function(datex,proto){
                 return '(am|pm)';
             }else if(sign=='X'){
                 keyList.push('timestamp');
-                return '(\d+)';
+                return '(\\d+)';
             }else if(sign=='x'){
                 keyList.push('unix');
-                return '(\d+)';
+                return '(\\d+)';
             }
             return sign;
         });
@@ -57,6 +56,17 @@ export default function(datex,proto){
                 keyMap[unit] = value;
             });
         }
+        // 将命名月份/序数日映射回数字（'Oct'→10, '1st'→1）
+        if(keyMap['month']&&isNaN(+keyMap['month'])){
+            let idx = languageMap['format']['MMMM'].indexOf(keyMap['month']);
+            if(idx==-1){
+                idx = languageMap['format']['MMM'].indexOf(keyMap['month']);
+            }
+            keyMap['month'] = idx+1;
+        }
+        if(keyMap['day']&&isNaN(+keyMap['day'])){
+            keyMap['day'] = languageMap['format']['Do'].indexOf(keyMap['day'])+1;
+        }
         let $ = {};
         periodKey.forEach(function(unit){
             if(+keyMap[unit]){
@@ -64,14 +74,14 @@ export default function(datex,proto){
             }
         });
         if(keyMap['hour_12']){
-            $['hour'] = +keyMap['hour_12'];
+            $['hour'] = +keyMap['hour_12']%12;  // 12AM→0, 12PM→12
             if(keyMap['am_pm']&&['PM','pm'].includes(keyMap['am_pm'])){
                 $['hour'] += 12;
             }
         }else if(keyMap['timestamp']){
-            $ = datex(keyMap['timestamp']).toObject();
+            $ = datex(+keyMap['timestamp']).toObject();
         }else if(keyMap['unix']){
-            $ = datex(keyMap['unix']*1000).toObject();
+            $ = datex(+keyMap['unix']*1000).toObject();
         }
         return $;
     };
