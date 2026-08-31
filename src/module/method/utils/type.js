@@ -23,5 +23,5 @@ export function isDate(value){
 }
 
 export function isZonedDateTime(value){
-    return value instanceof Temporal.ZonedDateTime;
+    return typeof Temporal !== 'undefined' && value instanceof Temporal.ZonedDateTime;
 }

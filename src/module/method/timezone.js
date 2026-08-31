@@ -8,7 +8,6 @@ export default function(datex,proto){
     const _local_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let _timezone = _local_timezone;
     let _offset = 0;
-    let _referDate = new Date();
     const isSupportTemporal = typeof Temporal !== 'undefined';
 
     // 时区支持
@@ -139,7 +138,7 @@ export default function(datex,proto){
         },
         switchTimezone(timeZone){
             _timezone = timeZone;
-            _offset = getTimezoneOffset(_referDate,_timezone);
+            _offset = getTimezoneOffset(new Date(),_timezone);
             return this;
         },
         utc(...param){
@@ -162,7 +161,7 @@ export default function(datex,proto){
         switchTimezone(timezone){
             this._timezone = timezone;
             // 恢复系统时间为参照
-            let referDate = this._date||_referDate;
+            let referDate = this._date||new Date();
             this._offset = getTimezoneOffset(referDate,this._timezone);
             return this;
         },
@@ -185,7 +184,7 @@ export default function(datex,proto){
             );
         },
         toZonedDateTime(){
-            return isSupportTemporal?new Temporal.ZonedDateTime(BigInt(this.getTime()*1000000), this._timezone):null;
+            return isSupportTemporal?new Temporal.ZonedDateTime(BigInt(this.getTime()*1000000n), this._timezone):null;
         }
     });
 
@@ -216,7 +215,7 @@ export default function(datex,proto){
                 if(isObject(params[0])){
                     if(params[0].timezone){
                         this._timezone = params[0].timezone;
-                        this._offset = getTimezoneOffset(_referDate,this._timezone);
+                        this._offset = getTimezoneOffset(new Date(),this._timezone);
                     }
                 }
             }
@@ -234,24 +233,27 @@ export default function(datex,proto){
     Object.assign(proto,{
         // 此方法重写 toObject,toArray,set,change,get,format 等方法的时间显示
         toObject(){
+            const timestamp = this.getTime();
             let that = this.clone();
-            const timestamp = that.getTime();
-            that._date.setTime(that._date.getTime()+that._offset);
+            that._date.setTime(timestamp+that._offset);
             const temp = toObject.bind(that)();
             temp['timezone'] = this._timezone;
             temp['timestamp'] = timestamp;
             return temp;
         },
-        set(...argu){
-            // 设置指定时区为参照
-            let timestamp = this._date.getTime();
-            this._date.setTime(timestamp+this._offset);
-            // 基于指定时区，修改参数
-            let that = set.bind(this)(...argu);
-            const referDate = that._date||_referDate;
-            that._offset = getTimezoneOffset(referDate,that._timezone);
-            timestamp = that._date.getTime();
-            that._date.setTime(timestamp-that._offset);
+        set(unit,value){
+            const timestamp = this.getTime();
+            let that = this.clone();
+            if(unit!='timestamp'){   // 只计算设过程中的差异量
+                const that_timestamp = timestamp+this._offset;
+                that._date.setTime(that_timestamp);
+                that = set.bind(that)(unit,value);
+                const duration = that.getTime() - that_timestamp;
+                that._date.setTime(timestamp + duration);
+            }else{
+                that = set.bind(that)(unit,value);
+            }
+            that._offset = getTimezoneOffset(that._date,that._timezone);
             return that;
         }
     });

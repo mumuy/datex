@@ -8,7 +8,7 @@ export default {
     _offset:0,
     parse:function(...argu){
         let param = argu.slice(0);
-        if(param.length&&param[0]){
+        if(param.length&&(param[0]||param[0]===0)){
             if(Object.getPrototypeOf(param[0])==Object.getPrototypeOf(this)){
                 this._date = param[0].toDate();
                 return param[0];
@@ -17,9 +17,9 @@ export default {
             }else{
                 // 参数映射
                 if(isArray(param[0])){
-                    param = periodValue.map((value,index)=>(param[0][index]||value));
+                    param = periodValue.map((value,index)=>(param[0][index]!=null?param[0][index]:value));
                 }else if(isObject(param[0])){
-                    param = periodValue.map((value,index)=>(param[0][periodKey[index]]||value));
+                    param = periodValue.map((value,index)=>(param[0][periodKey[index]]!=null?param[0][periodKey[index]]:value));
                 }
                 if(param.length==1&&isString(param[0])){
                     let matchs1 = param[0].match(/(\d{1,4})[\-\/](\d{1,2})[\-\/](\d{1,2})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,3}))?)?/);
@@ -43,10 +43,22 @@ export default {
                 if(param.length>=3){
                     param[1]--;
                 }
-                // 初始化
-                this._date = new Date(...param);
-                if(param.length>=2&&isNumber(param[0])&&param[0]<100){
-                    this._date.setFullYear(param[0]);
+                // 字符串输入做字段范围校验（month 1-12, day 1-31, hour 0-23, minute/second 0-59）
+                const isInvalid = isString(argu[0])&&(
+                    (param[1]<0||param[1]>11)||
+                    (param[2]<1||param[2]>31)||
+                    (param[3]<0||param[3]>23)||
+                    (param[4]<0||param[4]>59)||
+                    (param[5]<0||param[5]>59)
+                );
+                if(isInvalid){
+                    this._date = new Date(''); // 无效输入，置 Invalid Date
+                }else{
+                    // 初始化
+                    this._date = new Date(...param);
+                    if(param.length>=2&&isNumber(param[0])&&param[0]<100){
+                        this._date.setFullYear(param[0]);
+                    }
                 }
             }
         }else{

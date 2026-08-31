@@ -26,13 +26,21 @@ class duration{
             }else if(isNumber(param[0])){
                 _.value += param[0];
             }else if(isString(param[0])){
-                const [value,sign='+',hour=0,minute=0,second=0] = param[0].match(/([+-])?(\d{1,2}):(\d{1,2}):?(\d{1,2})?/);
-                const item = {hour,minute,second};
-                for(let unit in item){
-                    if(sign=='-'){
-                        _.value -= periodMap[unit]*item[unit];
-                    }else{
-                        _.value += periodMap[unit]*item[unit];
+                const match = param[0].match(/([+-])?(\d{1,2}):(\d{1,2}):?(\d{1,2})?/);
+                if(match){
+                    const [all,sign='+',hour=0,minute=0,second=0] = match;
+                    const item = {hour,minute,second};
+                    for(let unit in item){
+                        if(sign=='-'){
+                            _.value -= periodMap[unit]*item[unit];
+                        }else{
+                            _.value += periodMap[unit]*item[unit];
+                        }
+                    }
+                }else{
+                    const n = Number(param[0]);              // 无冒号的纯数字字符串按毫秒兜底
+                    if(!isNaN(n)){
+                        _.value += n;
                     }
                 }
             }
@@ -46,8 +54,15 @@ class duration{
             let source = _.#source.clone();
             let target = _.#target.clone();
             keys.forEach(function(unit){
+                const value = _.value;
                 $[unit] = _.get(unit);
                 _.change(unit,-$[unit]);
+                if(_.value<0){ // 如果不够减，恢复
+                    $[unit] = 0;
+                    _.value = value;
+                    _.#source = source;
+                    _.#target = target;
+                }
             });
             _.value = timevalue;
             _.#source = source;
@@ -56,7 +71,7 @@ class duration{
             let timevalue = _.value;
             keys.forEach(function(unit){
                 if(periodMap[unit]){
-                    $[unit] = Math.floor(timevalue/periodMap[unit])||0;
+                    $[unit] = Math.trunc(timevalue/periodMap[unit])||0;
                     timevalue = timevalue%periodMap[unit];
                 }
             });
@@ -66,8 +81,12 @@ class duration{
     change(unit,value){
         let _ = this;
         if(_.#source&&_.#target){
-            _.#source.change(unit,value);
-            _.value = _.#source.getTime() - _.#target.getTime();
+            let source = _.#source.clone();
+            let target = _.#target.clone();
+            source = source.change(unit,value);
+            _.value = source.getTime() - target.getTime();
+            _.#source = source;
+            _.#target = target;
         }else if(periodMap[unit]){
             _.value += periodMap[unit]*value;
         }
@@ -102,7 +121,7 @@ class duration{
                 }
                 return value;
             }else if(periodMap[unit]){
-                return Math.floor(_.value/periodMap[unit])||0;
+                return Math.trunc(_.value/periodMap[unit])||0;
             }else {
                 return 0;
             }
@@ -127,25 +146,25 @@ class duration{
                 }
             });
             let $ = _.#getResultByKeys(keys);
+            let isNegative = keys.some(u=>$[u]<0);
             let map = {
-                'Y':''+$.year,
-                'M':''+$.month,
-                'D':''+$.day,
-                'H':''+$.hour,
-                'm':''+$.minute,
-                's':''+$.second,
-                'S':''+$.millsecond,
+                'Y':''+Math.abs($.year),
+                'M':''+Math.abs($.month),
+                'D':''+Math.abs($.day),
+                'H':''+Math.abs($.hour),
+                'm':''+Math.abs($.minute),
+                's':''+Math.abs($.second),
+                'S':''+Math.abs($.millsecond),
             };
-            return pattern.replace(/Y+|M+|D+|H+|m+|s+|S+/g,function(key){
-                if(map[key]){
-                    return map[key];
-                }else if(map[key[0]]){
-                    let isNegative = map[key[0]]<0;
-                    let str = Math.abs(map[key[0]]).toString().padStart(key.length,'0');
-                    return isNegative?'-'+str:str;
+            let str = pattern.replace(/Y+|M+|D+|H+|m+|s+|S+/g,function(key){
+                if(map[key]!==undefined){
+                    return map[key].padStart(key.length,'0');
+                }else if(map[key[0]]!==undefined){
+                    return map[key[0]].padStart(key.length,'0');
                 }
                 return '';
             });
+            return (isNegative?'-':'')+str;
         }else if(isFunction(pattern)){
             return pattern(this.toObject()).toString()||'';
         }
@@ -153,6 +172,7 @@ class duration{
     countdown(callback = function(){},interval=1000){
         let time = this.toObject().value;
         let lasttime = Date.now();
+        const tick = typeof requestAnimationFrame!=='undefined' ? requestAnimationFrame: (fn)=>setTimeout(fn, interval);
         return new Promise((resolve, reject) => {
             const doTask = () => {
                 const timestamp = +(Math.floor(Date.now()/interval) * interval).toFixed(0);
@@ -163,9 +183,10 @@ class duration{
                         callback();
                     }else{
                         resolve();
+                        return;
                     }
                 }
-                requestAnimationFrame(doTask);
+                tick(doTask);
             }
             doTask();
         });
@@ -216,10 +237,11 @@ export default function(datex,proto){
             }
             return result;
         },
-        countdown(callback = function(){},inverval=1000){
-            const period = new duration(inverval).toObject().value;
+        countdown(callback = function(){},interval=1000){
+            const period = new duration(interval).toObject().value;
             const target = this.getTime();
             let lasttime = Date.now();
+            const tick = typeof requestAnimationFrame!=='undefined' ? requestAnimationFrame: (fn)=>setTimeout(fn, interval);
             return new Promise((resolve, reject) => {
                 const doTask = () => {
                     const timestamp = +(Math.floor(Date.now()/period) * period).toFixed(0);
@@ -229,9 +251,10 @@ export default function(datex,proto){
                             callback();
                         }else{              
                             resolve();
+                            return;
                         }
                     }
-                    requestAnimationFrame(doTask);
+                    tick(doTask);
                 };
                 doTask();
             });
