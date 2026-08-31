@@ -22,11 +22,11 @@ const banner = `/*!
 
 const commonPlugins = [
     resolve(),
-    terser(),
     babel({
         babelHelpers: 'runtime',
         exclude:'node_modules/**'
-    })
+    }),
+    terser()
 ];
 
  export default [{
