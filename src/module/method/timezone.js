@@ -184,7 +184,7 @@ export default function(datex,proto){
             );
         },
         toZonedDateTime(){
-            return isSupportTemporal?new Temporal.ZonedDateTime(BigInt(this.getTime()*1000000n), this._timezone):null;
+            return isSupportTemporal?new Temporal.ZonedDateTime(BigInt(this.getTime()*1000000), this._timezone):null;
         }
     });
 
