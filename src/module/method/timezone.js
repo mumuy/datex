@@ -2,16 +2,17 @@
  * 时区设置
 */
 import allTimezones from './data/timezone.js';
-import {isObject,isString,isZonedDateTime} from './utils/type.js';
+import {isObject,isString} from './utils/type.js';
 
 export default function(datex,proto){
-    const _local_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const _local_timezone = typeof Intl!='undefined'?Intl.DateTimeFormat().resolvedOptions().timeZone:'Asia/Shanghai';
     let _timezone = _local_timezone;
     let _offset = 0;
+
     const isSupportTemporal = typeof Temporal !== 'undefined';
 
     // 时区支持
-    const supportedTimezones = (typeof Intl!='undefined'&&Intl.supportedValuesOf?Intl.supportedValuesOf('timeZone'):[]);
+    const supportedTimezones = typeof Intl!='undefined'?Intl.supportedValuesOf('timeZone'):[];
     // 实现 PHP7.4 时区代码向 Javascript 时区代码兼容
     // 时区标准化映射: 旧标准->新标准
     const timezoneStrictMap = {
@@ -175,16 +176,13 @@ export default function(datex,proto){
             return this._date.getTimezoneOffset() - this._offset/60000;
         },
         getTimezone(){
-            return this._timezone;
+            return this._timezone||_timezone;
         },
         isDayLightSavingTime(){
             return (
                 this.getTimezoneOffset()<this.clone().set('month',1).getTimezoneOffset()||
                 this.getTimezoneOffset()<this.clone().set('month',6).getTimezoneOffset()
             );
-        },
-        toZonedDateTime(){
-            return isSupportTemporal?new Temporal.ZonedDateTime(BigInt(this.getTime()*1000000), this._timezone):null;
         }
     });
 
@@ -194,24 +192,6 @@ export default function(datex,proto){
         let params = argu.slice(0);
         if(params.length&&params[0]){
             if(params.length==1){
-                if(isSupportTemporal){
-                    if(isString(params[0])){
-                        let matchs = params[0].match(/(\d{1,4})[\-\/](\d{1,2})[\-\/](\d{1,2})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,9}))?)?([+-]\d{2}:\d{2})\[[a-zA-Z\-\/_]+\]/);
-                        if(matchs&&Temporal?.ZonedDateTime){
-                            const zonedDateTime = Temporal.ZonedDateTime.from(params[0]);
-                            this._date = new Date(zonedDateTime.epochMilliseconds);
-                            this._timezone = zonedDateTime.timeZoneId;
-                            this._offset = (zonedDateTime.offsetNanoseconds - zonedDateTime.withTimeZone(_local_timezone).offsetNanoseconds)/1000000;
-                            return this;
-                        }
-                    }else if(isZonedDateTime(params[0])){
-                        const zonedDateTime = params[0];
-                        this._date = new Date(zonedDateTime.epochMilliseconds);
-                        this._timezone = zonedDateTime.timeZoneId;
-                        this._offset = (zonedDateTime.offsetNanoseconds - zonedDateTime.withTimeZone(_local_timezone).offsetNanoseconds)/1000000;
-                        return this;
-                    }
-                }
                 if(isObject(params[0])){
                     if(params[0].timezone){
                         this._timezone = params[0].timezone;

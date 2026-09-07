@@ -138,9 +138,45 @@
                                         </a>
                                     </li>
                                     <li>
+                                        <a href="#toInstant">
+                                            <span class="title">返回原生Instant对象</span>
+                                            <span class="subtitle">toInstant()</span>
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="#toZonedDateTime">
                                             <span class="title">返回原生ZonedDateTime对象</span>
                                             <span class="subtitle">toZonedDateTime()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#toPlainDateTime">
+                                            <span class="title">返回原生PlainDateTime对象</span>
+                                            <span class="subtitle">toPlainDateTime()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#toPlainDate">
+                                            <span class="title">返回原生PlainDate对象</span>
+                                            <span class="subtitle">toPlainDate()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#toPlainYearMonth">
+                                            <span class="title">返回原生PlainYearMonth对象</span>
+                                            <span class="subtitle">toPlainYearMonth()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#toPlainMonthDay">
+                                            <span class="title">返回原生PlainMonthDay对象</span>
+                                            <span class="subtitle">toPlainMonthDay()</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#toPlainTime">
+                                            <span class="title">返回原生PlainTime对象</span>
+                                            <span class="subtitle">toPlainTime()</span>
                                         </a>
                                     </li>
                                     <li>
@@ -613,6 +649,16 @@
                                 <p>返回：Sun Dec 11 2022 22:20:20 GMT+0800 (中国标准时间)</p>
                             </div>
                         </section>
+                        <section id="toInstant" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回原生Instant对象</h3>
+                                <p class="subtitle">toInstant()</p>
+                            </div>
+                            <div class="bd">
+                                <p>运行：datex().toInstant()</p>
+                                <p>返回：Instant{...}</p>
+                            </div>
+                        </section>
                         <section id="toZonedDateTime" class="mod-panel">
                             <div class="hd">
                                 <h3 class="title">返回原生ZonedDateTime对象</h3>
@@ -620,7 +666,57 @@
                             </div>
                             <div class="bd">
                                 <p>运行：datex().toZonedDateTime()</p>
-                                <p>返回：ZonedDateTime{imeZoneId: 'Asia/Shanghai', calendarId: 'iso8601'...}</p>
+                                <p>返回：ZonedDateTime{}</p>
+                            </div>
+                        </section>
+                        <section id="toPlainDateTime" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回原生PlainDateTime对象</h3>
+                                <p class="subtitle">toPlainDateTime()</p>
+                            </div>
+                            <div class="bd">
+                                <p>运行：datex().toPlainDateTime()</p>
+                                <p>返回：PlainDateTime{...}</p>
+                            </div>
+                        </section>
+                        <section id="toPlainDate" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回原生PlainDate对象</h3>
+                                <p class="subtitle">toPlainDate()</p>
+                            </div>
+                            <div class="bd">
+                                <p>运行：datex().toPlainDate()</p>
+                                <p>返回：PlainDate{...}</p>
+                            </div>
+                        </section>
+                        <section id="toPlainYearMonth" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回原生PlainYearMonth对象</h3>
+                                <p class="subtitle">toPlainYearMonth()</p>
+                            </div>
+                            <div class="bd">
+                                <p>运行：datex().toPlainYearMonth()</p>
+                                <p>返回：PlainYearMonth{...}</p>
+                            </div>
+                        </section>
+                        <section id="toPlainMonthDay" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回原生PlainMonthDay对象</h3>
+                                <p class="subtitle">toPlainMonthDay()</p>
+                            </div>
+                            <div class="bd">
+                                <p>运行：datex().toPlainMonthDay()</p>
+                                <p>返回：PlainMonthDay{...}</p>
+                            </div>
+                        </section>
+                        <section id="toPlainTime" class="mod-panel">
+                            <div class="hd">
+                                <h3 class="title">返回原生PlainTime对象</h3>
+                                <p class="subtitle">toPlainTime()</p>
+                            </div>
+                            <div class="bd">
+                                <p>运行：datex().toPlainTime()</p>
+                                <p>返回：PlainTime{...}</p>
                             </div>
                         </section>
                         <section id="toObject" class="mod-panel">

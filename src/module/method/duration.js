@@ -129,11 +129,11 @@ class duration{
             return _.value;
         }
     }
-    toObject(){
+    toObject(keys = periodKey){
         let _ = this;
         return Object.assign({
             value:_.value
-        },_.#getResultByKeys(periodKey));
+        },_.#getResultByKeys(keys));
     }
     format(pattern = 'YYYY-MM-DD HH:mm:ss'){
         let _ = this
