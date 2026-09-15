@@ -3,6 +3,7 @@ import baseLoader from './module/method/base.js';
 import computeLoader from './module/method/compute.js';
 import compareLoader from './module/method/compare.js';
 import durationLoader from './module/method/duration.js';
+import determineLoader from './module/method/determine.js';
 import languageLoader from './module/method/language.js';
 import timezoneLoader from './module/method/timezone.js';
 import temporalLoader from './module/method/temporal.js';
@@ -14,6 +15,7 @@ import parseLoader from './module/method/parse.js';
     computeLoader,
     compareLoader,
     durationLoader,
+    determineLoader,
     languageLoader,
     timezoneLoader,
     temporalLoader,

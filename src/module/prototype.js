@@ -43,7 +43,7 @@ export default {
                     params[1]--;
                 }
                 // 字符串输入做字段范围校验（month 1-12, day 1-31, hour 0-23, minute/second 0-59）
-                const isInvalid = isString(argu[0])&&(function(){
+                const isInvalid = (function(){
                     const [year = 0, month = 0, day = 0, hour = 0, minute = 0, second = 0, millisecond = 0] = params;
                     const date = new Date(year, month, day, hour, minute, second, millisecond);
                     return (
