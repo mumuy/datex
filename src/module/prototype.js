@@ -19,23 +19,27 @@ export default {
                     params = periodValue.map((value,index)=>(params[0][index]!=null?params[0][index]:value));
                 }else if(isObject(params[0])){
                     params = periodValue.map((value,index)=>(params[0][periodKey[index]]!=null?params[0][periodKey[index]]:value));
-                }
-                if(params.length==1&&isString(params[0])){
-                    let matchs1 = params[0].match(/(\d{1,4})[\-\/](\d{1,2})[\-\/](\d{1,2})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,3}))?)?/);
-                    let matchs2 = params[0].match(/(\d{1,2})[\-\/](\d{1,2})[\-\/](\d{3,4})([\sT](\d{1,2})?:(\d{1,2})?(:(\d{1,2}))?(\.(\d{1,3}))?)?/);
-                    let matchs3 = params[0].match(/^([12]\d{3})(\d{2})(\d{2})(\d{2})?(\d{2})?(\d{2})?(\d{1,3})?/);
-                    if(matchs1&&!matchs2){
-                        params = [1,2,3,5,6,8,10].map(function(i,index){
-                            return +(matchs1[i]||periodValue[index]);
-                        });
-                    }else if(matchs2){
-                        params = [3,1,2,5,6,8,10].map(function(i,index){
-                            return +(matchs2[i]||periodValue[index]);
-                        });
-                    }else if(matchs3){
-                        params = [1,2,3,4,5,6,7].map(function(i,index){
-                            return +(matchs3[i]||periodValue[index]);
-                        });
+                }else if(params.length==1&&isString(params[0])){
+                    const timeSuffixRegex = /(?:[\sT](?<hour>\d{1,2})?:(?<minute>\d{1,2})?(?::(?<second>\d{1,2}))?(?:\.(?<millisecond>\d{1,3}))?)?/;
+                    // YYYY-MM-DD 或 YYYY/MM/DD
+                    const reg1 = new RegExp(`^(?<year>\\d{1,4})[-/](?<month>\\d{1,2})[-/](?<day>\\d{1,2})${timeSuffixRegex.source}`);
+                    // MM-DD-YYYY 或 MM/DD/YYYY
+                    const reg2 = new RegExp(`^(?<month>\\d{1,2})[-/](?<day>\\d{1,2})[-/](?<year>\\d{3,4})${timeSuffixRegex.source}`);
+                    // YYYYMMDDHHmmssSSS
+                    const reg3 = /^(?<year>[12]\d{3})(?<month>\d{2})(?<day>\d{2})(?<hour>\d{2})?(?<minute>\d{2})?(?<second>\d{2})?(?<millisecond>\d{1,3})?/;
+
+                    let matchs1 = params[0].match(reg1);
+                    let matchs2 = params[0].match(reg2);
+                    let matchs3 = params[0].match(reg3);
+                    if (matchs1 && !matchs2) {
+                        const groups = matchs1.groups;
+                        params = periodKey.map((key, index) => +(groups[key] || periodValue[index]));
+                    } else if (matchs2) {
+                        const groups = matchs2.groups;
+                        params = periodKey.map((key, index) => +(groups[key] || periodValue[index]));
+                    } else if (matchs3) {
+                        const groups = matchs3.groups;
+                        params = periodKey.map((key, index) => +(groups[key] || periodValue[index]));
                     }
                 }
                 // 参数修复
@@ -44,6 +48,9 @@ export default {
                 }
                 // 字符串输入做字段范围校验（month 1-12, day 1-31, hour 0-23, minute/second 0-59）
                 const isInvalid = (function(){
+                    if(params.length<3){
+                        return false;
+                    }
                     const [year = 0, month = 0, day = 0, hour = 0, minute = 0, second = 0, millisecond = 0] = params;
                     const date = new Date(year, month, day, hour, minute, second, millisecond);
                     return (
