@@ -73,11 +73,11 @@ export default {
                     }
                 }
             }
+            if(this._offset){
+                this._date.setTime(this._date.getTime()-this._offset);
+            }
         }else{
             this._date = new Date();
-        }
-        if(this._offset){
-            this._date.setTime(this._date.getTime()-this._offset);
         }
         return this;
     },

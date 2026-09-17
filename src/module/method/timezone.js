@@ -199,10 +199,10 @@ export default function(datex,proto){
                     }
                 }
             }
-        }
-        if(this.isValid()){
-            if(this._offset){
-                this._date.setTime(this._date.getTime()-this._offset);
+            if(this.isValid()){
+                if(this._offset){
+                    this._date.setTime(this._date.getTime()-this._offset);
+                }
             }
         }
     });
