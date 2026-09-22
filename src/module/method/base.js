@@ -6,6 +6,11 @@ import {isString,isFunction,isNumber} from './utils/type.js';
 import structuredClone from './runtime/structuredClone.js';
 
 export default function(datex,proto){
+    Object.assign(datex,{
+        unix(timestamp){
+            return this.parse(~~(timestamp/1000));
+        }
+    });
 
     Object.assign(proto,{
         toDate(){
