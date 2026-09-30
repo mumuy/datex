@@ -85,7 +85,6 @@ export default function(datex,proto){
                         this._date = new Date(instant.epochMilliseconds);
                         hasMatch = true;
                     }else{
-                        let zonedDateTime = null;
                         if(isPlainYearMonth(param)){
                             const PlainYearMonth = param;
                             const Day = 1;
@@ -97,21 +96,21 @@ export default function(datex,proto){
                         }
                         if(isPlainDateTime(param)){
                             const plainDateTime = param;
-                            zonedDateTime = plainDateTime.toZonedDateTime(this.getTimezone());
+                            param = plainDateTime.toZonedDateTime(this.getTimezone());
                         }else if(isPlainDate(param)){
                             const plainDate = param;
                             const plainTime = Temporal.PlainTime.from('00:00:00');
-                            zonedDateTime = plainDate.toPlainDateTime(plainTime).toZonedDateTime(this.getTimezone());
+                            param = plainDate.toPlainDateTime(plainTime).toZonedDateTime(this.getTimezone());
                         }else if(isPlainTime(param)){
                             const plainDate = Temporal.Now.plainDateISO();
                             const plainTime = param;
-                            zonedDateTime = plainDate.toPlainDateTime(plainTime).toZonedDateTime(this.getTimezone());
+                            param = plainDate.toPlainDateTime(plainTime).toZonedDateTime(this.getTimezone());
                         }
                         if(isZonedDateTime(param)){
                             const zonedDateTime = param;
                             this._date = new Date(zonedDateTime.epochMilliseconds);
                             this._timezone = zonedDateTime.timeZoneId;
-                            this._offset = (zonedDateTime.offsetNanoseconds - zonedDateTime.withTimeZone(timezone).offsetNanoseconds)/1000000;
+                            this._offset = (zonedDateTime.offsetNanoseconds - zonedDateTime.withTimeZone(this._timezone).offsetNanoseconds)/1000000;
                             hasMatch = true;
                         }
                     }
